@@ -9,29 +9,45 @@ import { CustomLink } from 'components/CustomLink';
 
 export const MainTemplate = () => {
   return (
-    <StyledMain>
-      <StyledHeader>
+    <StyledTemplate>
+      <StyledAside>
         <LogoIconLight />
-        <StyledSearchInput placeholder='Search' />
-        <Link to={ROUTE.SIGN_IN}>Sign In</Link>
-      </StyledHeader>
-      <Nav />
-      <Outlet />
+        <Nav />
+      </StyledAside>
+      <StyledMain>
+        <StyledHeader>
+          <StyledSearchInput placeholder='Search' />
+          <Link to={ROUTE.SIGN_IN}>Sign In</Link>
+        </StyledHeader>
+        <StyledOutlet />
+      </StyledMain>
       <StyledText>© All Rights Reserved</StyledText>
-    </StyledMain>
+    </StyledTemplate>
   );
 };
-export const StyledMain = styled.div`
+export const StyledTemplate = styled.div`
+  display: grid;
+  grid-template-columns: 160px 77%;
+  gap: 146px;
   height: 100vh;
   padding: 40px 62px 64px;
   background: ${Colors.DARK};
 `;
-export const StyledHeader = styled.header`
+export const StyledAside = styled.div`
   display: grid;
-  grid-template-columns: 1fr 66% 1fr;
-  align-items: center;
+  place-content: start;
+  gap: 64px;
+  margin-top: 8px;
+`;
+export const StyledMain = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  width: 100%;
+`;
+export const StyledHeader = styled.header`
+  display: flex;
   gap: 40px;
-  margin-bottom: 40px;
 `;
 export const StyledSearchInput = styled.input`
   width: 100%;
@@ -48,8 +64,9 @@ export const StyledSearchInput = styled.input`
     border: 2px solid ${Colors.PRIMARY};
     color: ${Colors.WHITE};
   }
-  color: ${Colors.DARK};
-  border-color: ${Colors.LIGHT};
+`;
+export const StyledOutlet = styled(Outlet)`
+  border: 1px solid white;
 `;
 export const StyledText = styled.span`
   position: fixed;
