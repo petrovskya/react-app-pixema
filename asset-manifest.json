@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/react-app-pixema/static/js/main.64a5908f.js",
+    "main.js": "/react-app-pixema/static/js/main.a6e217ed.js",
     "static/media/pixema-logo-light.svg": "/react-app-pixema/static/media/pixema-logo-light.d8083990b2360a7ea5bdb886b66752f1.svg",
     "static/media/pixema-logo-dark.svg": "/react-app-pixema/static/media/pixema-logo-dark.22981b9ec8b862428f9a0d7bad09443a.svg",
     "static/media/subtract-icon.svg": "/react-app-pixema/static/media/subtract-icon.782ddacbbf5439f29002d836a2592a2c.svg",
@@ -8,9 +8,9 @@
     "static/media/fire-icon.svg": "/react-app-pixema/static/media/fire-icon.7b9800287fb8b68f6bd40349e50416ae.svg",
     "static/media/home-icon.svg": "/react-app-pixema/static/media/home-icon.2fefa15fc23f7a1c3e7ae0ca25b33a3e.svg",
     "static/media/bookmark-icon.svg": "/react-app-pixema/static/media/bookmark-icon.bd3d812bdb0ad876b6f5a12668459f7e.svg",
-    "main.64a5908f.js.map": "/react-app-pixema/static/js/main.64a5908f.js.map"
+    "main.a6e217ed.js.map": "/react-app-pixema/static/js/main.a6e217ed.js.map"
   },
   "entrypoints": [
-    "static/js/main.64a5908f.js"
+    "static/js/main.a6e217ed.js"
   ]
 }
