@@ -8,40 +8,20 @@ import { Colors } from 'ui/colors';
 export const Nav = () => {
   return (
     <StyledNav>
-      <CustomLink
-        to={ROUTE.HOME}
-        component={HomeIcon}
-        fill={Colors.SECONDARY}
-        inheritViewBox
-      >
+      <CustomLink to={ROUTE.HOME} component={HomeIcon}>
         Home
       </CustomLink>
-      <CustomLink
-        to={ROUTE.TRENDS}
-        component={FireIcon}
-        fill={Colors.SECONDARY}
-        inheritViewBox
-      >
+      <CustomLink to={ROUTE.TRENDS} component={FireIcon}>
         Trends
       </CustomLink>
       {/* <CustomLink to={ROUTE.MOVIE}>Movie</CustomLink> */}
-      <CustomLink
-        to={ROUTE.FAVORITES}
-        component={BookmarkIcon}
-        fill={Colors.SECONDARY}
-        inheritViewBox
-      >
+      <CustomLink to={ROUTE.FAVORITES} component={BookmarkIcon}>
         Favorites
       </CustomLink>
       {/* <CustomLink to={ROUTE.SEARCH}>Search</CustomLink> */}
       {/* <CustomLink to={ROUTE.SIGN_UP}>Sign In</CustomLink>
       <CustomLink to={ROUTE.SIGN_IN}>Sign Up</CustomLink> */}
-      <CustomLink
-        to={ROUTE.SETTINGS}
-        component={SubtractIcon}
-        fill={Colors.SECONDARY}
-        inheritViewBox
-      >
+      <CustomLink to={ROUTE.SETTINGS} component={SubtractIcon}>
         Settings
       </CustomLink>
       {/* <CustomLink to={ROUTE.RESET_PAAWORD}>Reset password</CustomLink> */}

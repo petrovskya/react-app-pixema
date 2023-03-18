@@ -3,6 +3,7 @@ import { Link, PathMatch, useMatch } from 'react-router-dom';
 import { ROUTE } from 'router/routes';
 import { Colors } from 'ui/colors';
 import { SvgIcon } from '@mui/material';
+import styled from 'styled-components';
 
 interface CustomLinkProps {
   children: ReactNode;
@@ -10,38 +11,32 @@ interface CustomLinkProps {
   component: React.FunctionComponent<
     React.SVGProps<SVGSVGElement> & { title?: string | undefined }
   >;
-  fill: string;
-  inheritViewBox: boolean;
 }
-export const CustomLink = ({
-  children,
-  to,
-  component,
-  fill,
-  inheritViewBox,
-}: CustomLinkProps) => {
+export const CustomLink = ({ children, to, component }: CustomLinkProps) => {
   const match = useMatch(to);
-  const StyledLink = {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    gap: '20px',
-    fontSize: '18px',
-    fontWeight: 600,
-    color: match ? Colors.PRIMARY : Colors.SECONDARY,
-    textDecoration: 'none',
-    '&:hover': {
-      color: Colors.PRIMARY2,
-    },
-  };
+
   return (
-    <Link to={to} style={StyledLink}>
-      <SvgIcon
-        component={component}
-        fill={fill}
-        inheritViewBox={inheritViewBox}
-      />
+    <StyledLink to={to} $colors={Colors} $match={match}>
+      <SvgIcon component={component} inheritViewBox />
       {children}
-    </Link>
+    </StyledLink>
   );
 };
+
+const StyledLink = styled(Link)<{
+  $match: PathMatch<string> | null;
+  $colors: typeof Colors;
+}>`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: ${({ $match, $colors }) =>
+    $match ? $colors.PRIMARY : $colors.SECONDARY};
+  text-decoration: none;
+  &:hover {
+    color: ${({ $colors }) => $colors.PRIMARY2};
+  }
+`;

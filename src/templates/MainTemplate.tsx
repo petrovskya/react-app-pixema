@@ -15,7 +15,6 @@ export const MainTemplate = () => {
         <StyledSearchInput placeholder='Search' />
         <Link to={ROUTE.SIGN_IN}>Sign In</Link>
       </StyledHeader>
-
       <Nav />
       <Outlet />
       <StyledText>© All Rights Reserved</StyledText>
