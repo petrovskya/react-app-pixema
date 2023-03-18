@@ -1,20 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { ROUTE } from '../router/routes';
 import styled from 'styled-components';
+import { CustomLink } from './CustomLink';
+import { BookmarkIcon, FireIcon, HomeIcon, SubtractIcon } from 'assets';
 
 export const Nav = () => {
   return (
     <StyledNav>
-      <Link to={ROUTE.HOME}>Home</Link>
-      <Link to={ROUTE.TRENDS}>Trends</Link>
-      {/* <Link to={ROUTE.MOVIE}>Movie</Link> */}
-      <Link to={ROUTE.FAVORITES}>Favorites</Link>
-      {/* <Link to={ROUTE.SEARCH}>Search</Link> */}
-      {/* <Link to={ROUTE.SIGN_UP}>Sign In</Link>
-      <Link to={ROUTE.SIGN_IN}>Sign Up</Link> */}
-      <Link to={ROUTE.SETTINGS}>Settings</Link>
-      {/* <Link to={ROUTE.RESET_PAAWORD}>Reset password</Link> */}
+      <CustomLink to={ROUTE.HOME}>
+        <HomeIcon />
+        Home
+      </CustomLink>
+      <CustomLink to={ROUTE.TRENDS}>
+        <FireIcon />
+        Trends
+      </CustomLink>
+      {/* <CustomLink to={ROUTE.MOVIE}>Movie</CustomLink> */}
+      <CustomLink to={ROUTE.FAVORITES}>
+        <BookmarkIcon />
+        Favorites
+      </CustomLink>
+      {/* <CustomLink to={ROUTE.SEARCH}>Search</CustomLink> */}
+      {/* <CustomLink to={ROUTE.SIGN_UP}>Sign In</CustomLink>
+      <CustomLink to={ROUTE.SIGN_IN}>Sign Up</CustomLink> */}
+      <CustomLink to={ROUTE.SETTINGS}>
+        <SubtractIcon />
+        Settings
+      </CustomLink>
+      {/* <CustomLink to={ROUTE.RESET_PAAWORD}>Reset password</CustomLink> */}
     </StyledNav>
   );
 };

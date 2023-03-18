@@ -7,7 +7,7 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
   }
   body {
-   font-family: 'Exo 2', 'san-serif';;
+   font-family: 'Exo 2', 'san-serif';
   }
   input {
     border: none;

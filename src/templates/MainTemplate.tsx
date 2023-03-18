@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import { Nav } from '../components/Nav';
-import { ReactComponent as LogoIconLight } from '../assets/icons/pixema-logo-light.svg';
-import { ReactComponent as LogoIconDark } from '../assets/icons/pixema-logo-dark.svg';
+import { LogoIconLight, LogoIconDark } from 'assets';
 import { Colors } from 'ui/colors';
 import { ROUTE } from 'router/routes';
 import { CustomLink } from 'components/CustomLink';
@@ -24,6 +23,7 @@ export const MainTemplate = () => {
   );
 };
 export const StyledMain = styled.div`
+  height: 100vh;
   padding: 40px 62px 64px;
   background: ${Colors.DARK};
 `;
@@ -53,6 +53,8 @@ export const StyledSearchInput = styled.input`
   border-color: ${Colors.LIGHT};
 `;
 export const StyledText = styled.span`
+  position: fixed;
+  bottom: 64px;
   font-size: 16px;
   font-weight: 500;
   color: ${Colors.LIGHT};

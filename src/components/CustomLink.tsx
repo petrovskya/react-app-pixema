@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
-import { NavLink, useMatch } from 'react-router-dom';
+import { Link, PathMatch, useMatch } from 'react-router-dom';
 import { ROUTE } from 'router/routes';
-import styled from 'styled-components';
 import { Colors } from 'ui/colors';
 
 interface CustomLinkProps {
@@ -10,17 +9,22 @@ interface CustomLinkProps {
 }
 export const CustomLink = ({ children, to }: CustomLinkProps) => {
   const match = useMatch(to);
-  return <NavLink to={to}>{children}</NavLink>;
-};
-
-const StyledLink = {
-  fontSize: '18px',
-  fontWeight: 600,
-  color: Colors.SECONDARY,
-  ':active': {
-    color: Colors.PRIMARY,
-  },
-  ':hover': {
-    color: Colors.PRIMARY2,
-  },
+  const StyledLink = {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    gap: '20px',
+    fontSize: '18px',
+    fontWeight: 600,
+    color: match ? Colors.PRIMARY : Colors.SECONDARY,
+    textDecoration: 'none',
+    '&:hover': {
+      color: Colors.PRIMARY2,
+    },
+  };
+  return (
+    <Link to={to} style={StyledLink}>
+      {children}
+    </Link>
+  );
 };
