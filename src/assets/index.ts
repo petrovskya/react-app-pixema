@@ -1,10 +1,14 @@
 import { ReactComponent as LogoIconLight } from './icons/pixema-logo-light.svg';
 import { ReactComponent as LogoIconDark } from './icons/pixema-logo-dark.svg';
-
 import { ReactComponent as BookmarkIcon } from './icons/bookmark-icon.svg';
 import { ReactComponent as FireIcon } from './icons/fire-icon.svg';
 import { ReactComponent as HomeIcon } from './icons/home-icon.svg';
 import { ReactComponent as SubtractIcon } from './icons/subtract-icon.svg';
+import { ReactComponent as ArrowIcon } from './icons/arrow-down-icon.svg';
+import { ReactComponent as SignInIcon } from './icons/sign-in-icon.svg';
+import { ReactComponent as SignUpIcon } from './icons/sign-up-icon.svg';
+import { ReactComponent as SignOutIcon } from './icons/sign-out-icon.svg';
+
 export {
   BookmarkIcon,
   FireIcon,
@@ -12,4 +16,8 @@ export {
   SubtractIcon,
   LogoIconLight,
   LogoIconDark,
+  ArrowIcon,
+  SignInIcon,
+  SignUpIcon,
+  SignOutIcon,
 };

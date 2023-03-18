@@ -1,12 +1,15 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
-import { Nav } from 'components';
-import { LogoIconLight } from 'assets';
+import { CustomLink, Nav } from 'components';
+import { LogoIconLight, SignInIcon, SignUpIcon } from 'assets';
 import { Colors } from 'ui';
 import { ROUTE } from 'router';
+import { ArrowIcon } from 'assets';
 
 export const MainTemplate = () => {
+  const isAuth = false;
+
   return (
     <StyledTemplate>
       <StyledAside>
@@ -16,9 +19,28 @@ export const MainTemplate = () => {
       <StyledMain>
         <StyledHeader>
           <StyledSearchInput placeholder='Search' />
-          <Link to={ROUTE.SIGN_IN}>Sign In</Link>
+          {isAuth ? (
+            <>
+              <div> </div>
+              <div>Artem Lapitski</div>
+              <button>
+                <ArrowIcon />
+              </button>
+            </>
+          ) : (
+            <>
+              <CustomLink to={ROUTE.SIGN_IN} component={SignInIcon}>
+                Sign In
+              </CustomLink>
+              <CustomLink to={ROUTE.SIGN_UP} component={SignUpIcon}>
+                Sign UP
+              </CustomLink>
+            </>
+          )}
         </StyledHeader>
-        <StyledOutlet />
+        <StyledOutlet>
+          <Outlet />
+        </StyledOutlet>
       </StyledMain>
       <StyledText>© All Rights Reserved</StyledText>
     </StyledTemplate>
@@ -33,6 +55,9 @@ export const StyledTemplate = styled.div`
   background: ${Colors.DARK};
 `;
 export const StyledAside = styled.div`
+  position: fixed;
+  top: 40px;
+  left: 62px;
   display: grid;
   place-content: start;
   gap: 64px;
@@ -45,11 +70,15 @@ export const StyledMain = styled.div`
   width: 100%;
 `;
 export const StyledHeader = styled.header`
+  position: fixed;
+  top: 40px;
+  left: 368px;
   display: flex;
   gap: 40px;
+  width: 77%;
 `;
 export const StyledSearchInput = styled.input`
-  width: 100%;
+  width: 80%;
   padding: 16px 20px;
   background: ${Colors.GRAPHITE};
   border-radius: 10px;
@@ -64,8 +93,10 @@ export const StyledSearchInput = styled.input`
     color: ${Colors.WHITE};
   }
 `;
-export const StyledOutlet = styled(Outlet)`
-  border: 1px solid white;
+export const StyledOutlet = styled.div`
+  position: relative;
+  top: 112px;
+  left: 306px;
 `;
 export const StyledText = styled.span`
   position: fixed;

@@ -6,6 +6,6 @@ export enum ROUTE {
   SIGN_UP = 'sign-up',
   TRENDS = 'trends',
   MOVIE = 'movie',
-  RESET_PAAWORD = 'reset-password',
+  RESET_PASSWORD = 'reset-password',
   SETTINGS = 'settings',
 }

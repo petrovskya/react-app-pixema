@@ -23,7 +23,7 @@ export const Nav = () => {
       <CustomLink to={ROUTE.SETTINGS} component={SubtractIcon}>
         Settings
       </CustomLink>
-      {/* <CustomLink to={ROUTE.RESET_PAAWORD}>Reset password</CustomLink> */}
+      {/* <CustomLink to={ROUTE.RESET_PASSWORD}>Reset password</CustomLink> */}
     </StyledNav>
   );
 };
