@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import { Nav } from '../components/Nav';
 import { LogoIconLight, LogoIconDark } from 'assets';
@@ -13,7 +13,7 @@ export const MainTemplate = () => {
       <StyledHeader>
         <LogoIconLight />
         <StyledSearchInput placeholder='Search' />
-        <CustomLink to={ROUTE.SIGN_IN}>Sign In</CustomLink>
+        <Link to={ROUTE.SIGN_IN}>Sign In</Link>
       </StyledHeader>
 
       <Nav />
