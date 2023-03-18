@@ -1,9 +1,8 @@
 import React from 'react';
-import { ROUTE } from '../router/routes';
+import { ROUTE } from 'router';
 import styled from 'styled-components';
-import { CustomLink } from './CustomLink';
+import { CustomLink } from 'components';
 import { BookmarkIcon, FireIcon, HomeIcon, SubtractIcon } from 'assets';
-import { Colors } from 'ui/colors';
 
 export const Nav = () => {
   return (

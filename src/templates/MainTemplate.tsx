@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
-import { Nav } from '../components/Nav';
-import { LogoIconLight, LogoIconDark } from 'assets';
-import { Colors } from 'ui/colors';
-import { ROUTE } from 'router/routes';
-import { CustomLink } from 'components/CustomLink';
+import { Nav } from 'components';
+import { LogoIconLight } from 'assets';
+import { Colors } from 'ui';
+import { ROUTE } from 'router';
 
 export const MainTemplate = () => {
   return (

@@ -2,7 +2,7 @@
   "name": "react-app-pixema",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://petrovskya.github.io/react-app-pixema/",
+  "homepage": "https://petrovskya.github.io/react-app-pixema",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",

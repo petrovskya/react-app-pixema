@@ -34,5 +34,6 @@ export const router = createBrowserRouter(
         <Route path={ROUTE.RESET_PAAWORD} element={<ResetPasswordPage />} />
       </Route>
     </Route>
-  )
+  ),
+  { basename: '/react-app-pixema' }
 );

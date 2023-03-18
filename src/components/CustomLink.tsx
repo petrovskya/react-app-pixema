@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Link, PathMatch, useMatch } from 'react-router-dom';
-import { ROUTE } from 'router/routes';
+import { ROUTE } from 'router';
 import { Colors } from 'ui/colors';
 import { SvgIcon } from '@mui/material';
 import styled from 'styled-components';
@@ -37,6 +37,6 @@ const StyledLink = styled(Link)<{
     $match ? $colors.PRIMARY : $colors.SECONDARY};
   text-decoration: none;
   &:hover {
-    color: ${({ $colors }) => $colors.PRIMARY2};
+    color: ${({ $colors }) => $colors.PRIMARY_LIGHT};
   }
 `;
