@@ -9,15 +9,15 @@ interface MoviesState {
   error: string | null;
 }
 
-export const fetchAllMovies = createAsyncThunk<any[]>(
-  'movies/fetchAll',
-  async () => {
-    const { data } = await axios.get(
-      'http://www.omdbapi.com/?s=dream&plot=full&apikey=af084387'
-    );
-    return transformShortMovies(data);
-  }
-);
+export const fetchAllMovies = createAsyncThunk<
+  TransformedShortMovie[],
+  { theme: string }
+>('movies/fetchAll', async ({ theme }) => {
+  const { data } = await axios.get(
+    `http://www.omdbapi.com/?s=${theme}}&plot=full&apikey=af084387`
+  );
+  return transformShortMovies(data);
+});
 
 const initialState: MoviesState = {
   isLoading: false,

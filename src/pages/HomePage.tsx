@@ -2,14 +2,16 @@ import { MoviesList } from 'components';
 import React, { useEffect } from 'react';
 import { UseAppDispatch, useAppSelector } from 'store/hooks/hooks';
 import { fetchAllMovies } from 'store';
-import styled from 'styled-components';
 import { ShowMoreButton } from 'components';
+import { StyledOutletContent } from 'ui';
+import { getRandomMoviesTheme } from 'utils/getRandomMoviesTheme';
 
 export const HomePage = () => {
   const { isLoading, movies } = useAppSelector((state) => state.movies);
   const dispatch = UseAppDispatch();
+  const theme = getRandomMoviesTheme();
   useEffect(() => {
-    dispatch(fetchAllMovies());
+    dispatch(fetchAllMovies({ theme }));
   }, [dispatch]);
 
   return (
@@ -24,8 +26,3 @@ export const HomePage = () => {
     </div>
   );
 };
-
-export const StyledOutletContent = styled.div`
-  display: grid;
-  gap: 64px;
-`;
