@@ -62,6 +62,7 @@ export const StyledAside = styled.div`
   display: grid;
   place-content: start;
   gap: 64px;
+  height: 100vh;
   margin-top: 8px;
 `;
 export const StyledMain = styled.div`
@@ -96,10 +97,8 @@ export const StyledSearchInput = styled.input`
   }
 `;
 export const StyledOutlet = styled.div`
-  /* position: relative; */
   margin-top: 112px;
   margin-left: 306px;
-  /* overflow: scroll; */
 `;
 export const StyledText = styled.span`
   position: fixed;

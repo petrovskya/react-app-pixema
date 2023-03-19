@@ -1,8 +1,9 @@
-// import { transformShortMovies } from 'mappers';
-import React, { useEffect, useState } from 'react';
+import { MoviesList } from 'components/MoviesList';
+import React, { useEffect } from 'react';
 import { UseAppDispatch, useAppSelector } from 'store/hooks/hooks';
 import { fetchAllMovies } from 'store/moviesSlice';
-// import { TransformedShortMovie } from 'types';
+import styled from 'styled-components';
+import { Colors } from 'ui';
 
 export const HomePage = () => {
   const { isLoading, movies } = useAppSelector((state) => state.movies);
@@ -15,16 +16,33 @@ export const HomePage = () => {
     <div>
       {isLoading && <div>Loading...</div>}
       {movies.length > 0 && (
-        <ul>
-          {movies.map(({ poster, title, type, year, imdbID }): any => (
-            <li key={imdbID}>
-              <img src={poster} alt={title} />
-              <p>{type}</p>
-              <p>Year: {year}</p>
-            </li>
-          ))}
-        </ul>
+        <StyledOutletContent>
+          <MoviesList movies={movies} />
+          <StyledShowMoreButton>Show more</StyledShowMoreButton>
+        </StyledOutletContent>
       )}
     </div>
   );
 };
+
+export const StyledOutletContent = styled.div`
+  display: grid;
+  gap: 64px;
+`;
+export const StyledShowMoreButton = styled.button`
+  width: 161px;
+  padding: 8px 24px;
+  margin: 0 auto;
+  background-color: ${Colors.GRAPHITE};
+  border-radius: 40px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: ${Colors.WHITE};
+  transition: all 0.3s;
+  cursor: pointer;
+  &:hover {
+    background-color: ${Colors.PRIMARY_LIGHT};
+  }
+`;
