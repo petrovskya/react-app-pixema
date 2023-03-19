@@ -1,4 +1,4 @@
-import { MoviesList } from 'components/MoviesList/MoviesList';
+import { MoviesList } from 'components';
 import React, { useEffect } from 'react';
 import { UseAppDispatch, useAppSelector } from 'store/hooks/hooks';
 import { fetchAllMovies } from 'store';

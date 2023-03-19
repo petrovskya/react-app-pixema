@@ -1,7 +1,7 @@
-import React from 'react';
-import { TransformedShortMovie } from 'types';
 import { MovieCard } from 'components';
+import { TransformedShortMovie } from 'types';
 import { StyledMoviesList } from './styles';
+
 interface MoviesListProps {
   movies: TransformedShortMovie[];
 }
