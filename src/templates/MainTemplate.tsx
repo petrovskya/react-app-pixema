@@ -56,6 +56,7 @@ export const StyledTemplate = styled.div`
 `;
 export const StyledAside = styled.div`
   position: fixed;
+  z-index: 1;
   top: 40px;
   left: 62px;
   display: grid;
@@ -71,6 +72,7 @@ export const StyledMain = styled.div`
 `;
 export const StyledHeader = styled.header`
   position: fixed;
+  z-index: 1;
   top: 40px;
   left: 368px;
   display: flex;
@@ -94,9 +96,10 @@ export const StyledSearchInput = styled.input`
   }
 `;
 export const StyledOutlet = styled.div`
-  position: relative;
-  top: 112px;
-  left: 306px;
+  /* position: relative; */
+  margin-top: 112px;
+  margin-left: 306px;
+  /* overflow: scroll; */
 `;
 export const StyledText = styled.span`
   position: fixed;
