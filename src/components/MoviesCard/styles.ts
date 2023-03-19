@@ -1,22 +1,5 @@
-import React from 'react';
 import styled from 'styled-components';
-import { TransformedShortMovie } from 'types';
 import { Colors } from 'ui';
-
-interface MoviesItemProps {
-  movie: TransformedShortMovie;
-}
-export const MoviesItem = ({
-  movie: { poster, title, type, year, imdbID },
-}: MoviesItemProps) => {
-  return (
-    <StyledMoviesItem>
-      <StyledPoster src={poster} alt={title} />
-      <StyledMovieTitle>{title}</StyledMovieTitle>
-      <StyledMovieYear>{year}</StyledMovieYear>
-    </StyledMoviesItem>
-  );
-};
 
 export const StyledPoster = styled.img`
   width: 266px;
@@ -40,7 +23,6 @@ export const StyledMovieYear = styled.h2`
   color: ${Colors.WHITE};
 `;
 
-export const StyledMoviesItem = styled.li`
+export const StyledMovieCard = styled.li`
   display: grid;
-  /* place-items: start; */
 `;

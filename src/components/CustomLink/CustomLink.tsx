@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
-import { Link, PathMatch, useMatch } from 'react-router-dom';
+import { useMatch } from 'react-router-dom';
 import { ROUTE } from 'router';
 import { Colors } from 'ui/colors';
 import { SvgIcon } from '@mui/material';
-import styled from 'styled-components';
+import { StyledLink } from './styles';
 
 interface CustomLinkProps {
   children: ReactNode;
@@ -22,21 +22,3 @@ export const CustomLink = ({ children, to, component }: CustomLinkProps) => {
     </StyledLink>
   );
 };
-
-const StyledLink = styled(Link)<{
-  $match: PathMatch<string> | null;
-  $colors: typeof Colors;
-}>`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 20px;
-  font-size: 18px;
-  font-weight: 600;
-  color: ${({ $match, $colors }) =>
-    $match ? $colors.PRIMARY : $colors.SECONDARY};
-  text-decoration: none;
-  &:hover {
-    color: ${({ $colors }) => $colors.PRIMARY_LIGHT};
-  }
-`;

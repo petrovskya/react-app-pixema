@@ -1,9 +1,9 @@
-import { MoviesList } from 'components/MoviesList';
+import { MoviesList } from 'components/MoviesList/MoviesList';
 import React, { useEffect } from 'react';
 import { UseAppDispatch, useAppSelector } from 'store/hooks/hooks';
-import { fetchAllMovies } from 'store/moviesSlice';
+import { fetchAllMovies } from 'store';
 import styled from 'styled-components';
-import { Colors } from 'ui';
+import { ShowMoreButton } from 'components';
 
 export const HomePage = () => {
   const { isLoading, movies } = useAppSelector((state) => state.movies);
@@ -18,7 +18,7 @@ export const HomePage = () => {
       {movies.length > 0 && (
         <StyledOutletContent>
           <MoviesList movies={movies} />
-          <StyledShowMoreButton>Show more</StyledShowMoreButton>
+          <ShowMoreButton />
         </StyledOutletContent>
       )}
     </div>
@@ -28,21 +28,4 @@ export const HomePage = () => {
 export const StyledOutletContent = styled.div`
   display: grid;
   gap: 64px;
-`;
-export const StyledShowMoreButton = styled.button`
-  width: 161px;
-  padding: 8px 24px;
-  margin: 0 auto;
-  background-color: ${Colors.GRAPHITE};
-  border-radius: 40px;
-  font-family: inherit;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  color: ${Colors.WHITE};
-  transition: all 0.3s;
-  cursor: pointer;
-  &:hover {
-    background-color: ${Colors.PRIMARY_LIGHT};
-  }
 `;
