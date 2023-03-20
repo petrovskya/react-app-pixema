@@ -1,9 +1,9 @@
 import { MovieCard } from 'components';
-import { TransformedShortMovie } from 'types';
+import { Movie } from 'types';
 import { StyledMoviesList } from './styles';
 
 interface MoviesListProps {
-  movies: TransformedShortMovie[];
+  movies: Movie[];
 }
 export const MoviesList = ({ movies }: MoviesListProps) => {
   return (

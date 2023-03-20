@@ -25,7 +25,7 @@ interface FullMovieAPI {
   Website: string;
   Response: string;
 }
-interface TransformedFullMovie {
+interface FullMovie {
   title: string;
   year: string;
   rated: string;
@@ -59,19 +59,19 @@ interface FullMovieRating {
 }
 
 interface MoviesApi {
-  Search: ShortMovieApi[];
+  Search: MovieApi[];
   totalResults: string;
   Response: string;
 }
 
-interface ShortMovieApi {
+interface MovieApi {
   Poster: string;
   Title: string;
   Type: string;
   Year: string;
   imdbID: string;
 }
-interface TransformedShortMovie {
+interface Movie {
   poster: string;
   title: string;
   type: string;
@@ -79,10 +79,4 @@ interface TransformedShortMovie {
   imdbID: string;
 }
 
-export type {
-  FullMovieAPI,
-  TransformedShortMovie,
-  MoviesApi,
-  ShortMovieApi,
-  TransformedFullMovie,
-};
+export type { FullMovieAPI, Movie, MoviesApi, MovieApi, FullMovie };

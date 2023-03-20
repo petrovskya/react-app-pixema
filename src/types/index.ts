@@ -1,7 +1,7 @@
 export type {
   FullMovieAPI,
-  TransformedShortMovie,
-  TransformedFullMovie,
+  Movie,
+  FullMovie,
   MoviesApi,
-  ShortMovieApi,
+  MovieApi,
 } from './types';

@@ -3,41 +3,31 @@ import { Colors } from 'ui';
 
 export const StyledTemplate = styled.div`
   display: grid;
-  grid-template-columns: 160px 77%;
-  gap: 146px;
-  height: 100vh;
+  max-width: 100%;
   padding: 40px 62px 64px;
   background: ${Colors.DARK};
 `;
-export const StyledAside = styled.div`
-  position: fixed;
-  z-index: 1;
-  top: 40px;
-  left: 62px;
-  display: grid;
-  place-content: start;
-  gap: 64px;
-  height: 100vh;
-  margin-top: 8px;
-`;
 export const StyledMain = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 56px;
-  width: 100%;
+  max-width: 100%;
+  margin-left: 307px;
+  margin-top: 117px;
 `;
 export const StyledHeader = styled.header`
   position: fixed;
   z-index: 1;
-  top: 40px;
-  left: 368px;
+  top: 40;
   display: flex;
   gap: 40px;
-  width: 77%;
+  width: 86%;
+  background: ${Colors.DARK};
 `;
 export const StyledSearchInput = styled.input`
   width: 80%;
   padding: 16px 20px;
+  margin-left: 126px;
   background: ${Colors.GRAPHITE};
   border-radius: 10px;
   border: none;
@@ -50,10 +40,6 @@ export const StyledSearchInput = styled.input`
     border: 2px solid ${Colors.PRIMARY};
     color: ${Colors.WHITE};
   }
-`;
-export const StyledOutlet = styled.div`
-  margin-top: 112px;
-  margin-left: 306px;
 `;
 export const StyledText = styled.span`
   position: fixed;

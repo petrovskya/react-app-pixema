@@ -1,5 +1,5 @@
 import React from 'react';
-import { TransformedShortMovie } from 'types';
+import { Movie } from 'types';
 import {
   StyledMovieCard,
   StyledMovieTitle,
@@ -8,7 +8,7 @@ import {
 } from './styles';
 
 interface MovieCardProps {
-  movie: TransformedShortMovie;
+  movie: Movie;
 }
 export const MovieCard = ({
   movie: { poster, title, type, year, imdbID },

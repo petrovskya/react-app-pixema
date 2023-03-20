@@ -1,4 +1,4 @@
-// import { FullMovieAPI, TransformedFullMovie } from 'types';
+// import { FullMovieAPI, FullMovie } from 'types';
 {
 }
 // export const transformFullMovie = (movie: FullMovieAPI): any => {

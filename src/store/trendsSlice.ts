@@ -1,19 +1,19 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { transformShortMovies } from 'mappers';
-import { TransformedShortMovie } from 'types';
+import { Movie } from 'types';
 
 interface TrendsState {
-  trends: TransformedShortMovie[];
+  trends: Movie[];
   isLoading: boolean;
   error: string | null;
 }
 
 export const fetchTrendsMovies = createAsyncThunk<any[]>(
-  'movies/fetchTrends',
+  'trends/fetchTrends',
   async () => {
     const { data } = await axios.get(
-      'http://www.omdbapi.com/?s=marvel&plot=full&apikey=af084387'
+      'http://www.omdbapi.com/?s=star&plot=full&apikey=af084387'
     );
     return transformShortMovies(data);
   }
