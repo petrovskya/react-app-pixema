@@ -5,7 +5,6 @@ import { fetchAllMovies } from 'store';
 import { StyledOutlet } from 'ui';
 import { getRandomMoviesTheme } from 'utils/getRandomMoviesTheme';
 import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
-import { Outlet } from 'react-router-dom';
 
 export const HomePage = () => {
   const { isLoading, movies, error } = useAppSelector((state) => state.movies);

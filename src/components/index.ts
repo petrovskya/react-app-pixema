@@ -4,4 +4,13 @@ import { RequareAuth } from './RequareAuth';
 import { MoviesList } from './MoviesList/MoviesList';
 import { MovieCard } from './MovieCard/MovieCard';
 import { ShowMoreButton } from './ShowMoreButton/ShowMoreButton';
-export { CustomLink, Nav, RequareAuth, MoviesList, MovieCard, ShowMoreButton };
+import { Poster } from './Poster/Poster';
+export {
+  CustomLink,
+  Nav,
+  RequareAuth,
+  MoviesList,
+  MovieCard,
+  ShowMoreButton,
+  Poster,
+};
