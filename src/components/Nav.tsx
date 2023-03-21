@@ -19,6 +19,9 @@ export const Nav = () => {
       <CustomLink to={ROUTE.SETTINGS} component={SubtractIcon}>
         Settings
       </CustomLink>
+      <CustomLink to={ROUTE.MOVIE} component={SubtractIcon}>
+        Movie
+      </CustomLink>
     </StyledNav>
   );
 };

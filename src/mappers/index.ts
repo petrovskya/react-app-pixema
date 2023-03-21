@@ -1,4 +1,4 @@
 import { transformShortMovies } from './transformShortMovies';
-// import { transformFullMovie } from './transformFullMovie';
+import { transformFullMovie } from './transformFullMovie';
 
-export { transformShortMovies };
+export { transformShortMovies, transformFullMovie };
