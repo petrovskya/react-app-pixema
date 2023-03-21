@@ -1,16 +1,20 @@
 {
   "files": {
-    "main.js": "/react-app-pixema/static/js/main.a6e217ed.js",
-    "static/media/pixema-logo-light.svg": "/react-app-pixema/static/media/pixema-logo-light.d8083990b2360a7ea5bdb886b66752f1.svg",
-    "static/media/pixema-logo-dark.svg": "/react-app-pixema/static/media/pixema-logo-dark.22981b9ec8b862428f9a0d7bad09443a.svg",
-    "static/media/subtract-icon.svg": "/react-app-pixema/static/media/subtract-icon.782ddacbbf5439f29002d836a2592a2c.svg",
+    "main.js": "/react-app-pixema/static/js/main.c0480c21.js",
+    "static/media/pixema-logo-light.svg": "/react-app-pixema/static/media/pixema-logo-light.0336050093d3bd8a755a7d79d2f36136.svg",
+    "static/media/pixema-logo-dark.svg": "/react-app-pixema/static/media/pixema-logo-dark.184130e54b7fdd4a0dfa4a34e25c5fb3.svg",
+    "static/media/subtract-icon.svg": "/react-app-pixema/static/media/subtract-icon.89dc161a1c33578fc78f982edbf83bc1.svg",
     "index.html": "/react-app-pixema/index.html",
-    "static/media/fire-icon.svg": "/react-app-pixema/static/media/fire-icon.7b9800287fb8b68f6bd40349e50416ae.svg",
-    "static/media/home-icon.svg": "/react-app-pixema/static/media/home-icon.2fefa15fc23f7a1c3e7ae0ca25b33a3e.svg",
-    "static/media/bookmark-icon.svg": "/react-app-pixema/static/media/bookmark-icon.bd3d812bdb0ad876b6f5a12668459f7e.svg",
-    "main.a6e217ed.js.map": "/react-app-pixema/static/js/main.a6e217ed.js.map"
+    "static/media/sign-in-icon.svg": "/react-app-pixema/static/media/sign-in-icon.1b18bf2c35fa9f3bd1ef32a4796d5672.svg",
+    "static/media/sign-out-icon.svg": "/react-app-pixema/static/media/sign-out-icon.26370c83db533a9f91060576793e2147.svg",
+    "static/media/fire-icon.svg": "/react-app-pixema/static/media/fire-icon.6070463593d92b7582b93b7bbe720a2f.svg",
+    "static/media/home-icon.svg": "/react-app-pixema/static/media/home-icon.4400ea99ea41c30bc3716164d6e0e667.svg",
+    "static/media/sign-up-icon.svg": "/react-app-pixema/static/media/sign-up-icon.f7ae885178f89503b6f5c60b19884b26.svg",
+    "static/media/bookmark-icon.svg": "/react-app-pixema/static/media/bookmark-icon.420bc19b016a485b2f8d95e2c4d613cb.svg",
+    "static/media/arrow-down-icon.svg": "/react-app-pixema/static/media/arrow-down-icon.6904455cac3b74428bbf45a0e219f1d2.svg",
+    "main.c0480c21.js.map": "/react-app-pixema/static/js/main.c0480c21.js.map"
   },
   "entrypoints": [
-    "static/js/main.a6e217ed.js"
+    "static/js/main.c0480c21.js"
   ]
 }
