@@ -8,7 +8,9 @@ import { ReactComponent as ArrowIcon } from './icons/arrow-down-icon.svg';
 import { ReactComponent as SignInIcon } from './icons/sign-in-icon.svg';
 import { ReactComponent as SignUpIcon } from './icons/sign-up-icon.svg';
 import { ReactComponent as SignOutIcon } from './icons/sign-out-icon.svg';
-
+import { ReactComponent as FavoritesIcon } from './icons/favorites-icon.svg';
+import { ReactComponent as ShareIcon } from './icons/share-icon.svg';
+import { ReactComponent as IMDBIcon } from './icons/imdb-icon.svg';
 export {
   BookmarkIcon,
   FireIcon,
@@ -20,4 +22,7 @@ export {
   SignInIcon,
   SignUpIcon,
   SignOutIcon,
+  FavoritesIcon,
+  ShareIcon,
+  IMDBIcon,
 };

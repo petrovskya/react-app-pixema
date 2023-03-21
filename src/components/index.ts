@@ -5,6 +5,7 @@ import { MoviesList } from './MoviesList/MoviesList';
 import { MovieCard } from './MovieCard/MovieCard';
 import { ShowMoreButton } from './ShowMoreButton/ShowMoreButton';
 import { Poster } from './Poster/Poster';
+import { MovieLink } from './MovieLink/MovieLink';
 export {
   CustomLink,
   Nav,
@@ -13,4 +14,5 @@ export {
   MovieCard,
   ShowMoreButton,
   Poster,
+  MovieLink,
 };

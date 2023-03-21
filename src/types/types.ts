@@ -42,12 +42,12 @@ interface FullMovie {
   poster: string;
   ratings: FullMovieRating[];
   metascore: string;
-  imdbRating: string;
-  imdbVotes: string;
-  imdbID: string;
+  imdbrating: string;
+  imdbvotes: string;
+  imdbid: string;
   type: string;
   dvd: string;
-  boxOffice: string;
+  boxoffice: string;
   production: string;
   website: string;
   response: string;

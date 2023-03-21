@@ -7,16 +7,17 @@ interface MovieState {
   movie: FullMovie | null;
   isLoading: boolean;
   error: string | null;
+  imdbID: string;
 }
 
 export const fetchFullMovie = createAsyncThunk<
   FullMovie,
-  { id: string },
+  { imdbID: string },
   { rejectValue: string }
->('movie/fetchFullMovie', async ({ id }, { rejectWithValue }) => {
+>('movie/fetchFullMovie', async ({ imdbID }, { rejectWithValue }) => {
   try {
     const { data } = await axios.get(
-      `https://www.omdbapi.com/?i=${id}&plot=full&apikey=af084387`
+      `https://www.omdbapi.com/?i=${imdbID}&plot=full&apikey=af084387`
     );
     return transformFullMovie(data);
   } catch (error) {
@@ -29,12 +30,17 @@ const initialState: MovieState = {
   isLoading: false,
   error: null,
   movie: null,
+  imdbID: '',
 };
 
 const movieSlice = createSlice({
   name: 'movie',
   initialState,
-  reducers: {},
+  reducers: {
+    setMovieId(state, action) {
+      state.imdbID = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder.addCase(fetchFullMovie.pending, (state, { payload }) => {
       state.isLoading = true;
@@ -54,3 +60,5 @@ const movieSlice = createSlice({
 });
 
 export default movieSlice.reducer;
+const { actions } = movieSlice;
+export const { setMovieId } = actions;

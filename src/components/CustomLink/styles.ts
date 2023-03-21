@@ -16,6 +16,7 @@ export const StyledLink = styled(Link)<{
   color: ${({ $match, $colors }) =>
     $match ? $colors.PRIMARY : $colors.SECONDARY};
   text-decoration: none;
+  transition: all 0.2s;
   &:hover {
     color: ${({ $colors }) => $colors.PRIMARY_LIGHT};
   }
