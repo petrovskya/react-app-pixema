@@ -13,6 +13,7 @@ import {
   StyledSearchInput,
   StyledTemplate,
   StyledText,
+  FixedWrapContainer,
 } from './styles';
 
 export const MainTemplate = () => {
@@ -27,27 +28,30 @@ export const MainTemplate = () => {
         </StyledMenu>
         <StyledText>© All Rights Reserved</StyledText>
       </StyledAside>
-      <StyledWrap>
-        <StyledSearchInput placeholder='Search' />
-        {isAuth ? (
-          <StyledUserInfo>
-            <div> </div>
-            <div>Artem Lapitski</div>
-            <button>
-              <ArrowIcon />
-            </button>
-          </StyledUserInfo>
-        ) : (
-          <StyledUserInfo>
-            <CustomLink to={ROUTE.SIGN_IN} component={SignInIcon}>
-              Sign In
-            </CustomLink>
-            <CustomLink to={ROUTE.SIGN_UP} component={SignUpIcon}>
-              Sign Up
-            </CustomLink>
-          </StyledUserInfo>
-        )}
-      </StyledWrap>
+      <FixedWrapContainer>
+        <StyledWrap>
+          <StyledSearchInput placeholder='Search' />
+          {isAuth ? (
+            <StyledUserInfo>
+              <div> </div>
+              <div>Artem Lapitski</div>
+              <button>
+                <ArrowIcon />
+              </button>
+            </StyledUserInfo>
+          ) : (
+            <StyledUserInfo>
+              <CustomLink to={ROUTE.SIGN_IN} component={SignInIcon}>
+                Sign In
+              </CustomLink>
+              <CustomLink to={ROUTE.SIGN_UP} component={SignUpIcon}>
+                Sign Up
+              </CustomLink>
+            </StyledUserInfo>
+          )}
+        </StyledWrap>
+      </FixedWrapContainer>
+
       <StyledMain>
         <Outlet />
       </StyledMain>

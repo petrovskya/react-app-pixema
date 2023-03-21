@@ -24,22 +24,28 @@ export const StyledText = styled.span`
   bottom: 64px;
   color: ${Colors.LIGHT};
 `;
-export const StyledWrap = styled.div`
+export const FixedWrapContainer = styled.div`
   position: fixed;
-  z-index: 1;
   top: 0;
-  left: 368px;
-  display: grid;
-  grid-template-columns: 8fr 2fr;
+  left: 0;
+  z-index: 1;
+  padding: 0 62px 0 368px;
+  width: 100%;
+`;
+export const StyledWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
   gap: 40px;
-  width: 80%;
+  max-width: 100%;
   padding: 40px 0 56px;
+  margin: 0 -15px;
   background: ${Colors.DARK};
 `;
 
 export const StyledSearchInput = styled.input`
   width: 100%;
   padding: 16px 20px;
+  margin: 0 15px;
   background: ${Colors.GRAPHITE};
   border-radius: 10px;
   border: none;
@@ -55,7 +61,9 @@ export const StyledSearchInput = styled.input`
 `;
 export const StyledUserInfo = styled.div`
   display: flex;
+  justify-content: space-between;
   gap: 40px;
+  margin: 0 15px;
 `;
 
 export const StyledMain = styled.div`
