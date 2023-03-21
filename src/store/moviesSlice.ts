@@ -16,7 +16,7 @@ export const fetchAllMovies = createAsyncThunk<
 >('movies/fetchAll', async ({ theme }, { rejectWithValue }) => {
   try {
     const { data } = await axios.get(
-      `http://www.omdbapi.com/?s=${theme}}&plot=full&apikey=af084387`
+      `https://www.omdbapi.com/?s=${theme}}&plot=full&apikey=af084387`
     );
     return transformShortMovies(data);
   } catch (error) {

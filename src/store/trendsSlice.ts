@@ -13,7 +13,7 @@ export const fetchTrendsMovies = createAsyncThunk<any[]>(
   'trends/fetchTrends',
   async () => {
     const { data } = await axios.get(
-      'http://www.omdbapi.com/?s=star&plot=full&apikey=af084387'
+      'https://www.omdbapi.com/?s=star&plot=full&apikey=af084387'
     );
     return transformShortMovies(data);
   }
