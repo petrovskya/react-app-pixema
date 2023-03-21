@@ -12,6 +12,7 @@ export const StyledLink = styled(Link)<{
   gap: 20px;
   font-size: 18px;
   font-weight: 600;
+  white-space: nowrap;
   color: ${({ $match, $colors }) =>
     $match ? $colors.PRIMARY : $colors.SECONDARY};
   text-decoration: none;

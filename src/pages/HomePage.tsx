@@ -2,9 +2,10 @@ import { MoviesList, ShowMoreButton } from 'components';
 import React, { useEffect } from 'react';
 import { UseAppDispatch, useAppSelector } from 'store/hooks/hooks';
 import { fetchAllMovies } from 'store';
-import { StyledOutletContent } from 'ui';
+import { StyledOutlet } from 'ui';
 import { getRandomMoviesTheme } from 'utils/getRandomMoviesTheme';
 import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
+import { Outlet } from 'react-router-dom';
 
 export const HomePage = () => {
   const { isLoading, movies, error } = useAppSelector((state) => state.movies);
@@ -14,16 +15,19 @@ export const HomePage = () => {
     dispatch(fetchAllMovies({ theme }));
   }, [dispatch]);
 
+  if (isLoading) return <div>Loading...</div>;
+  if (error)
+    return (
+      <StyledOutlet>
+        <ErrorMessage error={error} />
+      </StyledOutlet>
+    );
+  if (!movies.length) return <ErrorMessage error={'No films'} />;
+
   return (
-    <>
-      {isLoading && <div>Loading...</div>}
-      {error && <ErrorMessage error={error} />}
-      {movies.length > 0 && (
-        <StyledOutletContent>
-          <MoviesList movies={movies} />
-          <ShowMoreButton />
-        </StyledOutletContent>
-      )}
-    </>
+    <StyledOutlet>
+      <MoviesList movies={movies} />
+      <ShowMoreButton />
+    </StyledOutlet>
   );
 };

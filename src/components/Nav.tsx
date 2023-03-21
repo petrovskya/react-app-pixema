@@ -23,18 +23,9 @@ export const Nav = () => {
   );
 };
 
-// export const StyledNav = styled.nav`
-//   display: grid;
-//   gap: 40px;
-// `;
-
 export const StyledNav = styled.nav`
-  position: fixed;
-  z-index: 1;
-  top: 152px;
-  left: 62px;
   display: grid;
   place-content: start;
   gap: 40px;
-  margin-top: 8px;
+  margin-top: 64px;
 `;

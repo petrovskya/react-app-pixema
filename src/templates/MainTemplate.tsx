@@ -5,8 +5,11 @@ import { LogoIconLight, SignInIcon, SignUpIcon } from 'assets';
 import { ROUTE } from 'router';
 import { ArrowIcon } from 'assets';
 import {
-  StyledHeader,
+  StyledAside,
+  StyledMenu,
+  StyledWrap,
   StyledMain,
+  StyledUserInfo,
   StyledSearchInput,
   StyledTemplate,
   StyledText,
@@ -17,33 +20,37 @@ export const MainTemplate = () => {
 
   return (
     <StyledTemplate>
-      <StyledHeader>
-        <LogoIconLight />
+      <StyledAside>
+        <StyledMenu>
+          <LogoIconLight />
+          <Nav />
+        </StyledMenu>
+        <StyledText>© All Rights Reserved</StyledText>
+      </StyledAside>
+      <StyledWrap>
         <StyledSearchInput placeholder='Search' />
         {isAuth ? (
-          <>
+          <StyledUserInfo>
             <div> </div>
             <div>Artem Lapitski</div>
             <button>
               <ArrowIcon />
             </button>
-          </>
+          </StyledUserInfo>
         ) : (
-          <>
+          <StyledUserInfo>
             <CustomLink to={ROUTE.SIGN_IN} component={SignInIcon}>
               Sign In
             </CustomLink>
             <CustomLink to={ROUTE.SIGN_UP} component={SignUpIcon}>
-              Sign UP
+              Sign Up
             </CustomLink>
-          </>
+          </StyledUserInfo>
         )}
-      </StyledHeader>
+      </StyledWrap>
       <StyledMain>
-        <Nav />
         <Outlet />
       </StyledMain>
-      <StyledText>© All Rights Reserved</StyledText>
     </StyledTemplate>
   );
 };

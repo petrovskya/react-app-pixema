@@ -1,5 +1,5 @@
 import { GlobalStyles } from './GlobalStyles';
 import { Colors } from './colors';
-import { StyledOutletContent } from './outletStyles';
+import { StyledOutlet } from './outletStyles';
 
-export { GlobalStyles, Colors, StyledOutletContent };
+export { GlobalStyles, Colors, StyledOutlet };

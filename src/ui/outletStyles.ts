@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-export const StyledOutletContent = styled.div`
+export const StyledOutlet = styled.div`
   display: grid;
   gap: 64px;
+  width: 100%;
 `;
