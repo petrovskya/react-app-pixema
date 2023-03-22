@@ -7,7 +7,6 @@ interface MovieState {
   movie: FullMovie | null;
   isLoading: boolean;
   error: string | null;
-  imdbID: string;
 }
 
 export const fetchFullMovie = createAsyncThunk<
@@ -30,17 +29,12 @@ const initialState: MovieState = {
   isLoading: false,
   error: null,
   movie: null,
-  imdbID: '',
 };
 
 const movieSlice = createSlice({
   name: 'movie',
   initialState,
-  reducers: {
-    setMovieId(state, action) {
-      state.imdbID = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchFullMovie.pending, (state, { payload }) => {
       state.isLoading = true;
@@ -60,5 +54,3 @@ const movieSlice = createSlice({
 });
 
 export default movieSlice.reducer;
-const { actions } = movieSlice;
-export const { setMovieId } = actions;

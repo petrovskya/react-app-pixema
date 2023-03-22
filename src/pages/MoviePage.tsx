@@ -8,15 +8,15 @@ import { ReactComponent as IMDBIcon } from './../assets/icons/imdb-icon.svg';
 import { Colors, StyledOutlet } from 'ui';
 import { FavoritesIcon, ShareIcon } from 'assets';
 import { SvgIcon } from '@mui/material';
+import { useParams } from 'react-router-dom';
 
 export const MoviePage = () => {
-  const { isLoading, movie, error, imdbID } = useAppSelector(
-    (state) => state.movie
-  );
+  const { isLoading, movie, error } = useAppSelector((state) => state.movie);
+  const { imdbID } = useParams();
   const dispatch = UseAppDispatch();
   useEffect(() => {
-    dispatch(fetchFullMovie({ imdbID }));
-  }, [dispatch]);
+    imdbID && dispatch(fetchFullMovie({ imdbID }));
+  }, [dispatch, imdbID]);
   if (isLoading) return <div>Loading...</div>;
   if (error)
     return (
