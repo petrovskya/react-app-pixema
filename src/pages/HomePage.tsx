@@ -11,10 +11,13 @@ export const HomePage = () => {
   const dispatch = UseAppDispatch();
   const theme = getRandomMoviesTheme();
   useEffect(() => {
-    dispatch(fetchAllMovies({ theme }));
+    if (isLoading === 'idle') {
+      dispatch(fetchAllMovies({ theme }));
+    }
   }, [dispatch]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading === 'idle' || isLoading === 'pending')
+    return <div>Loading...</div>;
   if (error)
     return (
       <StyledOutlet>

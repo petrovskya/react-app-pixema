@@ -14,6 +14,7 @@ export const MoviePage = () => {
   const { isLoading, movie, error } = useAppSelector((state) => state.movie);
   const { imdbID } = useParams();
   const dispatch = UseAppDispatch();
+
   useEffect(() => {
     imdbID && dispatch(fetchFullMovie({ imdbID }));
   }, [dispatch, imdbID]);

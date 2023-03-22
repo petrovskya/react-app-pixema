@@ -9,12 +9,16 @@ export const TrendsPage = () => {
   const { isLoading, trends } = useAppSelector((state) => state.trends);
   const dispatch = UseAppDispatch();
   useEffect(() => {
-    dispatch(fetchTrendsMovies());
+    if (isLoading === 'idle') {
+      dispatch(fetchTrendsMovies());
+    }
   }, [dispatch]);
 
   return (
     <div>
-      {isLoading && <div>Loading...</div>}
+      {(isLoading === 'idle' || isLoading === 'pending') && (
+        <div>Loading...</div>
+      )}
       {trends.length > 0 && (
         <StyledOutlet>
           <MoviesList movies={trends} />

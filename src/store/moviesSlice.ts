@@ -5,7 +5,7 @@ import { Movie } from 'types';
 
 interface MoviesState {
   movies: Movie[];
-  isLoading: boolean;
+  isLoading: string;
   error: string | null;
 }
 
@@ -26,7 +26,7 @@ export const fetchAllMovies = createAsyncThunk<
 });
 
 const initialState: MoviesState = {
-  isLoading: false,
+  isLoading: 'idle',
   error: null,
   movies: [],
 };
@@ -37,16 +37,20 @@ const moviesSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchAllMovies.pending, (state, { payload }) => {
-      state.isLoading = true;
-      state.error = null;
+      if (state.isLoading === 'idle') {
+        state.isLoading = 'pending';
+        state.error = null;
+      }
     });
     builder.addCase(fetchAllMovies.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
-      state.movies = payload;
+      if (state.isLoading === 'pending') {
+        state.isLoading = 'successful';
+        state.movies = payload;
+      }
     });
     builder.addCase(fetchAllMovies.rejected, (state, { payload }) => {
       if (payload) {
-        state.isLoading = false;
+        state.isLoading = 'failed';
         state.error = payload;
       }
     });

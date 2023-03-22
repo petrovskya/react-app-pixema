@@ -5,7 +5,7 @@ import { Movie } from 'types';
 
 interface TrendsState {
   trends: Movie[];
-  isLoading: boolean;
+  isLoading: string;
   error: string | null;
 }
 
@@ -20,7 +20,7 @@ export const fetchTrendsMovies = createAsyncThunk<any[]>(
 );
 
 const initialState: TrendsState = {
-  isLoading: false,
+  isLoading: 'idle',
   error: null,
   trends: [],
 };
@@ -31,14 +31,22 @@ const trendsSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchTrendsMovies.pending, (state, { payload }) => {
-      state.isLoading = true;
+      if (state.isLoading === 'idle') {
+        state.isLoading = 'pending';
+        // state.error = null;
+      }
     });
     builder.addCase(fetchTrendsMovies.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
-      state.trends = payload;
+      if (state.isLoading === 'pending') {
+        state.isLoading = 'successful';
+        state.trends = payload;
+      }
     });
     builder.addCase(fetchTrendsMovies.rejected, (state, { payload }) => {
-      state.isLoading = false;
+      if (payload) {
+        state.isLoading = 'failed';
+        // state.error = payload;
+      }
     });
   },
 });
