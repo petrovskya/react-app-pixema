@@ -1,7 +1,7 @@
 import { MoviesList } from 'components';
 import React, { useEffect } from 'react';
 import { UseAppDispatch, useAppSelector } from 'store/hooks/hooks';
-import { fetchTrendsMovies } from 'store';
+import { fetchTrendsMovies } from 'store/features';
 import { ShowMoreButton } from 'components';
 import { StyledOutlet } from 'ui';
 

@@ -4,7 +4,7 @@ import { transformFullMovie } from 'mappers';
 import { FullMovie } from 'types';
 
 interface MovieState {
-  movie: FullMovie | null;
+  movie: FullMovie;
   isLoading: boolean;
   error: string | null;
 }
@@ -28,7 +28,7 @@ export const fetchFullMovie = createAsyncThunk<
 const initialState: MovieState = {
   isLoading: false,
   error: null,
-  movie: null,
+  movie: {} as FullMovie,
 };
 
 const movieSlice = createSlice({

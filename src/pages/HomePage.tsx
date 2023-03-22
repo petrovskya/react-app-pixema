@@ -1,10 +1,10 @@
 import { MoviesList, ShowMoreButton } from 'components';
 import React, { useEffect } from 'react';
-import { UseAppDispatch, useAppSelector } from 'store/hooks/hooks';
-import { fetchAllMovies } from 'store';
+import { UseAppDispatch, useAppSelector } from 'store/hooks';
+import { fetchAllMovies } from 'store/features';
 import { StyledOutlet } from 'ui';
-import { getRandomMoviesTheme } from 'utils/getRandomMoviesTheme';
-import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
+import { getRandomMoviesTheme } from 'utils';
+import { ErrorMessage } from 'components';
 
 export const HomePage = () => {
   const { isLoading, movies, error } = useAppSelector((state) => state.movies);

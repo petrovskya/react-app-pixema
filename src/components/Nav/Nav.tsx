@@ -1,8 +1,8 @@
 import React from 'react';
 import { ROUTE } from 'router';
-import styled from 'styled-components';
 import { CustomLink } from 'components';
 import { BookmarkIcon, FireIcon, HomeIcon, SubtractIcon } from 'assets';
+import { StyledNav } from './styles';
 
 export const Nav = () => {
   return (
@@ -25,10 +25,3 @@ export const Nav = () => {
     </StyledNav>
   );
 };
-
-export const StyledNav = styled.nav`
-  display: grid;
-  place-content: start;
-  gap: 40px;
-  margin-top: 64px;
-`;

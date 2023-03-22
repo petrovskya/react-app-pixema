@@ -4,7 +4,7 @@ import {
   createRoutesFromElements,
   Route,
 } from 'react-router-dom';
-import { RequareAuth } from '../components/RequareAuth';
+import { RequareAuth } from 'components';
 import {
   HomePage,
   MoviePage,
@@ -16,7 +16,7 @@ import {
   TrendsPage,
   FavoritesPage,
 } from 'pages';
-import { ROUTE } from './routes';
+import { ROUTE } from 'router';
 import { MainTemplate } from 'templates/MainTemplate';
 
 export const router = createBrowserRouter(
