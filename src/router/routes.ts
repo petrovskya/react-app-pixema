@@ -5,7 +5,7 @@ export enum ROUTE {
   SIGN_IN = 'sign-in',
   SIGN_UP = 'sign-up',
   TRENDS = 'trends',
-  MOVIE = 'movie/:imdbID/:title',
+  MOVIE = 'movie/:imdbID',
   RESET_PASSWORD = 'reset-password',
   SETTINGS = 'settings',
 }

@@ -1,4 +1,4 @@
-import { MoviesList, ShowMoreButton } from 'components';
+import { MoviesList, ShowMoreButton, Spinner } from 'components';
 import React, { useEffect } from 'react';
 import { UseAppDispatch, useAppSelector } from 'store/hooks';
 import { fetchAllMovies } from 'store/features';
@@ -16,8 +16,7 @@ export const HomePage = () => {
     }
   }, [dispatch]);
 
-  if (isLoading === 'idle' || isLoading === 'pending')
-    return <div>Loading...</div>;
+  if (isLoading === 'idle' || isLoading === 'pending') return <Spinner />;
   if (error)
     return (
       <StyledOutlet>

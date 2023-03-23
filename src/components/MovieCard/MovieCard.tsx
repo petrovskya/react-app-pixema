@@ -13,9 +13,7 @@ export const MovieCard = ({
   return (
     <StyledMovieCard>
       <Poster src={poster} alt={title} />
-      <MovieLink to={generatePath(ROUTE.MOVIE, { imdbID, title })}>
-        {title}
-      </MovieLink>
+      <MovieLink to={generatePath(ROUTE.MOVIE, { imdbID })}>{title}</MovieLink>
       <StyledMovieYear>{year}</StyledMovieYear>
     </StyledMovieCard>
   );

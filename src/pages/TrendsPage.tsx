@@ -1,4 +1,4 @@
-import { MoviesList } from 'components';
+import { MoviesList, Spinner } from 'components';
 import React, { useEffect } from 'react';
 import { UseAppDispatch, useAppSelector } from 'store/hooks/hooks';
 import { fetchTrendsMovies } from 'store/features';
@@ -16,9 +16,7 @@ export const TrendsPage = () => {
 
   return (
     <div>
-      {(isLoading === 'idle' || isLoading === 'pending') && (
-        <div>Loading...</div>
-      )}
+      {(isLoading === 'idle' || isLoading === 'pending') && <Spinner />}
       {trends.length > 0 && (
         <StyledOutlet>
           <MoviesList movies={trends} />

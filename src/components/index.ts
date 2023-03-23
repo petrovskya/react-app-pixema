@@ -9,6 +9,7 @@ import { MovieLink } from './MovieLink/MovieLink';
 import { ErrorMessage } from './ErrorMessage/ErrorMessage';
 import { AddFavoriteButton } from './AddFavoriteButton/AddFavoriteButton';
 import { MovieInfo } from './MovieInfo/MovieInfo';
+import { Spinner } from './Spinner/Spinner';
 export {
   CustomLink,
   Nav,
@@ -21,4 +22,5 @@ export {
   ErrorMessage,
   AddFavoriteButton,
   MovieInfo,
+  Spinner,
 };

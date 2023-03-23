@@ -1,4 +1,4 @@
-import { AddFavoriteButton, MovieInfo, Poster } from 'components';
+import { AddFavoriteButton, MovieInfo, Poster, Spinner } from 'components';
 import { ErrorMessage } from 'components';
 import React, { useEffect } from 'react';
 import { fetchFullMovie } from 'store/features';
@@ -46,35 +46,37 @@ export const MoviePage = () => {
   }, [dispatch, imdbID]);
   return (
     <StyledOutlet>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <Spinner />}
       {error && <ErrorMessage error={error} />}
-      <FullMovieCard>
-        <MoviePresentation>
-          <Poster src={poster} alt={title} />
-          <AddFavoriteButton component={FavoritesIcon} />
-        </MoviePresentation>
-        <MovieDescription>
-          <Genres>{genre}</Genres>
-          <MovieTitle>{title}</MovieTitle>
-          <Badge>
-            <CommonRating>{imdbrating}</CommonRating>
-            <IMDBRating>
-              <IMDBIcon />
-              {imdbrating}
-            </IMDBRating>
-            <Runtime> {runtime}</Runtime>
-          </Badge>
-          <MoviePlot>{plot}</MoviePlot>
-          <MovieInfo info='Year'>{year}</MovieInfo>
-          <MovieInfo info='Relesead'>{released}</MovieInfo>
-          <MovieInfo info='BoxOffice'>{boxoffice}</MovieInfo>
-          <MovieInfo info='Country'>{country}</MovieInfo>
-          <MovieInfo info='Production'>{production}</MovieInfo>
-          <MovieInfo info='Actors'>{actors}</MovieInfo>
-          <MovieInfo info='Director'>{director}</MovieInfo>
-          <MovieInfo info='Writers'>{writer}</MovieInfo>
-        </MovieDescription>
-      </FullMovieCard>
+      {!isLoading && (
+        <FullMovieCard>
+          <MoviePresentation>
+            <Poster src={poster} alt={title} />
+            <AddFavoriteButton component={FavoritesIcon} />
+          </MoviePresentation>
+          <MovieDescription>
+            <Genres>{genre}</Genres>
+            <MovieTitle>{title}</MovieTitle>
+            <Badge>
+              <CommonRating>{imdbrating}</CommonRating>
+              <IMDBRating>
+                <IMDBIcon />
+                {imdbrating}
+              </IMDBRating>
+              <Runtime> {runtime}</Runtime>
+            </Badge>
+            <MoviePlot>{plot}</MoviePlot>
+            <MovieInfo info='Year'>{year}</MovieInfo>
+            <MovieInfo info='Relesead'>{released}</MovieInfo>
+            <MovieInfo info='BoxOffice'>{boxoffice}</MovieInfo>
+            <MovieInfo info='Country'>{country}</MovieInfo>
+            <MovieInfo info='Production'>{production}</MovieInfo>
+            <MovieInfo info='Actors'>{actors}</MovieInfo>
+            <MovieInfo info='Director'>{director}</MovieInfo>
+            <MovieInfo info='Writers'>{writer}</MovieInfo>
+          </MovieDescription>
+        </FullMovieCard>
+      )}
     </StyledOutlet>
   );
 };
