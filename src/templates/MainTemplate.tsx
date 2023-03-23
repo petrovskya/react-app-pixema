@@ -1,8 +1,8 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { CustomLink, Nav } from 'components';
+import { CustomLink, Nav, Modal } from 'components';
 import { LogoIconLight, SignInIcon, SignUpIcon } from 'assets';
-import { ROUTE } from 'router';
+// import { ROUTE } from 'router';
 import { ArrowIcon } from 'assets';
 import {
   StyledAside,
@@ -11,16 +11,18 @@ import {
   StyledMain,
   StyledUserInfo,
   StyledSearchInput,
-  StyledTemplate,
   StyledText,
   FixedWrapContainer,
+  StyledMainTemplate,
 } from './styles';
+import { ROUTE2 } from 'router/routes';
 
 export const MainTemplate = () => {
   const isAuth = false;
 
   return (
-    <StyledTemplate>
+    <StyledMainTemplate>
+      {/* <Modal /> */}
       <StyledAside>
         <StyledMenu>
           <LogoIconLight />
@@ -41,10 +43,10 @@ export const MainTemplate = () => {
             </StyledUserInfo>
           ) : (
             <StyledUserInfo>
-              <CustomLink to={ROUTE.SIGN_IN} component={SignInIcon}>
+              <CustomLink to={ROUTE2.SIGN_IN} component={SignInIcon}>
                 Sign In
               </CustomLink>
-              <CustomLink to={ROUTE.SIGN_UP} component={SignUpIcon}>
+              <CustomLink to={ROUTE2.SIGN_UP} component={SignUpIcon}>
                 Sign Up
               </CustomLink>
             </StyledUserInfo>
@@ -55,6 +57,6 @@ export const MainTemplate = () => {
       <StyledMain>
         <Outlet />
       </StyledMain>
-    </StyledTemplate>
+    </StyledMainTemplate>
   );
 };

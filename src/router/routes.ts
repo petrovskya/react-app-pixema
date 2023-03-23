@@ -2,10 +2,13 @@ export enum ROUTE {
   HOME = '/',
   FAVORITES = 'favorites',
   SEARCH = 'search',
-  SIGN_IN = 'sign-in',
-  SIGN_UP = 'sign-up',
   TRENDS = 'trends',
   MOVIE = 'movie/:imdbID',
-  RESET_PASSWORD = 'reset-password',
   SETTINGS = 'settings',
+}
+export enum ROUTE2 {
+  AUTH = '/',
+  SIGN_IN = 'sign-in',
+  SIGN_UP = 'sign-up',
+  RESET_PASSWORD = 'reset-password',
 }

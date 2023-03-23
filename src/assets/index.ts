@@ -11,6 +11,7 @@ import { ReactComponent as SignOutIcon } from './icons/sign-out-icon.svg';
 import { ReactComponent as FavoritesIcon } from './icons/favorites-icon.svg';
 import { ReactComponent as ShareIcon } from './icons/share-icon.svg';
 import { ReactComponent as IMDBIcon } from './icons/imdb-icon.svg';
+import BackgroundImage from './images/background-image.png';
 export {
   BookmarkIcon,
   FireIcon,
@@ -25,4 +26,5 @@ export {
   FavoritesIcon,
   ShareIcon,
   IMDBIcon,
+  BackgroundImage,
 };

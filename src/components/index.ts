@@ -10,6 +10,9 @@ import { ErrorMessage } from './ErrorMessage/ErrorMessage';
 import { AddFavoriteButton } from './AddFavoriteButton/AddFavoriteButton';
 import { MovieInfo } from './MovieInfo/MovieInfo';
 import { Spinner } from './Spinner/Spinner';
+import { Portal } from './Portal/Portal';
+import { Modal } from './Modal/SignUpModal';
+import { SignUpForm } from './SignUpForm/SignUpForm';
 export {
   CustomLink,
   Nav,
@@ -23,4 +26,7 @@ export {
   AddFavoriteButton,
   MovieInfo,
   Spinner,
+  Portal,
+  Modal,
+  SignUpForm,
 };

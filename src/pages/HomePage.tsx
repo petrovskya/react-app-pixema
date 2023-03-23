@@ -16,17 +16,11 @@ export const HomePage = () => {
     }
   }, [dispatch]);
 
-  if (isLoading === 'idle' || isLoading === 'pending') return <Spinner />;
-  if (error)
-    return (
-      <StyledOutlet>
-        <ErrorMessage error={error} />
-      </StyledOutlet>
-    );
-  if (!movies.length) return <ErrorMessage error={'No films'} />;
-
   return (
     <StyledOutlet>
+      {(isLoading === 'idle' || isLoading === 'pending') && <Spinner />}
+      {error && <ErrorMessage error={error} />}
+      {!movies.length && <ErrorMessage error={'No films'} />}
       <MoviesList movies={movies} />
       <ShowMoreButton />
     </StyledOutlet>

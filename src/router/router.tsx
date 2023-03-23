@@ -18,22 +18,28 @@ import {
 } from 'pages';
 import { ROUTE } from 'router';
 import { MainTemplate } from 'templates/MainTemplate';
+import { AuthTemplate } from 'templates/AuthTemplate/AuthTemplate';
+import { ROUTE2 } from './routes';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path={ROUTE.HOME} element={<MainTemplate />}>
-      <Route index element={<HomePage />} />
-      <Route path={ROUTE.SEARCH} element={<SearchPage />} />
-      <Route path={ROUTE.MOVIE} element={<MoviePage />} />
-      <Route path={ROUTE.SIGN_IN} element={<SignInPage />} />
-      <Route path={ROUTE.TRENDS} element={<TrendsPage />} />
-      <Route path={ROUTE.SETTINGS} element={<SettingsPage />} />
-      <Route element={<RequareAuth />}>
-        <Route path={ROUTE.FAVORITES} element={<FavoritesPage />} />
-        <Route path={ROUTE.SIGN_UP} element={<SignUpPage />} />
-        <Route path={ROUTE.RESET_PASSWORD} element={<ResetPasswordPage />} />
+    <>
+      <Route path={ROUTE2.AUTH} element={<AuthTemplate />}>
+        <Route path={ROUTE2.SIGN_UP} element={<SignUpPage />} />
+        <Route path={ROUTE2.SIGN_IN} element={<SignInPage />} />
+        <Route path={ROUTE2.RESET_PASSWORD} element={<ResetPasswordPage />} />
       </Route>
-    </Route>
+      <Route path={ROUTE.HOME} element={<MainTemplate />}>
+        <Route index element={<HomePage />} />
+        <Route path={ROUTE.SEARCH} element={<SearchPage />} />
+        <Route path={ROUTE.MOVIE} element={<MoviePage />} />
+        <Route path={ROUTE.TRENDS} element={<TrendsPage />} />
+        <Route path={ROUTE.SETTINGS} element={<SettingsPage />} />
+        <Route element={<RequareAuth />}>
+          <Route path={ROUTE.FAVORITES} element={<FavoritesPage />} />
+        </Route>
+      </Route>
+    </>
   ),
   { basename: '/react-app-pixema' }
 );
