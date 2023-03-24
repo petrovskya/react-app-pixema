@@ -13,7 +13,7 @@ export const TrendsPage = () => {
       dispatch(fetchTrendsMovies());
     }
   }, [dispatch]);
-
+  const handleChange = () => {};
   return (
     <StyledOutlet>
       {(isLoading === 'idle' || isLoading === 'pending') && <Spinner />}
@@ -21,7 +21,7 @@ export const TrendsPage = () => {
       {trends.length > 0 && (
         <StyledOutlet>
           <MoviesList movies={trends} />
-          <ShowMoreButton />
+          <ShowMoreButton type='button' onClick={handleChange} />
         </StyledOutlet>
       )}
     </StyledOutlet>

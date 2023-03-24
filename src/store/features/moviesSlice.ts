@@ -11,12 +11,12 @@ interface MoviesState {
 
 export const fetchAllMovies = createAsyncThunk<
   Movie[],
-  { theme: string },
+  { theme: string; page: number },
   { rejectValue: string }
->('movies/fetchAll', async ({ theme }, { rejectWithValue }) => {
+>('movies/fetchAll', async ({ theme, page }, { rejectWithValue }) => {
   try {
     const { data } = await axios.get(
-      `https://www.omdbapi.com/?s=${theme}}&plot=full&apikey=af084387`
+      `https://www.omdbapi.com/?apikey=af084387&s=${theme}}&plot=full&page=${page}`
     );
     return transformShortMovies(data);
   } catch (error) {
@@ -37,15 +37,15 @@ const moviesSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchAllMovies.pending, (state, { payload }) => {
-      if (state.isLoading === 'idle') {
-        state.isLoading = 'pending';
-        state.error = null;
-      }
+      // if (state.isLoading === 'idle') {
+      state.isLoading = 'pending';
+      state.error = null;
+      // }
     });
     builder.addCase(fetchAllMovies.fulfilled, (state, { payload }) => {
       if (state.isLoading === 'pending') {
         state.isLoading = 'successful';
-        state.movies = payload;
+        state.movies.push(...payload);
       }
     });
     builder.addCase(fetchAllMovies.rejected, (state, { payload }) => {

@@ -1,5 +1,5 @@
 import { MoviesList, ShowMoreButton, Spinner } from 'components';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { UseAppDispatch, useAppSelector } from 'store/hooks';
 import { fetchAllMovies } from 'store/features';
 import { StyledOutlet } from 'ui';
@@ -9,12 +9,18 @@ import { ErrorMessage } from 'components';
 export const HomePage = () => {
   const { isLoading, movies, error } = useAppSelector((state) => state.movies);
   const dispatch = UseAppDispatch();
-  const theme = getRandomMoviesTheme();
+  // const theme = getRandomMoviesTheme();
+  const theme = 'dream';
+  const [page, setPage] = useState(1);
+  const handleChange = () => {
+    setPage(page + 1);
+    console.log(page);
+  };
   useEffect(() => {
-    if (isLoading === 'idle') {
-      dispatch(fetchAllMovies({ theme }));
-    }
-  }, [dispatch]);
+    // if (isLoading === 'idle') {
+    dispatch(fetchAllMovies({ theme, page }));
+    // }
+  }, [dispatch, page]);
 
   return (
     <StyledOutlet>
@@ -22,7 +28,7 @@ export const HomePage = () => {
       {error && <ErrorMessage error={error} />}
       {!movies.length && <ErrorMessage error={'No films'} />}
       <MoviesList movies={movies} />
-      <ShowMoreButton />
+      <ShowMoreButton type='button' onClick={handleChange} />
     </StyledOutlet>
   );
 };
