@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
-import { useForm } from 'react-hook-form';
 import { LogoIconLight } from 'assets';
 import styled from 'styled-components';
 import { Colors } from 'ui';
 import { SignUpForm } from 'components';
 
 export const SignUpPage = () => {
-  const { register, handleSubmit } = useForm();
+  // const { register, handleSubmit } = useForm();
 
   // const onSubmit = ({email, password}): any => {
   //   createUserWithEmailAndPassword(auth, email, password)
@@ -28,11 +27,11 @@ export const SignUpPage = () => {
   return (
     <>
       <FormWrapper>
-        <SignUpForm>
+        <form>
           <input type='email' placeholder='Email' />
           <input type='password' placeholder='Password' />
           <button type='submit'>Sign Up</button>
-        </SignUpForm>
+        </form>
       </FormWrapper>
 
       <p>© All Rights Reserved</p>
