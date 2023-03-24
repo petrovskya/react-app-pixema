@@ -19,14 +19,13 @@ import {
 import { ROUTE } from 'router';
 import { MainTemplate } from 'templates/MainTemplate';
 import { AuthTemplate } from 'templates/AuthTemplate/AuthTemplate';
-import { ROUTE2 } from './routes';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path={ROUTE.AUTH} element={<AuthTemplate />}>
-        <Route path={ROUTE.SIGN_UP} element={<SignUpPage />} />
         <Route path={ROUTE.SIGN_IN} element={<SignInPage />} />
+        <Route path={ROUTE.SIGN_UP} element={<SignUpPage />} />
         <Route path={ROUTE.RESET_PASSWORD} element={<ResetPasswordPage />} />
       </Route>
       <Route path={ROUTE.HOME} element={<MainTemplate />}>

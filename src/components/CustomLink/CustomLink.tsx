@@ -4,11 +4,10 @@ import { ROUTE } from 'router';
 import { Colors } from 'ui/colors';
 import { SvgIcon } from '@mui/material';
 import { StyledLink } from './styles';
-import { ROUTE2 } from 'router/routes';
 
 interface CustomLinkProps {
   children: ReactNode;
-  to: ROUTE | ROUTE2;
+  to: ROUTE;
   component: React.FunctionComponent<
     React.SVGProps<SVGSVGElement> & { title?: string | undefined }
   >;

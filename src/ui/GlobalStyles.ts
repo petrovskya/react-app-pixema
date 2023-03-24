@@ -20,6 +20,15 @@ export const GlobalStyles = createGlobalStyle`
   ul {
     list-style-type: none;
   }
+  a {
+    text-decoration: none;
+    &:active {
+      color: ${Colors.PRIMARY_LIGHT};
+    }
+    /* &:visited {
+      color: ${Colors.PRIMARY};
+    } */
+  }
 `;
 
 export const CopyrightText = styled.div`

@@ -13,6 +13,7 @@ import { Spinner } from './Spinner/Spinner';
 import { Portal } from './Portal/Portal';
 import { Modal } from './Modal/SignUpModal';
 import { SignUpForm } from './SignUpForm/SignUpForm';
+import { SignInForm } from './SignInForm/SignInForm';
 import { Input } from './Input/Input';
 import { Button } from './Button/Button';
 export {
@@ -31,6 +32,7 @@ export {
   Portal,
   Modal,
   SignUpForm,
+  SignInForm,
   Input,
   Button,
 };

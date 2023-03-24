@@ -84,7 +84,16 @@ interface SignUpFormValues {
   password: string;
   confirmPassword: string;
 }
-
+interface SignInFormValues {
+  email: string;
+  password: string;
+}
+interface SignFormValues {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
 export type {
   FullMovieAPI,
   Movie,
@@ -92,4 +101,6 @@ export type {
   MovieApi,
   FullMovie,
   SignUpFormValues,
+  SignInFormValues,
+  SignFormValues,
 };

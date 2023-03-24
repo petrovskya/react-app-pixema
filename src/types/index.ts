@@ -5,4 +5,6 @@ export type {
   MoviesApi,
   MovieApi,
   SignUpFormValues,
+  SignInFormValues,
+  SignFormValues,
 } from './types';

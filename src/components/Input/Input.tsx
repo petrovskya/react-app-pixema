@@ -1,12 +1,12 @@
 import { HTMLInputTypeAttribute } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 import { InputWrapper, StyledInput } from './styles';
-import { SignUpFormValues } from 'types';
+import { SignFormValues } from 'types';
 
 export interface InputProps {
   placeholder: string;
   name: 'email' | 'password' | 'confirmPassword' | 'name';
-  register: UseFormRegister<SignUpFormValues>;
+  register: UseFormRegister<SignFormValues>;
   type: HTMLInputTypeAttribute;
   required: boolean;
   title: string;
