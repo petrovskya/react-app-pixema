@@ -3,7 +3,7 @@ export enum ROUTE {
   FAVORITES = 'favorites',
   SEARCH = 'search',
   TRENDS = 'trends',
-  MOVIE = 'movie/:imdbID',
+  MOVIE = '/movie/:imdbID',
   SETTINGS = 'settings',
   AUTH = '/',
   SIGN_IN = '/sign-in',

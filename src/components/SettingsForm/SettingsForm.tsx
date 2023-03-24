@@ -1,7 +1,5 @@
 import {
-  Button,
   ControlledSwitch,
-  Input,
   SettingsFormButton,
   SettingsInput,
 } from 'components';
@@ -11,6 +9,8 @@ import { SignFormValues } from 'types';
 import { FormTitle } from 'ui';
 import {
   ButtonWrapper,
+  FormText,
+  FormTextSecondary,
   SettingsFieldWrapper,
   SettingsFormField,
   StyledSettingsForm,
@@ -83,7 +83,6 @@ export const SettingsForm = () => {
             required={true}
             title={'Password'}
           />
-
           <SettingsInput
             name='confirmPassword'
             type='password'
@@ -98,9 +97,9 @@ export const SettingsForm = () => {
         <FormTitle>Color</FormTitle>
         <SettingsFieldWrapper>
           <ControlledSwitch />
-          <p>
-            Dark <span>use darl theme</span>
-          </p>
+          <FormText>
+            Dark <FormTextSecondary>use dark theme</FormTextSecondary>
+          </FormText>
         </SettingsFieldWrapper>
       </SettingsFormField>
       <ButtonWrapper>

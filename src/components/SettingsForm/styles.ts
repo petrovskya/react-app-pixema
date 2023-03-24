@@ -1,17 +1,17 @@
 import styled from 'styled-components';
 import { Colors } from 'ui';
 
-export const StyledSettingsForm = styled.form`
+const StyledSettingsForm = styled.form`
   display: grid;
   gap: 40px;
   width: 100%;
   color: ${Colors.WHITE};
 `;
-export const SettingsFormField = styled.div`
+const SettingsFormField = styled.div`
   display: grid;
   gap: 20px;
 `;
-export const SettingsFieldWrapper = styled.div`
+const SettingsFieldWrapper = styled.div`
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap;
@@ -22,8 +22,24 @@ export const SettingsFieldWrapper = styled.div`
   border-radius: 10px;
   background-color: ${Colors.BLACK};
 `;
-export const ButtonWrapper = styled.div`
+const ButtonWrapper = styled.div`
   display: flex;
   justify-content: right;
   gap: 40px;
 `;
+const FormText = styled.p`
+  display: flex;
+  flex-direction: column;
+`;
+const FormTextSecondary = styled.p`
+  color: ${Colors.SECONDARY};
+`;
+
+export {
+  StyledSettingsForm,
+  SettingsFormField,
+  SettingsFieldWrapper,
+  ButtonWrapper,
+  FormTextSecondary,
+  FormText,
+};
