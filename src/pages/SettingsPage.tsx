@@ -1,9 +1,6 @@
+import { SettingsForm } from 'components';
 import React from 'react';
 
 export const SettingsPage = () => {
-  return (
-    <div>
-      <h1>Settings</h1>
-    </div>
-  );
+  return <SettingsForm />;
 };

@@ -17,8 +17,7 @@ import {
   FavoritesPage,
 } from 'pages';
 import { ROUTE } from 'router';
-import { MainTemplate } from 'templates/MainTemplate';
-import { AuthTemplate } from 'templates/AuthTemplate/AuthTemplate';
+import { MainTemplate, AuthTemplate } from 'templates';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(

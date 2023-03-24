@@ -16,6 +16,12 @@ import { SignUpForm } from './SignUpForm/SignUpForm';
 import { SignInForm } from './SignInForm/SignInForm';
 import { Input } from './Input/Input';
 import { Button } from './Button/Button';
+import { ResetPasswordForm } from './ResetPasswordForm/ResetPasswordForm';
+import { ConfirmEmailForm } from './ConfirmEmailForm/ConfirmEmailForm';
+import { SettingsForm } from './SettingsForm/SettingsForm';
+import { SettingsInput } from './SettingsInput/SettingsInput';
+import { SettingsFormButton } from './SettingsFormButton/SettingsFormButton';
+import { ControlledSwitch } from './ControlledSwitch/ControlledSwitch';
 export {
   CustomLink,
   Nav,
@@ -33,6 +39,12 @@ export {
   Modal,
   SignUpForm,
   SignInForm,
+  ResetPasswordForm,
+  ConfirmEmailForm,
+  SettingsForm,
   Input,
   Button,
+  SettingsFormButton,
+  SettingsInput,
+  ControlledSwitch,
 };

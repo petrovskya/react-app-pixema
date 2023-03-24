@@ -1,9 +1,25 @@
+import { ConfirmEmailForm, ResetPasswordForm } from 'components';
 import React from 'react';
+import { FormText, FormTitle, FormWrapper } from 'ui';
 
 export const ResetPasswordPage = () => {
+  const isAuth = false;
   return (
-    <div>
-      <h1>Reset password</h1>
-    </div>
+    <FormWrapper>
+      {isAuth ? (
+        <>
+          <FormTitle>Reset password</FormTitle>
+          <FormText>
+            You will receive an email with a link to reset your password!{' '}
+          </FormText>
+          <ResetPasswordForm />
+        </>
+      ) : (
+        <>
+          <FormTitle>Reset password</FormTitle>
+          <ConfirmEmailForm />
+        </>
+      )}
+    </FormWrapper>
   );
 };
