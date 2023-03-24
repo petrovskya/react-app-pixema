@@ -4,4 +4,5 @@ export type {
   FullMovie,
   MoviesApi,
   MovieApi,
+  SignUpFormValues,
 } from './types';

@@ -1,7 +1,7 @@
 import { HTMLInputTypeAttribute } from 'react';
 import { UseFormRegister } from 'react-hook-form';
-import { StyledInput } from './styles';
-import { SignUpFormValues } from 'components';
+import { InputWrapper, StyledInput } from './styles';
+import { SignUpFormValues } from 'types';
 
 export interface InputProps {
   placeholder: string;
@@ -9,6 +9,7 @@ export interface InputProps {
   register: UseFormRegister<SignUpFormValues>;
   type: HTMLInputTypeAttribute;
   required: boolean;
+  title: string;
 }
 export const Input = ({
   register,
@@ -16,14 +17,18 @@ export const Input = ({
   type,
   name,
   placeholder,
+  title,
 }: InputProps) => {
   return (
-    <StyledInput
-      placeholder={placeholder}
-      type={type}
-      {...register(name, {
-        required: required,
-      })}
-    />
+    <InputWrapper>
+      <p>{title}</p>
+      <StyledInput
+        placeholder={placeholder}
+        type={type}
+        {...register(name, {
+          required: required,
+        })}
+      />
+    </InputWrapper>
   );
 };

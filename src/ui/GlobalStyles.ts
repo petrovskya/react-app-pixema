@@ -1,4 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+import { Colors } from './colors';
 
 export const GlobalStyles = createGlobalStyle`
   *{
@@ -19,4 +20,34 @@ export const GlobalStyles = createGlobalStyle`
   ul {
     list-style-type: none;
   }
+`;
+
+export const CopyrightText = styled.div`
+  position: fixed;
+  bottom: 64px;
+  color: ${Colors.WHITE};
+`;
+export const FormWrapper = styled.div`
+  display: grid;
+  gap: 40px;
+  width: 574px;
+  padding: 40px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: ${Colors.DARK};
+`;
+export const FormTitle = styled.div`
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+  text-align: left;
+  color: ${Colors.WHITE};
+`;
+export const FormText = styled.div`
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+
+  color: ${Colors.WHITE};
 `;

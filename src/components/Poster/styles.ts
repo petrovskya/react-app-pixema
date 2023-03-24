@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledPoster = styled.div`
   display: block;
-  width: 266px;
+  width: 246px;
   height: 357px;
   margin-bottom: 8px;
   border-radius: 20px;

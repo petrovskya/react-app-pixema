@@ -14,6 +14,12 @@ import {
   MovieDescription,
   FullMovieCard,
 } from './moviePageStyles';
+import {
+  CopyrightText,
+  FormTitle,
+  FormWrapper,
+  FormText,
+} from './GlobalStyles';
 
 export {
   GlobalStyles,
@@ -36,4 +42,8 @@ export {
   MovieTitle,
   MoviePresentation,
   MovieDescription,
+  CopyrightText,
+  FormTitle,
+  FormWrapper,
+  FormText,
 };

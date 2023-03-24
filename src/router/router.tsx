@@ -24,10 +24,10 @@ import { ROUTE2 } from './routes';
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path={ROUTE2.AUTH} element={<AuthTemplate />}>
-        <Route path={ROUTE2.SIGN_UP} element={<SignUpPage />} />
-        <Route path={ROUTE2.SIGN_IN} element={<SignInPage />} />
-        <Route path={ROUTE2.RESET_PASSWORD} element={<ResetPasswordPage />} />
+      <Route path={ROUTE.AUTH} element={<AuthTemplate />}>
+        <Route path={ROUTE.SIGN_UP} element={<SignUpPage />} />
+        <Route path={ROUTE.SIGN_IN} element={<SignInPage />} />
+        <Route path={ROUTE.RESET_PASSWORD} element={<ResetPasswordPage />} />
       </Route>
       <Route path={ROUTE.HOME} element={<MainTemplate />}>
         <Route index element={<HomePage />} />

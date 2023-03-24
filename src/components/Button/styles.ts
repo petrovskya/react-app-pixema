@@ -4,7 +4,8 @@ import { Colors } from 'ui';
 export const StyledButton = styled.button`
   border-radius: 10px;
   background: ${Colors.PRIMARY};
-  padding: 0 16px;
+  padding: 16px 0;
+  margin-top: 20px;
   font-family: inherit;
   font-size: 16px;
   font-weight: 600;

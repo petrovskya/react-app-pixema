@@ -78,5 +78,18 @@ interface Movie {
   year: string;
   imdbID: string;
 }
+interface SignUpFormValues {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
 
-export type { FullMovieAPI, Movie, MoviesApi, MovieApi, FullMovie };
+export type {
+  FullMovieAPI,
+  Movie,
+  MoviesApi,
+  MovieApi,
+  FullMovie,
+  SignUpFormValues,
+};

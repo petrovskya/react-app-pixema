@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
-import { LogoIconLight } from 'assets';
 import styled from 'styled-components';
-import { Colors } from 'ui';
-import { SignUpForm } from 'components';
+import { Colors, FormText, FormTitle, FormWrapper } from 'ui';
+import { SignUpForm, CustomLink } from 'components';
+import { ROUTE2 } from 'router/routes';
+import { Link } from 'react-router-dom';
+import { SignInIcon } from 'assets';
 
 export const SignUpPage = () => {
   // const { register, handleSubmit } = useForm();
@@ -27,22 +29,12 @@ export const SignUpPage = () => {
   return (
     <>
       <FormWrapper>
-        <form>
-          <input type='email' placeholder='Email' />
-          <input type='password' placeholder='Password' />
-          <button type='submit'>Sign Up</button>
-        </form>
+        <FormTitle>Sign Up</FormTitle>
+        <SignUpForm />
+        <FormText>
+          Already have an account? <Link to={ROUTE2.SIGN_IN}> Sign In</Link>
+        </FormText>
       </FormWrapper>
-
-      <p>© All Rights Reserved</p>
     </>
   );
 };
-export const FormWrapper = styled.div`
-  display: grid;
-  width: 574px;
-  padding: 40px;
-  margin: 0 auto;
-  border-radius: 10px;
-  background-color: ${Colors.DARK};
-`;

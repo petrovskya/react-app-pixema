@@ -16,6 +16,7 @@ import {
   StyledMainTemplate,
 } from './styles';
 import { ROUTE2 } from 'router/routes';
+import { CopyrightText } from 'ui';
 
 export const MainTemplate = () => {
   const isAuth = false;
@@ -28,7 +29,7 @@ export const MainTemplate = () => {
           <LogoIconLight />
           <Nav />
         </StyledMenu>
-        <StyledText>© All Rights Reserved</StyledText>
+        <CopyrightText>© All Rights Reserved</CopyrightText>
       </StyledAside>
       <FixedWrapContainer>
         <StyledWrap>
