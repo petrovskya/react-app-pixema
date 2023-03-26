@@ -1,6 +1,6 @@
-import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { Button, Input } from 'components';
-import { auth } from 'firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from 'firebase.js';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { SignUpFormValues } from 'types';
@@ -13,22 +13,24 @@ export const SignUpForm = () => {
     reset,
     formState: { errors },
   } = useForm<SignUpFormValues>();
-
   const onSubmit: SubmitHandler<SignUpFormValues> = ({
+    name,
     email,
     password,
   }): any => {
-    // createUserWithEmailAndPassword(auth, email, password)
-    //   .then((userCredential) => {
-    //     // Signed in
-    //     const user = userCredential.user;
-    //     // ...
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     // ..
-    //   });
+    createUserWithEmailAndPassword(auth, email, password).then(
+      (userCredential) => {
+        // Signed in
+        // const user = userCredential.user;
+        console.log(userCredential);
+        // ...
+      }
+    );
+    // .catch((error) => {
+    //   const errorCode = error.code;
+    //   const errorMessage = error.message;
+    //   // ..
+    // });
   };
   return (
     <StyledSignUpForm onSubmit={handleSubmit(onSubmit)}>
