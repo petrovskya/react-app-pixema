@@ -18,19 +18,16 @@ export const SignUpForm = () => {
     email,
     password,
   }): any => {
-    createUserWithEmailAndPassword(auth, email, password).then(
-      (userCredential) => {
-        // Signed in
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
         // const user = userCredential.user;
         console.log(userCredential);
-        // ...
-      }
-    );
-    // .catch((error) => {
-    //   const errorCode = error.code;
-    //   const errorMessage = error.message;
-    //   // ..
-    // });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
   };
   return (
     <StyledSignUpForm onSubmit={handleSubmit(onSubmit)}>
