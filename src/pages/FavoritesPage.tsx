@@ -1,28 +1,27 @@
 import { ErrorMessage, MoviesList, ShowMoreButton, Spinner } from 'components';
 import React, { useEffect, useState } from 'react';
-import { fetchAllMovies } from 'store/features';
+import { fetchAllMovies, fetchNextMoviesPage } from 'store/features';
 import { UseAppDispatch, useAppSelector } from 'store/hooks';
 import { StyledOutlet } from 'ui';
-import { getRandomMoviesTheme } from 'utils';
 
 export const FavoritesPage = () => {
-  const { isLoading, movies, error } = useAppSelector((state) => state.movies);
+  const { isLoading, movies, error, theme, page } = useAppSelector(
+    (state) => state.movies
+  );
   const dispatch = UseAppDispatch();
-  const theme = getRandomMoviesTheme();
 
-  const [page, setPage] = useState(1);
   const handleChange = () => {
-    setPage(page + 1);
-    console.log(page);
+    dispatch(fetchNextMoviesPage({ theme, page }));
   };
+
   useEffect(() => {
-    if (isLoading === 'idle') {
-      dispatch(fetchAllMovies({ theme, page }));
+    if (!movies.length) {
+      dispatch(fetchAllMovies({ theme }));
     }
-  }, [dispatch, page]);
+  }, [dispatch]);
   return (
     <StyledOutlet>
-      {(isLoading === 'idle' || isLoading === 'pending') && <Spinner />}
+      {isLoading && <Spinner />}
       {error && <ErrorMessage error={error} />}
       {!movies.length && <ErrorMessage error={'No films'} />}
       <MoviesList movies={movies} />
