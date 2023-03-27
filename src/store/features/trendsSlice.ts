@@ -1,54 +1,101 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { transformShortMovies } from 'mappers';
 import { Movie } from 'types';
+import { getRandomMoviesTheme } from 'utils';
 
 interface TrendsState {
   trends: Movie[];
-  isLoading: string;
+  isLoading: boolean;
   error: string | null;
+  page: number;
+  theme: ReturnType<typeof getRandomMoviesTheme>;
 }
 
-export const fetchTrendsMovies = createAsyncThunk<any[]>(
-  'trends/fetchTrends',
-  async () => {
+export const fetchTrendsMovies = createAsyncThunk<
+  Movie[],
+  { theme: string },
+  { rejectValue: string }
+>('trends/fetchTrends', async ({ theme }, { rejectWithValue }: any) => {
+  try {
     const { data } = await axios.get(
-      'https://www.omdbapi.com/?s=star&plot=full&apikey=af084387'
+      `https://www.omdbapi.com/?plot=full&apikey=af084387&s=${theme}`
     );
     return transformShortMovies(data);
+  } catch (error) {
+    const { message } = error as AxiosError;
+    return rejectWithValue(message);
+  }
+});
+export const fetchNextTrendsPage = createAsyncThunk<
+  Movie[],
+  { theme: string; page: number },
+  { rejectValue: string }
+>(
+  'trends/fetchNextPage',
+  async ({ theme, page }, { dispatch, rejectWithValue }) => {
+    try {
+      dispatch(changePage(page + 1));
+      const { data } = await axios.get(
+        `https://www.omdbapi.com/?apikey=af084387&plot=full&s=${theme}&page=${page}`
+      );
+      return transformShortMovies(data);
+    } catch (error) {
+      const { message } = error as AxiosError;
+      return rejectWithValue(message);
+    }
   }
 );
 
 const initialState: TrendsState = {
-  isLoading: 'idle',
+  isLoading: false,
   error: null,
   trends: [],
+  page: 2,
+  theme: getRandomMoviesTheme(),
 };
 
 const trendsSlice = createSlice({
   name: 'trends',
   initialState,
-  reducers: {},
+  reducers: {
+    changePage: (state: TrendsState, { payload }) => {
+      state.page = payload;
+    },
+  },
   extraReducers(builder) {
     builder.addCase(fetchTrendsMovies.pending, (state, { payload }) => {
-      if (state.isLoading === 'idle') {
-        state.isLoading = 'pending';
-        // state.error = null;
-      }
+      state.isLoading = true;
+      state.error = null;
     });
     builder.addCase(fetchTrendsMovies.fulfilled, (state, { payload }) => {
-      if (state.isLoading === 'pending') {
-        state.isLoading = 'successful';
-        state.trends = payload;
-      }
+      state.isLoading = false;
+      state.trends = payload;
+      state.error = null;
     });
     builder.addCase(fetchTrendsMovies.rejected, (state, { payload }) => {
       if (payload) {
-        state.isLoading = 'failed';
-        // state.error = payload;
+        state.isLoading = false;
+        state.error = payload;
+      }
+    });
+    builder.addCase(fetchNextTrendsPage.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(fetchNextTrendsPage.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.trends = [...state.trends, ...payload];
+      state.error = null;
+    });
+    builder.addCase(fetchNextTrendsPage.rejected, (state, { payload }) => {
+      if (payload) {
+        state.isLoading = false;
+        state.error = payload;
       }
     });
   },
 });
 
+export const { changePage } = trendsSlice.actions;
 export default trendsSlice.reducer;
