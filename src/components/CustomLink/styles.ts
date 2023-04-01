@@ -1,10 +1,10 @@
-import { Link, PathMatch } from 'react-router-dom';
-import styled from 'styled-components';
-import { Colors } from 'ui';
+import { Link, PathMatch } from "react-router-dom";
+import styled from "styled-components";
+import { Color } from "ui";
 
 export const StyledLink = styled(Link)<{
   $match: PathMatch<string> | null;
-  $colors: typeof Colors;
+  $Color: typeof Color;
 }>`
   display: flex;
   justify-content: flex-start;
@@ -13,11 +13,10 @@ export const StyledLink = styled(Link)<{
   font-size: 18px;
   font-weight: 600;
   white-space: nowrap;
-  color: ${({ $match, $colors }) =>
-    $match ? $colors.PRIMARY : $colors.SECONDARY};
+  color: ${({ $match, $Color }) => ($match ? $Color.PRIMARY : $Color.SECONDARY)};
   text-decoration: none;
   transition: all 0.2s;
   &:hover {
-    color: ${({ $colors }) => $colors.PRIMARY_LIGHT};
+    color: ${({ $Color }) => $Color.PRIMARY_LIGHT};
   }
 `;

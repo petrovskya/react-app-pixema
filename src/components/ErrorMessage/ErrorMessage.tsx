@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledErrorMessage } from './styles';
-import ErrorImage from './../../assets/images/error-image.png';
+import React from "react";
+import { StyledErrorMessage } from "./styles";
+import ErrorImage from "./../../assets/images/error-image.png";
 
 interface ErrorMessageProps {
   error: string;
@@ -8,7 +8,7 @@ interface ErrorMessageProps {
 export const ErrorMessage = ({ error }: ErrorMessageProps) => {
   return (
     <StyledErrorMessage>
-      <img src={ErrorImage} alt='error' />
+      <img src={ErrorImage} alt="error" />
       <span>{error}</span>
     </StyledErrorMessage>
   );

@@ -1,8 +1,8 @@
-import React from 'react';
-import { ROUTE } from 'router';
-import { CustomLink } from 'components';
-import { BookmarkIcon, FireIcon, HomeIcon, SubtractIcon } from 'assets';
-import { StyledNav } from './styles';
+import React from "react";
+import { ROUTE } from "router";
+import { CustomLink } from "components";
+import { BookmarkIcon, FireIcon, HomeIcon, SubtractIcon } from "assets";
+import { StyledNav } from "./styles";
 
 export const Nav = () => {
   return (

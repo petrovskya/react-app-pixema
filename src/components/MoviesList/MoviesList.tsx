@@ -1,6 +1,6 @@
-import { MovieCard } from 'components';
-import { Movie } from 'types';
-import { StyledMoviesList } from './styles';
+import { MovieCard } from "components";
+import { Movie } from "types";
+import { StyledMoviesList } from "./styles";
 
 interface MoviesListProps {
   movies: Movie[];

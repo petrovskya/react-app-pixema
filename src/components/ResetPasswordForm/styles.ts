@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Colors } from 'ui';
+import styled from "styled-components";
+import { Color } from "ui";
 
 export const StyledResetPasswordForm = styled.form`
   display: grid;
@@ -9,5 +9,5 @@ export const StyledResetPasswordForm = styled.form`
   font-weight: 600;
   line-height: 24px;
   text-align: left;
-  color: ${Colors.WHITE};
+  color: ${Color.WHITE};
 `;

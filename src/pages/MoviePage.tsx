@@ -1,15 +1,9 @@
-import {
-  AddFavoriteButton,
-  MovieInfo,
-  Poster,
-  Modal,
-  Spinner,
-} from 'components';
-import { ErrorMessage } from 'components';
-import React, { useEffect } from 'react';
-import { fetchFullMovie } from 'store/features';
-import { UseAppDispatch, useAppSelector } from 'store/hooks';
-import { IMDBIcon } from 'assets';
+import { AddFavoriteButton, MovieInfo, Poster, Modal, Spinner } from "components";
+import { ErrorMessage } from "components";
+import React, { useEffect } from "react";
+import { fetchFullMovie } from "store/features";
+import { UseAppDispatch, useAppSelector } from "store/hooks";
+import { IMDBIcon } from "assets";
 import {
   Badge,
   CommonRating,
@@ -22,9 +16,9 @@ import {
   MovieTitle,
   Runtime,
   StyledOutlet,
-} from 'ui';
-import { FavoritesIcon } from 'assets';
-import { useParams } from 'react-router-dom';
+} from "ui";
+import { FavoritesIcon } from "assets";
+import { useParams } from "react-router-dom";
 
 export const MoviePage = () => {
   const { isLoading, movie, error } = useAppSelector((state) => state.movie);
@@ -71,14 +65,14 @@ export const MoviePage = () => {
               <Runtime> {runtime}</Runtime>
             </Badge>
             <MoviePlot>{plot}</MoviePlot>
-            <MovieInfo info='Year'>{year}</MovieInfo>
-            <MovieInfo info='Relesead'>{released}</MovieInfo>
-            <MovieInfo info='BoxOffice'>{boxoffice}</MovieInfo>
-            <MovieInfo info='Country'>{country}</MovieInfo>
-            <MovieInfo info='Production'>{production}</MovieInfo>
-            <MovieInfo info='Actors'>{actors}</MovieInfo>
-            <MovieInfo info='Director'>{director}</MovieInfo>
-            <MovieInfo info='Writers'>{writer}</MovieInfo>
+            <MovieInfo info="Year">{year}</MovieInfo>
+            <MovieInfo info="Relesead">{released}</MovieInfo>
+            <MovieInfo info="BoxOffice">{boxoffice}</MovieInfo>
+            <MovieInfo info="Country">{country}</MovieInfo>
+            <MovieInfo info="Production">{production}</MovieInfo>
+            <MovieInfo info="Actors">{actors}</MovieInfo>
+            <MovieInfo info="Director">{director}</MovieInfo>
+            <MovieInfo info="Writers">{writer}</MovieInfo>
           </MovieDescription>
         </FullMovieCard>
       )}

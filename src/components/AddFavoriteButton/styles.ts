@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Colors } from 'ui';
+import styled from "styled-components";
+import { Color } from "ui";
 
 export const StyledAddFavoriteButton = styled.button`
   display: flex;
@@ -7,13 +7,13 @@ export const StyledAddFavoriteButton = styled.button`
   align-items: center;
   gap: 10px;
   padding: 16px 54px;
-  background-color: ${Colors.GRAPHITE};
-  border: 1px solid ${Colors.DARK};
+  background-color: ${Color.GRAPHITE};
+  border: 1px solid ${Color.DARK};
   border-radius: 10px;
-  color: ${Colors.LIGHT};
+  color: ${Color.LIGHT};
   cursor: pointer;
   transition: all 0.3s;
   &:hover {
-    color: ${Colors.WHITE};
+    color: ${Color.WHITE};
   }
 `;

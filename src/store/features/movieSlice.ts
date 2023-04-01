@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios, { AxiosError } from 'axios';
-import { transformFullMovie } from 'mappers';
-import { FullMovie } from 'types';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios, { AxiosError } from "axios";
+import { transformFullMovie } from "mappers";
+import { FullMovie } from "types";
 
 interface MovieState {
   movie: FullMovie;
@@ -13,10 +13,10 @@ export const fetchFullMovie = createAsyncThunk<
   FullMovie,
   { imdbID: string },
   { rejectValue: string }
->('movie/fetchFullMovie', async ({ imdbID }, { rejectWithValue }) => {
+>("movie/fetchFullMovie", async ({ imdbID }, { rejectWithValue }) => {
   try {
     const { data } = await axios.get(
-      `https://www.omdbapi.com/?i=${imdbID}&plot=full&apikey=af084387`
+      `https://www.omdbapi.com/?i=${imdbID}&plot=full&apikey=af084387`,
     );
     return transformFullMovie(data);
   } catch (error) {
@@ -32,7 +32,7 @@ const initialState: MovieState = {
 };
 
 const movieSlice = createSlice({
-  name: 'movie',
+  name: "movie",
   initialState,
   reducers: {},
   extraReducers(builder) {

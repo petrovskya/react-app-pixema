@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Colors } from 'ui';
+import styled from "styled-components";
+import { Color } from "ui";
 
 const StyledMainTemplate = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ const StyledMainTemplate = styled.div`
   max-width: 100vw;
   min-height: 100vh;
   padding: 40px 62px 64px;
-  background: ${Colors.DARK};
+  background: ${Color.DARK};
 `;
 
 const StyledAside = styled.div`
@@ -22,7 +22,7 @@ const StyledMenu = styled.div`
 const StyledText = styled.span`
   position: fixed;
   bottom: 64px;
-  color: ${Colors.LIGHT};
+  color: ${Color.LIGHT};
 `;
 const FixedWrapContainer = styled.div`
   position: fixed;
@@ -39,24 +39,24 @@ const StyledWrap = styled.div`
   max-width: 100%;
   padding: 40px 0 56px;
   margin: 0 -15px;
-  background: ${Colors.DARK};
+  background: ${Color.DARK};
 `;
 
 const StyledSearchInput = styled.input`
   width: 100%;
   padding: 16px 20px;
   margin: 0 15px;
-  background: ${Colors.GRAPHITE};
+  background: ${Color.GRAPHITE};
   border-radius: 10px;
-  border: none;
+  border: 3px solid ${Color.BLACK};
   font-family: inherit;
   font-size: 16px;
   font-weight: 500;
-  color: ${Colors.SECONDARY};
+  color: ${Color.SECONDARY};
   &:focus {
-    outline-color: ${Colors.PRIMARY};
-    border: 2px solid ${Colors.PRIMARY};
-    color: ${Colors.WHITE};
+    outline-color: ${Color.PRIMARY};
+    border: 2px solid ${Color.PRIMARY};
+    color: ${Color.WHITE};
   }
 `;
 const StyledUserInfo = styled.div`

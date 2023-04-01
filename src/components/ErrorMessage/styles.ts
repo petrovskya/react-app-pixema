@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Colors } from 'ui';
+import styled from "styled-components";
+import { Color } from "ui";
 
 export const StyledErrorMessage = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ export const StyledErrorMessage = styled.div`
   font-weight: 600;
   line-height: 32px;
   text-align: center;
-  color: ${Colors.SECONDARY};
+  color: ${Color.SECONDARY};
   img {
     max-width: 405px;
     height: 360px;

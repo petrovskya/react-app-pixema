@@ -1,9 +1,9 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import { CustomLink, Nav, Modal } from 'components';
-import { LogoIconLight, SignInIcon, SignUpIcon } from 'assets';
-import { ROUTE } from 'router';
-import { ArrowIcon } from 'assets';
+import React, { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
+import { CustomLink, Nav, Modal } from "components";
+import { LogoIconLight, SignInIcon, SignUpIcon } from "assets";
+import { ROUTE } from "router";
+import { ArrowIcon } from "assets";
 import {
   StyledAside,
   StyledMenu,
@@ -13,12 +13,11 @@ import {
   StyledSearchInput,
   FixedWrapContainer,
   StyledMainTemplate,
-} from './styles';
-import { CopyrightText } from 'ui';
+} from "./styles";
+import { CopyrightText } from "ui";
 
 export const MainTemplate = () => {
   const isAuth = false;
-
   return (
     <StyledMainTemplate>
       {/* <Modal /> */}
@@ -31,7 +30,7 @@ export const MainTemplate = () => {
       </StyledAside>
       <FixedWrapContainer>
         <StyledWrap>
-          <StyledSearchInput placeholder='Search' />
+          <StyledSearchInput placeholder="Search" />
           {isAuth ? (
             <StyledUserInfo>
               <div> </div>

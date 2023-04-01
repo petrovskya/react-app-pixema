@@ -1,10 +1,6 @@
-import React from 'react';
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-} from 'react-router-dom';
-import { RequareAuth } from 'components';
+import React from "react";
+import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
+import { RequareAuth } from "components";
 import {
   HomePage,
   MoviePage,
@@ -15,9 +11,9 @@ import {
   SignUpPage,
   TrendsPage,
   FavoritesPage,
-} from 'pages';
-import { ROUTE } from 'router';
-import { MainTemplate, AuthTemplate } from 'templates';
+} from "pages";
+import { ROUTE } from "router";
+import { MainTemplate, AuthTemplate } from "templates";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,7 +33,7 @@ export const router = createBrowserRouter(
           <Route path={ROUTE.FAVORITES} element={<FavoritesPage />} />
         </Route>
       </Route>
-    </>
+    </>,
   ),
-  { basename: '/react-app-pixema' }
+  { basename: "/react-app-pixema" },
 );

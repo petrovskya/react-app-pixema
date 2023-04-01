@@ -1,4 +1,4 @@
-import { FullMovieAPI, FullMovie } from 'types';
+import { FullMovieAPI, FullMovie } from "types";
 
 export const transformFullMovie = (movie: any): any =>
   Object.keys(movie).reduce((acc: any, key) => {

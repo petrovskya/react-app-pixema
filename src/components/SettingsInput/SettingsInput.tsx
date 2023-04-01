@@ -1,11 +1,11 @@
-import { HTMLInputTypeAttribute } from 'react';
-import { UseFormRegister } from 'react-hook-form';
-import { InputWrapper, StyledSettingsInput } from './styles';
-import { SignFormValues } from 'types';
+import { HTMLInputTypeAttribute } from "react";
+import { UseFormRegister } from "react-hook-form";
+import { InputWrapper, StyledSettingsInput } from "./styles";
+import { SignFormValues } from "types";
 
 export interface InputProps {
   placeholder: string;
-  name: 'email' | 'password' | 'confirmPassword' | 'name';
+  name: "email" | "password" | "confirmPassword" | "name";
   register: UseFormRegister<SignFormValues>;
   type: HTMLInputTypeAttribute;
   required: boolean;

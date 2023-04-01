@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyledPoster, StyledPosterImage } from './styles';
+import React from "react";
+import { StyledPoster, StyledPosterImage } from "./styles";
 
 interface PosterProps {
   src: string;

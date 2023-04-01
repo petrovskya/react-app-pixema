@@ -1,5 +1,5 @@
-import styled, { createGlobalStyle } from 'styled-components';
-import { Colors } from './colors';
+import styled, { createGlobalStyle } from "styled-components";
+import { Color, themeColors } from "ui";
 
 export const GlobalStyles = createGlobalStyle`
   *{
@@ -7,11 +7,12 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     margin: 0;
   }
+  ${themeColors}
   body {
    font-family: 'Exo 2', 'san-serif';
   }
   input {
-    border: none;
+    /* border: none; */
   }
   button { 
     border: none;
@@ -23,10 +24,10 @@ export const GlobalStyles = createGlobalStyle`
   a {
     text-decoration: none;
     &:active {
-      color: ${Colors.PRIMARY_LIGHT};
+      color: ${Color.PRIMARY_LIGHT};
     }
     /* &:visited {
-      color: ${Colors.PRIMARY};
+      color: ${Color.PRIMARY};
     } */
   }
 `;
@@ -34,7 +35,7 @@ export const GlobalStyles = createGlobalStyle`
 export const CopyrightText = styled.div`
   position: fixed;
   bottom: 64px;
-  color: ${Colors.WHITE};
+  color: ${Color.WHITE};
 `;
 export const FormWrapper = styled.div`
   display: grid;
@@ -43,14 +44,14 @@ export const FormWrapper = styled.div`
   padding: 40px;
   margin: 0 auto;
   border-radius: 10px;
-  background-color: ${Colors.DARK};
+  background-color: ${Color.DARK};
 `;
 export const FormTitle = styled.div`
   font-size: 24px;
   font-weight: 600;
   line-height: 36px;
   text-align: left;
-  color: ${Colors.WHITE};
+  color: ${Color.WHITE};
 `;
 export const FormText = styled.div`
   font-size: 16px;
@@ -58,5 +59,5 @@ export const FormText = styled.div`
   line-height: 24px;
   text-align: center;
 
-  color: ${Colors.WHITE};
+  color: ${Color.WHITE};
 `;

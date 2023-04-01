@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Colors, H1, S1 } from 'ui';
+import styled from "styled-components";
+import { Color, H1, S1 } from "ui";
 
 const FullMovieCard = styled.div`
   display: flex;
@@ -22,11 +22,11 @@ const MovieDescription = styled.div`
 const MovieTitle = styled.h1`
   margin-bottom: 24px;
   ${H1};
-  color: ${Colors.WHITE};
+  color: ${Color.WHITE};
 `;
 const Genres = styled.span`
   ${S1};
-  color: ${Colors.LIGHT};
+  color: ${Color.LIGHT};
 `;
 const Badge = styled.div`
   display: flex;
@@ -39,12 +39,12 @@ const CommonRating = styled.span`
   width: 37px;
   height: 28px;
   border-radius: 6px;
-  background-color: ${Colors.GREEN};
+  background-color: ${Color.GREEN};
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
   text-align: left;
-  color: ${Colors.WHITE};
+  color: ${Color.WHITE};
 `;
 const IMDBRating = styled.span`
   display: flex;
@@ -54,23 +54,23 @@ const IMDBRating = styled.span`
   width: 79px;
   height: 28px;
   border-radius: 6px;
-  background-color: ${Colors.GRAPHITE};
+  background-color: ${Color.GRAPHITE};
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
   text-align: left;
-  color: ${Colors.WHITE};
+  color: ${Color.WHITE};
 `;
 const Runtime = styled.span`
   padding: 2px 8px;
   width: 78px;
   border-radius: 6px;
-  background-color: ${Colors.GRAPHITE};
+  background-color: ${Color.GRAPHITE};
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
   text-align: left;
-  color: ${Colors.WHITE};
+  color: ${Color.WHITE};
 `;
 const MoviePlot = styled.p`
   margin: 40px 0;
@@ -78,7 +78,7 @@ const MoviePlot = styled.p`
   font-weight: 500;
   line-height: 24px;
   text-align: left;
-  color: ${Colors.WHITE};
+  color: ${Color.WHITE};
 `;
 
 export {

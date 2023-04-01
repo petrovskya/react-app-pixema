@@ -7,4 +7,4 @@ export type {
   SignUpFormValues,
   SignInFormValues,
   SignFormValues,
-} from './types';
+} from "./types";

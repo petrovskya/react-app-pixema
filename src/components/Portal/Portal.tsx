@@ -1,9 +1,9 @@
-import React, { ReactNode } from 'react';
-import ReactDOM from 'react-dom';
+import React, { ReactNode } from "react";
+import ReactDOM from "react-dom";
 
 export enum PortalTarget {
-  ROOT = 'root',
-  MODAL = 'modal',
+  ROOT = "root",
+  MODAL = "modal",
 }
 
 interface PortalProps {

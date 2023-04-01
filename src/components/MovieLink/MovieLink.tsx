@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import { StyledMovieLink } from './styles';
+import React, { ReactNode } from "react";
+import { StyledMovieLink } from "./styles";
 
 interface MovieLinkProps {
   children: ReactNode;

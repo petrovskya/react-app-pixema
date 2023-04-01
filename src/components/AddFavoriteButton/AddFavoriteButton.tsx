@@ -1,6 +1,6 @@
-import React from 'react';
-import { StyledAddFavoriteButton } from './styles';
-import { SvgIcon } from '@mui/material';
+import React from "react";
+import { StyledAddFavoriteButton } from "./styles";
+import { SvgIcon } from "@mui/material";
 
 interface AddFavoriteButtonProps {
   component: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;

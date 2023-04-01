@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Colors } from 'ui';
+import styled from "styled-components";
+import { Color } from "ui";
 
 export const StyledPoster = styled.img`
   width: 266px;
@@ -13,7 +13,7 @@ export const StyledMovieYear = styled.h2`
   font-weight: 700;
   line-height: 24px;
   text-align: left;
-  color: ${Colors.WHITE};
+  color: ${Color.WHITE};
 `;
 
 export const StyledMovieCard = styled.li`

@@ -1,6 +1,6 @@
-import { ConfirmEmailForm, ResetPasswordForm } from 'components';
-import React from 'react';
-import { FormText, FormTitle, FormWrapper } from 'ui';
+import { ConfirmEmailForm, ResetPasswordForm } from "components";
+import React from "react";
+import { FormText, FormTitle, FormWrapper } from "ui";
 
 export const ResetPasswordPage = () => {
   const isAuth = false;
@@ -9,9 +9,7 @@ export const ResetPasswordPage = () => {
       {isAuth ? (
         <>
           <FormTitle>Reset password</FormTitle>
-          <FormText>
-            You will receive an email with a link to reset your password!{' '}
-          </FormText>
+          <FormText>You will receive an email with a link to reset your password! </FormText>
           <ResetPasswordForm />
         </>
       ) : (

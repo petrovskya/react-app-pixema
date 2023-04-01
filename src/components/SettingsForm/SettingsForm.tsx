@@ -1,12 +1,8 @@
-import {
-  ControlledSwitch,
-  SettingsFormButton,
-  SettingsInput,
-} from 'components';
-import React, { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { SignFormValues } from 'types';
-import { FormTitle } from 'ui';
+import { ControlledSwitch, SettingsFormButton, SettingsInput } from "components";
+import React, { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { SignFormValues } from "types";
+import { FormTitle } from "ui";
 import {
   ButtonWrapper,
   FormText,
@@ -14,7 +10,7 @@ import {
   SettingsFieldWrapper,
   SettingsFormField,
   StyledSettingsForm,
-} from './styles';
+} from "./styles";
 
 export const SettingsForm = () => {
   const {
@@ -24,10 +20,7 @@ export const SettingsForm = () => {
     formState: { errors },
   } = useForm<SignFormValues>();
 
-  const onSubmit: SubmitHandler<SignFormValues> = ({
-    email,
-    password,
-  }): any => {
+  const onSubmit: SubmitHandler<SignFormValues> = ({ email, password }): any => {
     // createUserWithEmailAndPassword(auth, email, password)
     //   .then((userCredential) => {
     //     // Signed in
@@ -47,20 +40,20 @@ export const SettingsForm = () => {
         <FormTitle>Profile</FormTitle>
         <SettingsFieldWrapper>
           <SettingsInput
-            name='email'
-            type='email'
-            placeholder='Your email'
+            name="email"
+            type="email"
+            placeholder="Your email"
             register={register}
             required={true}
-            title={'Email'}
+            title={"Email"}
           />
           <SettingsInput
-            name='name'
-            type='text'
-            placeholder='Your name'
+            name="name"
+            type="text"
+            placeholder="Your name"
             register={register}
             required={true}
-            title={'Name'}
+            title={"Name"}
           />
         </SettingsFieldWrapper>
       </SettingsFormField>
@@ -68,28 +61,28 @@ export const SettingsForm = () => {
         <FormTitle>Password</FormTitle>
         <SettingsFieldWrapper>
           <SettingsInput
-            name='password'
-            type='password'
-            placeholder='Your password'
+            name="password"
+            type="password"
+            placeholder="Your password"
             register={register}
             required={true}
-            title={'New password'}
+            title={"New password"}
           />
           <SettingsInput
-            name='password'
-            type='password'
-            placeholder='Your password'
+            name="password"
+            type="password"
+            placeholder="Your password"
             register={register}
             required={true}
-            title={'Password'}
+            title={"Password"}
           />
           <SettingsInput
-            name='confirmPassword'
-            type='password'
-            placeholder='Confirm your password'
+            name="confirmPassword"
+            type="password"
+            placeholder="Confirm your password"
             register={register}
             required={true}
-            title={'Confirm password'}
+            title={"Confirm password"}
           />
         </SettingsFieldWrapper>
       </SettingsFormField>
@@ -103,8 +96,8 @@ export const SettingsForm = () => {
         </SettingsFieldWrapper>
       </SettingsFormField>
       <ButtonWrapper>
-        <SettingsFormButton type='reset'>Cancel</SettingsFormButton>
-        <SettingsFormButton type='submit'>Save</SettingsFormButton>
+        <SettingsFormButton type="reset">Cancel</SettingsFormButton>
+        <SettingsFormButton type="submit">Save</SettingsFormButton>
       </ButtonWrapper>
     </StyledSettingsForm>
   );

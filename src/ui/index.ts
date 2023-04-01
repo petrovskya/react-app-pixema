@@ -1,7 +1,8 @@
-import { GlobalStyles } from './GlobalStyles';
-import { Colors } from './colors';
-import { StyledOutlet } from './outletStyles';
-import { H1, H2, H3, S1, S2, S3, B1 } from './typography';
+import { themeColors } from "./theme";
+import { Color } from "./color";
+import { GlobalStyles } from "./GlobalStyles";
+import { StyledOutlet } from "./outletStyles";
+import { H1, H2, H3, S1, S2, S3, B1 } from "./typography";
 import {
   MoviePlot,
   Badge,
@@ -13,17 +14,13 @@ import {
   MoviePresentation,
   MovieDescription,
   FullMovieCard,
-} from './moviePageStyles';
-import {
-  CopyrightText,
-  FormTitle,
-  FormWrapper,
-  FormText,
-} from './GlobalStyles';
+} from "./moviePageStyles";
+import { CopyrightText, FormTitle, FormWrapper, FormText } from "./GlobalStyles";
 
 export {
+  themeColors,
+  Color,
   GlobalStyles,
-  Colors,
   StyledOutlet,
   H1,
   H2,

@@ -1,3 +1,3 @@
-import { getRandomMoviesTheme } from './getRandomMoviesTheme';
+import { getRandomMoviesTheme } from "./getRandomMoviesTheme";
 
 export { getRandomMoviesTheme };

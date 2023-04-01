@@ -1,6 +1,6 @@
-import { CSSProperties } from 'react';
+import { CSSProperties } from "react";
 
 export const SpinnerStyles: CSSProperties = {
-  display: 'block',
-  margin: '25% 50%',
+  display: "block",
+  margin: "25% 50%",
 };

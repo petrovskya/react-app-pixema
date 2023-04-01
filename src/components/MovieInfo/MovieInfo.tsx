@@ -1,6 +1,6 @@
-import React, { ReactNode } from 'react';
-import { Colors } from 'ui';
-import { InfoTitle, StyledMovieInfo } from './styles';
+import React, { ReactNode } from "react";
+import { Color } from "ui";
+import { InfoTitle, StyledMovieInfo } from "./styles";
 
 interface MovieInfoProps {
   children: ReactNode;
@@ -10,7 +10,7 @@ interface MovieInfoProps {
 export const MovieInfo = ({ children, info }: MovieInfoProps) => {
   return (
     <StyledMovieInfo>
-      <InfoTitle color={Colors.LIGHT}>{info}</InfoTitle>
+      <InfoTitle color={Color.LIGHT}>{info}</InfoTitle>
       {children}
     </StyledMovieInfo>
   );

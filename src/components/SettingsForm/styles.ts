@@ -1,11 +1,11 @@
-import styled from 'styled-components';
-import { Colors } from 'ui';
+import styled from "styled-components";
+import { Color } from "ui";
 
 const StyledSettingsForm = styled.form`
   display: grid;
   gap: 40px;
   width: 100%;
-  color: ${Colors.WHITE};
+  color: ${Color.WHITE};
 `;
 const SettingsFormField = styled.div`
   display: grid;
@@ -20,7 +20,7 @@ const SettingsFieldWrapper = styled.div`
   gap: 20px;
   padding: 40px;
   border-radius: 10px;
-  background-color: ${Colors.BLACK};
+  background-color: ${Color.BLACK};
 `;
 const ButtonWrapper = styled.div`
   display: flex;
@@ -32,7 +32,7 @@ const FormText = styled.p`
   flex-direction: column;
 `;
 const FormTextSecondary = styled.p`
-  color: ${Colors.SECONDARY};
+  color: ${Color.SECONDARY};
 `;
 
 export {
