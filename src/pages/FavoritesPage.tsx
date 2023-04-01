@@ -20,6 +20,7 @@ export const FavoritesPage = () => {
   return (
     <StyledOutlet>
       {isLoading && <Spinner />}
+      {isLoading && <Spinner />}
       {error && <ErrorMessage error={error} />}
       {!movies.length && <ErrorMessage error={"No films"} />}
       <MoviesList movies={movies} />

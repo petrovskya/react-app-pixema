@@ -20,6 +20,7 @@ export const TrendsPage = () => {
   return (
     <StyledOutlet>
       {isLoading && <Spinner />}
+      {isLoading && <Spinner />}
       {error && <ErrorMessage error={error} />}
       {trends.length > 0 && (
         <StyledOutlet>
