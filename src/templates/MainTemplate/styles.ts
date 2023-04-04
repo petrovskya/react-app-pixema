@@ -38,7 +38,6 @@ const StyledWrap = styled.div`
   gap: 40px;
   max-width: 100%;
   padding: 40px 0 56px;
-  margin: 0 -15px;
   background: ${Color.DARK};
 `;
 
