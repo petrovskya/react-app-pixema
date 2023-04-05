@@ -6,7 +6,6 @@ const FullMovieCard = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 42px;
-  max-width: 75%;
 `;
 const MoviePresentation = styled.div`
   display: flex;
@@ -73,6 +72,7 @@ const Runtime = styled.span`
   color: ${Color.WHITE};
 `;
 const MoviePlot = styled.p`
+  max-width: 768px;
   margin: 40px 0;
   font-size: 16px;
   font-weight: 500;

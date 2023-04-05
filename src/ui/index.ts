@@ -15,11 +15,13 @@ import {
   MovieDescription,
   FullMovieCard,
 } from "./moviePageStyles";
+import { Media } from "./media";
 import { CopyrightText, FormTitle, FormWrapper, FormText } from "./GlobalStyles";
 
 export {
   themeColors,
   Color,
+  Media,
   GlobalStyles,
   StyledOutlet,
   H1,

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Color } from "ui";
+import { Color, Media } from "ui";
 
 const StyledMainTemplate = styled.div`
   display: flex;
@@ -9,12 +9,18 @@ const StyledMainTemplate = styled.div`
   min-height: 100vh;
   padding: 40px 62px 64px;
   background: ${Color.DARK};
+  ${Media.LAPTOP_S} {
+    padding: 40px 48px 56px;
+  }
 `;
 
 const StyledAside = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  ${Media.LAPTOP_M} {
+    display: none;
+  }
 `;
 const StyledMenu = styled.div`
   position: fixed;
@@ -71,6 +77,10 @@ const StyledMain = styled.div`
   gap: 64px;
   margin-left: 307px;
   margin-top: 64px;
+  ${Media.LAPTOP_M} {
+    margin-left: 0;
+    gap: 56px;
+  }
 `;
 
 export {

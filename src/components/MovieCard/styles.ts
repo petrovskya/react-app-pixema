@@ -1,13 +1,6 @@
 import styled from "styled-components";
 import { Color } from "ui";
 
-export const StyledPoster = styled.img`
-  width: 266px;
-  height: 357px;
-  margin-bottom: 8px;
-  border-radius: 20px;
-`;
-
 export const StyledMovieYear = styled.h2`
   font-size: 16px;
   font-weight: 700;
