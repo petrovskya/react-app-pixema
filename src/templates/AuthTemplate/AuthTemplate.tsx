@@ -1,18 +1,14 @@
-import { LogoIcon } from "assets";
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
-import { ROUTE } from "router";
-import { Color, CopyrightText } from "ui";
-import { Logo, StyledAuthTemplate } from "./styles";
+import { Outlet } from "react-router-dom";
+import { StyledAuthTemplate } from "./styles";
+import { LogoLink } from "components";
 
 export const AuthTemplate = () => {
   return (
     <StyledAuthTemplate>
-      <Link to={ROUTE.HOME}>
-        <LogoIcon fill={Color.BLACK} style={Logo} />
-      </Link>
+      <LogoLink />
       <Outlet />
-      <CopyrightText>© All Rights Reserved</CopyrightText>
+      <p style={{ color: "#fff" }}>© All Rights Reserved</p>
     </StyledAuthTemplate>
   );
 };
