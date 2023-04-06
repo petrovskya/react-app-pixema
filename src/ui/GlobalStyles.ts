@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
-import { Color, themeColors } from "ui";
+import { Color, Media, themeColors } from "ui";
 
 export const GlobalStyles = createGlobalStyle`
   *{
@@ -40,11 +40,16 @@ export const CopyrightText = styled.div`
 export const FormWrapper = styled.div`
   display: grid;
   gap: 40px;
-  width: 574px;
+  width: 100%;
+  max-width: 574px;
   padding: 40px;
   margin: 0 auto;
   border-radius: 10px;
   background-color: ${Color.DARK};
+  ${Media.MOBILE_M} {
+    gap: 20px;
+    padding: 20px 20px;
+  }
 `;
 export const FormTitle = styled.div`
   font-size: 24px;
@@ -54,6 +59,7 @@ export const FormTitle = styled.div`
   color: ${Color.WHITE};
 `;
 export const FormText = styled.div`
+  flex: ;
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;

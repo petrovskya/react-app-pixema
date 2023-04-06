@@ -1,4 +1,5 @@
 import { themeColors } from "./theme";
+import { Media } from "./media";
 import { Color } from "./color";
 import { GlobalStyles } from "./GlobalStyles";
 import { StyledOutlet } from "./outletStyles";
@@ -15,7 +16,6 @@ import {
   MovieDescription,
   FullMovieCard,
 } from "./moviePageStyles";
-import { Media } from "./media";
 import { CopyrightText, FormTitle, FormWrapper, FormText } from "./GlobalStyles";
 
 export {

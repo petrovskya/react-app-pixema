@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Color } from "ui";
+import { Color, Media } from "ui";
 
 export const StyledSignUpForm = styled.form`
   display: grid;
@@ -10,4 +10,7 @@ export const StyledSignUpForm = styled.form`
   line-height: 24px;
   text-align: left;
   color: ${Color.WHITE};
+  ${Media.MOBILE_M} {
+    gap: 15px;
+  }
 `;

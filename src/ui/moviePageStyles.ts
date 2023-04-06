@@ -1,17 +1,28 @@
 import styled from "styled-components";
-import { Color, H1, S1 } from "ui";
+import { Color, H1, Media, S1 } from "ui";
 
 const FullMovieCard = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 42px;
+  padding: 10px 0 0;
 `;
 const MoviePresentation = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
+  max-width: 356px;
   gap: 32px;
+  ${Media.LAPTOP_M} {
+    align-items: center;
+    max-width: 208px;
+  }
+  ${Media.TABLET} {
+    max-width: 356px;
+    margin: 0 auto 40px;
+  }
 `;
 const MovieDescription = styled.div`
   display: flex;

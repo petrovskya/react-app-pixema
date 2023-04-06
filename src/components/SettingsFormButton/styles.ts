@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Color } from "ui";
+import { Color, Media } from "ui";
 
 export const StyledSettingsFormButton = styled.button`
   width: 25%;
@@ -17,5 +17,8 @@ export const StyledSettingsFormButton = styled.button`
   cursor: pointer;
   &:hover {
     background: ${Color.PRIMARY_LIGHT};
+  }
+  ${Media.LAPTOP_S} {
+    width: 50%;
   }
 `;

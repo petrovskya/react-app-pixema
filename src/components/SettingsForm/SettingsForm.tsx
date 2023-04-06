@@ -7,12 +7,15 @@ import {
   ButtonWrapper,
   FormText,
   FormTextSecondary,
+  ResetPasswordWrapper,
   SettingsFieldWrapper,
   SettingsFormField,
   StyledSettingsForm,
 } from "./styles";
+import { useWindowSize } from "store/hooks";
 
 export const SettingsForm = () => {
+  const { width } = useWindowSize();
   const {
     register,
     handleSubmit,
@@ -59,32 +62,62 @@ export const SettingsForm = () => {
       </SettingsFormField>
       <SettingsFormField>
         <FormTitle>Password</FormTitle>
-        <SettingsFieldWrapper>
-          <SettingsInput
-            name="password"
-            type="password"
-            placeholder="Your password"
-            register={register}
-            required={true}
-            title={"New password"}
-          />
-          <SettingsInput
-            name="password"
-            type="password"
-            placeholder="Your password"
-            register={register}
-            required={true}
-            title={"Password"}
-          />
-          <SettingsInput
-            name="confirmPassword"
-            type="password"
-            placeholder="Confirm your password"
-            register={register}
-            required={true}
-            title={"Confirm password"}
-          />
-        </SettingsFieldWrapper>
+        {width && width < 768 ? (
+          <SettingsFieldWrapper>
+            <SettingsInput
+              name="confirmPassword"
+              type="password"
+              placeholder="Confirm your password"
+              register={register}
+              required={true}
+              title={"Confirm password"}
+            />
+            <SettingsInput
+              name="password"
+              type="password"
+              placeholder="Your password"
+              register={register}
+              required={true}
+              title={"New password"}
+            />
+            <SettingsInput
+              name="password"
+              type="password"
+              placeholder="Your password"
+              register={register}
+              required={true}
+              title={"Password"}
+            />
+          </SettingsFieldWrapper>
+        ) : (
+          <SettingsFieldWrapper>
+            {" "}
+            <SettingsInput
+              name="password"
+              type="password"
+              placeholder="Your password"
+              register={register}
+              required={true}
+              title={"New password"}
+            />
+            <SettingsInput
+              name="password"
+              type="password"
+              placeholder="Your password"
+              register={register}
+              required={true}
+              title={"Password"}
+            />
+            <SettingsInput
+              name="confirmPassword"
+              type="password"
+              placeholder="Confirm your password"
+              register={register}
+              required={true}
+              title={"Confirm password"}
+            />
+          </SettingsFieldWrapper>
+        )}
       </SettingsFormField>
       <SettingsFormField>
         <FormTitle>Color</FormTitle>
