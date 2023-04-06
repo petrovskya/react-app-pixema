@@ -1,5 +1,4 @@
-import { ReactComponent as LogoIconLight } from "./icons/pixema-logo-light.svg";
-import { ReactComponent as LogoIconDark } from "./icons/pixema-logo-dark.svg";
+import { ReactComponent as LogoIcon } from "./icons/pixema-logo-icon.svg";
 import { ReactComponent as BookmarkIcon } from "./icons/bookmark-icon.svg";
 import { ReactComponent as FireIcon } from "./icons/fire-icon.svg";
 import { ReactComponent as HomeIcon } from "./icons/home-icon.svg";
@@ -11,14 +10,18 @@ import { ReactComponent as SignOutIcon } from "./icons/sign-out-icon.svg";
 import { ReactComponent as FavoritesIcon } from "./icons/favorites-icon.svg";
 import { ReactComponent as ShareIcon } from "./icons/share-icon.svg";
 import { ReactComponent as IMDBIcon } from "./icons/imdb-icon.svg";
-import BackgroundImage from "./images/background-image.png";
+import AuthBackgroundImage from "./images/background-image.png";
+import { ReactComponent as ArrowLeftIcon } from "./icons/arrow-left-icon.svg";
+import { ReactComponent as ArrowRightIcon } from "./icons/arrow-right-icon.svg";
+import { ReactComponent as FilterIcon } from "./icons/filter-icon.svg";
+import { ReactComponent as BurgerIcon } from "./icons/burger-icon.svg";
+import { ReactComponent as CancelIcon } from "./icons/cancel-icon.svg";
 export {
   BookmarkIcon,
   FireIcon,
   HomeIcon,
   SubtractIcon,
-  LogoIconLight,
-  LogoIconDark,
+  LogoIcon,
   ArrowIcon,
   SignInIcon,
   SignUpIcon,
@@ -26,5 +29,10 @@ export {
   FavoritesIcon,
   ShareIcon,
   IMDBIcon,
-  BackgroundImage,
+  AuthBackgroundImage,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  FilterIcon,
+  BurgerIcon,
+  CancelIcon,
 };

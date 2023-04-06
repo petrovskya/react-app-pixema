@@ -22,6 +22,7 @@ import { SettingsForm } from "./SettingsForm/SettingsForm";
 import { SettingsInput } from "./SettingsInput/SettingsInput";
 import { SettingsFormButton } from "./SettingsFormButton/SettingsFormButton";
 import { ControlledSwitch } from "./ControlledSwitch/ControlledSwitch";
+import { BurgerMenu } from "./BurgerMenu/BurgerMenu";
 export {
   CustomLink,
   Nav,
@@ -47,4 +48,5 @@ export {
   SettingsFormButton,
   SettingsInput,
   ControlledSwitch,
+  BurgerMenu,
 };

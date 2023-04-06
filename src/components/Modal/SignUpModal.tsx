@@ -1,4 +1,3 @@
-import { LogoIconLight } from "assets";
 import { Portal, PortalTarget } from "components/Portal/Portal";
 import React from "react";
 import { StyledModal } from "./styles";

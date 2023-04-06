@@ -9,7 +9,7 @@ export const GlobalStyles = createGlobalStyle`
   }
   ${themeColors}
   body {
-   font-family: 'Exo 2', 'san-serif';
+   font-family: "Exo 2", "san-serif";
   }
   input {
     /* border: none; */

@@ -19,11 +19,15 @@ const StyledAside = styled.div`
   flex-direction: column;
   justify-content: space-between;
   ${Media.LAPTOP_M} {
-    display: none;
+    /* display: none; */
   }
 `;
 const StyledMenu = styled.div`
   position: fixed;
+  top: 104px;
+  ${Media.LAPTOP_M} {
+    /* display: none; */
+  }
 `;
 const StyledText = styled.span`
   position: fixed;
@@ -35,16 +39,27 @@ const FixedWrapContainer = styled.div`
   top: 0;
   left: 0;
   z-index: 1;
-  padding: 0 62px 0 368px;
+  display: flex;
+  align-items: center;
+  padding: 0 62px;
   width: 100%;
+  background: ${Color.DARK};
+  /* ${Media.LAPTOP_M} {
+    padding: 0 62px;
+  } */
 `;
 const StyledWrap = styled.div`
   display: flex;
+  flex-grow: 2;
   justify-content: space-between;
+  align-items: center;
   gap: 40px;
   max-width: 100%;
-  padding: 40px 0 56px;
-  background: ${Color.DARK};
+  padding: 56px 0;
+  margin-left: 146px;
+  ${Media.LAPTOP_M} {
+    margin-left: 78px;
+  }
 `;
 
 const StyledSearchInput = styled.input`
@@ -78,6 +93,7 @@ const StyledMain = styled.div`
   margin-left: 307px;
   margin-top: 64px;
   ${Media.LAPTOP_M} {
+    margin-top: 152px;
     margin-left: 0;
     gap: 56px;
   }
