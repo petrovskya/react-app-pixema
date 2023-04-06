@@ -1,6 +1,8 @@
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
 import { useEffect, useState } from "react";
+import { setTheme } from "store/features";
+import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { Color } from "ui";
 
 const StyledSwitch = styled(Switch)(({ theme }) => ({
@@ -47,27 +49,16 @@ const StyledSwitch = styled(Switch)(({ theme }) => ({
 
 export const ControlledSwitch = () => {
   const [checked, setChecked] = useState(true);
-  const [theme, setTheme] = useState("light");
-
+  const { theme } = useAppSelector((state) => state.theme);
+  const dispatch = UseAppDispatch();
   useEffect(() => {
     document.documentElement.setAttribute("theme", theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  const handleChange = (prev: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setTheme());
+    setChecked((prev) => !prev);
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked);
-    toggleTheme();
-  };
-
-  return (
-    <StyledSwitch
-      defaultChecked
-      checked={checked}
-      onChange={handleChange}
-      inputProps={{ "aria-label": "ant design" }}
-    />
-  );
+  return <StyledSwitch checked={checked} onChange={handleChange} />;
 };

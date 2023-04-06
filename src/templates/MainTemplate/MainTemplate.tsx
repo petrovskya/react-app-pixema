@@ -1,35 +1,73 @@
-import React from "react";
+import React, { SetStateAction, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { BurgerMenu, CustomLink, Nav } from "components";
 import { LogoIcon, SignInIcon, SignUpIcon } from "assets";
 import { ROUTE } from "router";
 import { ArrowIcon } from "assets";
 import {
-  StyledAside,
-  StyledMenu,
   StyledWrap,
-  StyledMain,
-  StyledUserInfo,
+  Main,
+  UserInfo,
   StyledSearchInput,
   FixedWrapContainer,
   StyledMainTemplate,
+  UserInitials,
+  UserName,
+  Aside,
+  Menu,
 } from "./styles";
 import { Color, CopyrightText } from "ui";
-import { useWindowSize } from "store/hooks";
-
+import { UseAppDispatch, useAppSelector, useWindowSize } from "store/hooks";
+import { getUserInitials } from "utils";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../../firebase";
+import { setUserAuth } from "store/features";
 export const MainTemplate = () => {
-  const isAuth = false;
+  const { theme } = useAppSelector((state) => state.theme);
+  useEffect(() => {
+    document.documentElement.setAttribute("theme", theme);
+  }, [theme]);
+  const { isAuth, name } = useAppSelector((state) => state.user);
   const { width } = useWindowSize();
+  // const [authUser, setAuthUser] = useState(null);
+  // useEffect(() => {
+  //   onAuthStateChanged(auth, (user: any) => {
+  //     if (user) {
+  //       setAuthUser(user);
+  //     } else {
+  //       setAuthUser(null);
+  //     }
+  //   });
+  // }, []);
+  // console.log(authUser);
+
+  // const userSignOut = () => {
+  //   signOut(auth);
+  //   setAuthUser(null);
+  // };
+  // const dispatch = UseAppDispatch();
+  // useEffect(() => {
+  //   onAuthStateChanged(
+  //     auth,
+  //     (user) => {
+  //       console.log(user);
+  //       dispatch(setUserAuth(user));
+  //     },
+  //     // else {
+  //     //   //User is signed out
+  //     // }
+  //   );
+  // }, []);
   return (
     <StyledMainTemplate>
       {/* <Modal /> */}
       {width && width > 1280 && (
-        <StyledAside>
-          <StyledMenu>
+        <Aside>
+          <Menu>
             <Nav />
-          </StyledMenu>
+          </Menu>
           <CopyrightText>© All Rights Reserved</CopyrightText>
-        </StyledAside>
+        </Aside>
       )}
       <FixedWrapContainer>
         <Link to={ROUTE.HOME}>
@@ -40,30 +78,30 @@ export const MainTemplate = () => {
           {width &&
             width > 1280 &&
             (isAuth ? (
-              <StyledUserInfo>
-                <div> </div>
-                <div>Artem Lapitski</div>
+              <UserInfo>
+                <UserInitials>{getUserInitials(name)}</UserInitials>
+                <UserName>{name}</UserName>
                 <button>
                   <ArrowIcon />
                 </button>
-              </StyledUserInfo>
+              </UserInfo>
             ) : (
-              <StyledUserInfo>
+              <UserInfo>
                 <CustomLink to={ROUTE.SIGN_IN} component={SignInIcon}>
                   Sign In
                 </CustomLink>
                 <CustomLink to={ROUTE.SIGN_UP} component={SignUpIcon}>
                   Sign Up
                 </CustomLink>
-              </StyledUserInfo>
+              </UserInfo>
             ))}
         </StyledWrap>
         {width && width <= 1280 && <BurgerMenu />}
         {width && width < 768 && <StyledSearchInput placeholder="Search" />}
       </FixedWrapContainer>
-      <StyledMain>
+      <Main>
         <Outlet />
-      </StyledMain>
+      </Main>
     </StyledMainTemplate>
   );
 };

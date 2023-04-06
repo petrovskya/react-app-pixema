@@ -17,16 +17,16 @@ const StyledMainTemplate = styled.div`
   }
 `;
 
-const StyledAside = styled.div`
+const Aside = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 `;
-const StyledMenu = styled.div`
+const Menu = styled.div`
   position: fixed;
   top: 104px;
 `;
-const StyledText = styled.span`
+const Text = styled.span`
   position: fixed;
   bottom: 64px;
   color: ${Color.LIGHT};
@@ -80,14 +80,15 @@ const StyledSearchInput = styled.input`
     color: ${Color.WHITE};
   }
 `;
-const StyledUserInfo = styled.div`
+const UserInfo = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 40px;
   margin: 0 15px;
+  color: ${Color.WHITE};
 `;
 
-const StyledMain = styled.div`
+const Main = styled.div`
   display: flex;
   flex-direction: column;
   gap: 64px;
@@ -99,15 +100,35 @@ const StyledMain = styled.div`
     gap: 56px;
   }
 `;
+const UserInitials = styled.div`
+  width: 56px;
+  height: 56px;
+  padding: 16px;
+  border-radius: 10px;
+  background: ${Color.PRIMARY};
+  font-size: 20px;
+  font-weight: 700;
+`;
+const UserName = styled.p`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 90px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+`;
 
 export {
   StyledMainTemplate,
-  StyledAside,
-  StyledMenu,
+  Aside,
+  Menu,
   FixedWrapContainer,
   StyledWrap,
   StyledSearchInput,
-  StyledUserInfo,
-  StyledMain,
-  StyledText,
+  UserInfo,
+  Main,
+  Text,
+  UserInitials,
+  UserName,
 };
