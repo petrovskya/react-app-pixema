@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Color } from "ui";
+import { Color, Media } from "ui";
 
 export const StyledSettingsInput = styled.input`
   width: 100%;
@@ -20,4 +20,7 @@ export const InputWrapper = styled.div`
   display: grid;
   gap: 8px;
   width: 48%;
+  ${Media.TABLET} {
+    width: 100%;
+  }
 `;
