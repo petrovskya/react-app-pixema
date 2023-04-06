@@ -50,7 +50,7 @@ const FormText = styled.p`
   display: flex;
   flex-direction: column;
 `;
-const FormTextSecondary = styled.p`
+const FormTextSecondary = styled.span`
   color: ${Color.SECONDARY};
 `;
 

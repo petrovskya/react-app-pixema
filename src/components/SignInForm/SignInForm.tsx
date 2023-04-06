@@ -1,13 +1,13 @@
-import { createUserWithEmailAndPassword } from "@firebase/auth";
-import { Button, Input } from "components";
-import { auth } from "firebase";
+import { Button, Input, LittleSpinner } from "components";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ROUTE } from "router";
-import { SignFormValues } from "types";
+import { SignFormValues, SignInFormValues } from "types";
 import { Color } from "ui";
 import { StyledSignInForm } from "./styles";
+import { fetchSignInUser, setUserAuth } from "store/features";
+import { UseAppDispatch, useAppSelector } from "store/hooks";
 
 export const SignInForm = () => {
   const {
@@ -16,25 +16,23 @@ export const SignInForm = () => {
     reset,
     formState: { errors },
   } = useForm<SignFormValues>();
-
-  const onSubmit: SubmitHandler<SignFormValues> = ({ email, password }): any => {
-    // createUserWithEmailAndPassword(auth, email, password)
-    //   .then((userCredential) => {
-    //     // Signed in
-    //     const user = userCredential.user;
-    //     // ...
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     // ..
-    //   });
+  const dispatch = UseAppDispatch();
+  const navigate = useNavigate();
+  const { isLoading, errorMessage } = useAppSelector((state) => state.user);
+  const onSubmit: SubmitHandler<SignInFormValues> = async (signUpFormValues) => {
+    await dispatch(fetchSignInUser(signUpFormValues))
+      .unwrap()
+      .then((user) => {
+        dispatch(setUserAuth(user));
+      });
+    await reset();
+    await navigate(ROUTE.HOME);
   };
   return (
     <StyledSignInForm onSubmit={handleSubmit(onSubmit)}>
       <Input
         name="email"
-        type="email"
+        type="text"
         placeholder="Your email"
         register={register}
         required={true}
@@ -53,7 +51,8 @@ export const SignInForm = () => {
       <Link to={ROUTE.RESET_PASSWORD} color={Color.SECONDARY}>
         Forgot the password?
       </Link>
-      <Button type="submit">Sign in</Button>
+      <Button type="submit">{isLoading ? <LittleSpinner /> : <>Sign in</>}</Button>
+      {errorMessage && <span>{errorMessage}</span>}
     </StyledSignInForm>
   );
 };

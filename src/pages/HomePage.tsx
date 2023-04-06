@@ -12,13 +12,11 @@ export const HomePage = () => {
   const handleChange = () => {
     dispatch(fetchNextMoviesPage({ theme, page }));
   };
-
   useEffect(() => {
     if (!movies.length) {
       dispatch(fetchAllMovies({ theme }));
     }
   }, [dispatch]);
-
   return (
     <StyledOutlet>
       {isLoading && <Spinner />}

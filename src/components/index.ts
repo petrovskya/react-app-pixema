@@ -24,6 +24,7 @@ import { SettingsFormButton } from "./SettingsFormButton/SettingsFormButton";
 import { ControlledSwitch } from "./ControlledSwitch/ControlledSwitch";
 import { BurgerMenu } from "./BurgerMenu/BurgerMenu";
 import { LogoLink } from "./LogoLink/LogoLink";
+import { LittleSpinner } from "./LittleSpinner/LittleSpinner";
 export {
   CustomLink,
   Nav,
@@ -51,4 +52,5 @@ export {
   ControlledSwitch,
   BurgerMenu,
   LogoLink,
+  LittleSpinner,
 };

@@ -1,30 +1,19 @@
-import { ErrorMessage, MoviesList, ShowMoreButton, Spinner } from "components";
+import { ErrorMessage, MoviesList } from "components";
 import React, { useEffect } from "react";
-import { fetchAllMovies, fetchNextMoviesPage } from "store/features";
-import { UseAppDispatch, useAppSelector } from "store/hooks";
+
 import { StyledOutlet } from "ui";
 
 export const FavoritesPage = () => {
-  const { isLoading, movies, error, theme, page } = useAppSelector((state) => state.movies);
-  const dispatch = UseAppDispatch();
+  const favorites = null;
 
-  const handleChange = () => {
-    dispatch(fetchNextMoviesPage({ theme, page }));
-  };
-
-  useEffect(() => {
-    if (!movies.length) {
-      dispatch(fetchAllMovies({ theme }));
-    }
-  }, [dispatch]);
   return (
     <StyledOutlet>
+      {/* {isLoading && <Spinner />}
       {isLoading && <Spinner />}
-      {isLoading && <Spinner />}
-      {error && <ErrorMessage error={error} />}
-      {!movies.length && <ErrorMessage error={"No films"} />}
-      <MoviesList movies={movies} />
-      <ShowMoreButton type="button" onClick={handleChange} />
+      {error && <ErrorMessage error={error} />} */}
+      {!favorites && <ErrorMessage error={"No films"} />}
+      {favorites && <MoviesList movies={favorites} />}
+      {/* <ShowMoreButton type="button"  onClick={handleChange}/> */}
     </StyledOutlet>
   );
 };

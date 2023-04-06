@@ -12,7 +12,8 @@ import {
   SettingsFormField,
   StyledSettingsForm,
 } from "./styles";
-import { useWindowSize } from "store/hooks";
+import { UseAppDispatch, useWindowSize } from "store/hooks";
+import { fetchSignUpUser } from "store/features";
 
 export const SettingsForm = () => {
   const { width } = useWindowSize();
@@ -22,19 +23,10 @@ export const SettingsForm = () => {
     reset,
     formState: { errors },
   } = useForm<SignFormValues>();
+  const dispatch = UseAppDispatch();
 
-  const onSubmit: SubmitHandler<SignFormValues> = ({ email, password }): any => {
-    // createUserWithEmailAndPassword(auth, email, password)
-    //   .then((userCredential) => {
-    //     // Signed in
-    //     const user = userCredential.user;
-    //     // ...
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     // ..
-    //   });
+  const onSubmit: SubmitHandler<SignFormValues> = (data): any => {
+    // dispatch(fetchSignUpUser(data));
   };
 
   return (

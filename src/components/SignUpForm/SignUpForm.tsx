@@ -1,10 +1,12 @@
-import { Button, Input } from "components";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "firebase.js";
+import { Button, Input, LittleSpinner } from "components";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { SignUpFormValues } from "types";
 import { StyledSignUpForm } from "./styles";
+import { fetchSignUpUser, setUserAuth } from "store/features";
+import { UseAppDispatch, useAppSelector } from "store/hooks";
+import { ROUTE } from "router";
+import { useNavigate } from "react-router-dom";
 
 export const SignUpForm = () => {
   const {
@@ -13,10 +15,17 @@ export const SignUpForm = () => {
     reset,
     formState: { errors },
   } = useForm<SignUpFormValues>();
-  const onSubmit: SubmitHandler<SignUpFormValues> = ({ name, email, password }): any => {
-    createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
-      const user = userCredential.user;
-    });
+  const dispatch = UseAppDispatch();
+  const navigate = useNavigate();
+  const { isLoading, errorMessage } = useAppSelector((state) => state.user);
+  const onSubmit: SubmitHandler<SignUpFormValues> = async (signUpFormValues) => {
+    await dispatch(fetchSignUpUser(signUpFormValues))
+      .unwrap()
+      .then((user) => {
+        dispatch(setUserAuth(user));
+      });
+    await reset();
+    await navigate(ROUTE.HOME);
   };
   return (
     <StyledSignUpForm onSubmit={handleSubmit(onSubmit)}>
@@ -28,9 +37,10 @@ export const SignUpForm = () => {
         required={true}
         title={"Name"}
       />
+      {errors.name && "This field is required."}
       <Input
         name="email"
-        type="email"
+        type="text"
         placeholder="Your email"
         register={register}
         required={true}
@@ -54,7 +64,9 @@ export const SignUpForm = () => {
         required={true}
         title={"Confirm password"}
       />
-      <Button type="submit">Sign up</Button>
+      {errors.confirmPassword && "This field is required."}
+      <Button type="submit"> {isLoading ? <LittleSpinner /> : <>Sign up</>}</Button>
+      {errorMessage && <span>{errorMessage}</span>}
     </StyledSignUpForm>
   );
 };
