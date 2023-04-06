@@ -12,22 +12,19 @@ const StyledMainTemplate = styled.div`
   ${Media.LAPTOP_S} {
     padding: 40px 48px 56px;
   }
+  ${Media.TABLET} {
+    padding: 40px 20px 56px;
+  }
 `;
 
 const StyledAside = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  ${Media.LAPTOP_M} {
-    /* display: none; */
-  }
 `;
 const StyledMenu = styled.div`
   position: fixed;
   top: 104px;
-  ${Media.LAPTOP_M} {
-    /* display: none; */
-  }
 `;
 const StyledText = styled.span`
   position: fixed;
@@ -40,13 +37,14 @@ const FixedWrapContainer = styled.div`
   left: 0;
   z-index: 1;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   padding: 0 62px;
   width: 100%;
   background: ${Color.DARK};
-  /* ${Media.LAPTOP_M} {
-    padding: 0 62px;
-  } */
+  ${Media.TABLET} {
+    padding: 0 20px 20px;
+  }
 `;
 const StyledWrap = styled.div`
   display: flex;
@@ -56,16 +54,19 @@ const StyledWrap = styled.div`
   gap: 40px;
   max-width: 100%;
   padding: 56px 0;
-  margin-left: 146px;
+  margin: 0 40px 0 146px;
   ${Media.LAPTOP_M} {
     margin-left: 78px;
+    padding: 32px 0;
+  }
+  ${Media.TABLET} {
+    margin-left: 0;
   }
 `;
 
 const StyledSearchInput = styled.input`
   width: 100%;
   padding: 16px 20px;
-  margin: 0 15px;
   background: ${Color.GRAPHITE};
   border-radius: 10px;
   border: 3px solid ${Color.BLACK};
@@ -93,7 +94,7 @@ const StyledMain = styled.div`
   margin-left: 307px;
   margin-top: 64px;
   ${Media.LAPTOP_M} {
-    margin-top: 152px;
+    margin-top: 90px;
     margin-left: 0;
     gap: 56px;
   }

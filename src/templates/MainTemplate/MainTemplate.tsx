@@ -1,7 +1,7 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { BurgerMenu, CustomLink, Nav } from "components";
-import { BurgerIcon, LogoIcon, SignInIcon, SignUpIcon } from "assets";
+import { LogoIcon, SignInIcon, SignUpIcon } from "assets";
 import { ROUTE } from "router";
 import { ArrowIcon } from "assets";
 import {
@@ -32,9 +32,11 @@ export const MainTemplate = () => {
         </StyledAside>
       )}
       <FixedWrapContainer>
-        <LogoIcon fill={Color.WHITE} />
+        <Link to={ROUTE.HOME}>
+          <LogoIcon fill={Color.WHITE} />
+        </Link>
         <StyledWrap>
-          <StyledSearchInput placeholder="Search" />
+          {width && width >= 768 && <StyledSearchInput placeholder="Search" />}
           {width &&
             width > 1280 &&
             (isAuth ? (
@@ -57,8 +59,8 @@ export const MainTemplate = () => {
             ))}
         </StyledWrap>
         {width && width <= 1280 && <BurgerMenu />}
+        {width && width < 768 && <StyledSearchInput placeholder="Search" />}
       </FixedWrapContainer>
-
       <StyledMain>
         <Outlet />
       </StyledMain>
