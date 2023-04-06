@@ -2,7 +2,7 @@ import { AddFavoriteButton, MovieInfo, Poster, Modal, Spinner } from "components
 import { ErrorMessage } from "components";
 import React, { useEffect } from "react";
 import { fetchFullMovie } from "store/features";
-import { UseAppDispatch, useAppSelector } from "store/hooks";
+import { UseAppDispatch, useAppSelector, useWindowSize } from "store/hooks";
 import { IMDBIcon } from "assets";
 import {
   Badge,
@@ -21,6 +21,7 @@ import { FavoritesIcon } from "assets";
 import { useParams } from "react-router-dom";
 
 export const MoviePage = () => {
+  const { width } = useWindowSize();
   const { isLoading, movie, error } = useAppSelector((state) => state.movie);
   const { imdbID } = useParams();
   const dispatch = UseAppDispatch();
@@ -49,13 +50,21 @@ export const MoviePage = () => {
       {error && <ErrorMessage error={error} />}
       {!isLoading && (
         <FullMovieCard>
-          <MoviePresentation>
-            <Poster src={poster} alt={title} />
-            <AddFavoriteButton component={FavoritesIcon} />
-          </MoviePresentation>
+          {width && width >= 768 && (
+            <MoviePresentation>
+              <Poster src={poster} alt={title} />
+              <AddFavoriteButton component={FavoritesIcon} />
+            </MoviePresentation>
+          )}
           <MovieDescription>
             <Genres>{genre}</Genres>
             <MovieTitle>{title}</MovieTitle>
+            {width && width < 768 && (
+              <MoviePresentation>
+                <Poster src={poster} alt={title} />
+                <AddFavoriteButton component={FavoritesIcon} />
+              </MoviePresentation>
+            )}
             <Badge>
               <CommonRating>{imdbrating}</CommonRating>
               <IMDBRating>
