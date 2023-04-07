@@ -5,23 +5,32 @@ import { fetchAllMovies } from "store/features";
 import { StyledOutlet } from "ui";
 import { ErrorMessage } from "components";
 import { fetchNextMoviesPage } from "store/features";
+import { fetchSearchMovies, fetchSearchNextPage } from "store/features/moviesSlice";
 
 export const HomePage = () => {
-  const { isLoading, movies, error, theme, page } = useAppSelector((state) => state.movies);
+  const { isLoading, movies, error, theme, page, searchTheme } = useAppSelector(
+    (state) => state.movies,
+  );
   const dispatch = UseAppDispatch();
   const handleChange = () => {
-    dispatch(fetchNextMoviesPage({ theme, page }));
+    if (searchTheme === "") {
+      dispatch(fetchNextMoviesPage({ theme, page }));
+    } else {
+      dispatch(fetchSearchNextPage({ searchTheme, page }));
+    }
   };
   useEffect(() => {
     if (!movies.length) {
       dispatch(fetchAllMovies({ theme }));
     }
-  }, [dispatch]);
+    if (searchTheme !== "") {
+      dispatch(fetchSearchMovies({ searchTheme }));
+    }
+  }, [dispatch, searchTheme]);
   return (
     <StyledOutlet>
       {isLoading && <Spinner />}
       {error && <ErrorMessage error={error} />}
-      {!movies.length && <ErrorMessage error={"No films"} />}
       <MoviesList movies={movies} />
       <ShowMoreButton type="button" onClick={handleChange} />
     </StyledOutlet>

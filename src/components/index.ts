@@ -1,5 +1,6 @@
 import { CustomLink } from "./CustomLink/CustomLink";
 import { Nav } from "./Nav/Nav";
+import { SearchInput } from "./SearchInput/SearchInput";
 import { RequareAuth } from "./RequareAuth/RequareAuth";
 import { MoviesList } from "./MoviesList/MoviesList";
 import { MovieCard } from "./MovieCard/MovieCard";
@@ -25,9 +26,11 @@ import { ControlledSwitch } from "./ControlledSwitch/ControlledSwitch";
 import { BurgerMenu } from "./BurgerMenu/BurgerMenu";
 import { LogoLink } from "./LogoLink/LogoLink";
 import { LittleSpinner } from "./LittleSpinner/LittleSpinner";
+
 export {
   CustomLink,
   Nav,
+  SearchInput,
   RequareAuth,
   MoviesList,
   MovieCard,

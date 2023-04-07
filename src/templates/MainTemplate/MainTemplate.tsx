@@ -1,6 +1,6 @@
-import React, { SetStateAction, useEffect, useState } from "react";
+import React, { SetStateAction, memo, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { BurgerMenu, CustomLink, Nav } from "components";
+import { BurgerMenu, CustomLink, Nav, SearchInput } from "components";
 import { LogoIcon, SignInIcon, SignUpIcon } from "assets";
 import { ROUTE } from "router";
 import { ArrowIcon } from "assets";
@@ -21,14 +21,23 @@ import { UseAppDispatch, useAppSelector, useWindowSize } from "store/hooks";
 import { getUserInitials } from "utils";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase";
-import { setUserAuth } from "store/features";
-export const MainTemplate = () => {
+import { setSearchTheme, setUserAuth } from "store/features";
+import { useDebounce, useInput } from "hooks";
+import { fetchSearchMovies } from "store/features/moviesSlice";
+export const MainTemplate = memo(() => {
   const { theme } = useAppSelector((state) => state.theme);
   useEffect(() => {
     document.documentElement.setAttribute("theme", theme);
   }, [theme]);
   const { isAuth, name } = useAppSelector((state) => state.user);
   const { width } = useWindowSize();
+  const dispatch = UseAppDispatch();
+  const searchValue = useInput();
+  const debouncedValue = useDebounce(searchValue.value, 1000);
+  useEffect(() => {
+    dispatch(setSearchTheme(debouncedValue));
+  }, [dispatch, debouncedValue]);
+
   // const [authUser, setAuthUser] = useState(null);
   // useEffect(() => {
   //   onAuthStateChanged(auth, (user: any) => {
@@ -74,7 +83,7 @@ export const MainTemplate = () => {
           <LogoIcon fill={Color.WHITE} />
         </Link>
         <StyledWrap>
-          {width && width >= 768 && <StyledSearchInput placeholder="Search" />}
+          {width && width >= 768 && <SearchInput placeholder="Search" {...searchValue} />}
           {width &&
             width > 1280 &&
             (isAuth ? (
@@ -104,4 +113,4 @@ export const MainTemplate = () => {
       </Main>
     </StyledMainTemplate>
   );
-};
+});

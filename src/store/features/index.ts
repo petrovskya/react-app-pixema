@@ -1,4 +1,4 @@
-import { fetchAllMovies } from "./moviesSlice";
+import { fetchAllMovies, setSearchTheme, setNextPage } from "./moviesSlice";
 import { fetchTrendsMovies } from "./trendsSlice";
 import { fetchFullMovie } from "./movieSlice";
 import { fetchNextMoviesPage } from "./moviesSlice";
@@ -7,6 +7,8 @@ import { setUserAuth, unsetUserAuth, fetchSignUpUser, fetchSignInUser } from "./
 import { setTheme } from "./themeSlice";
 export {
   setTheme,
+  setSearchTheme,
+  setNextPage,
   fetchAllMovies,
   fetchTrendsMovies,
   fetchFullMovie,
