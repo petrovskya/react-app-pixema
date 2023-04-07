@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/react-app-pixema/static/js/main.e0ac782a.js",
+    "main.js": "/react-app-pixema/static/js/main.f84065fe.js",
     "static/media/background-image.png": "/react-app-pixema/static/media/background-image.d83d809a6f02b33a8ba8.png",
     "static/media/pixema-logo-icon.svg": "/react-app-pixema/static/media/pixema-logo-icon.912b7644753efe30be3c1dccbfa17001.svg",
     "static/media/subtract-icon.svg": "/react-app-pixema/static/media/subtract-icon.89dc161a1c33578fc78f982edbf83bc1.svg",
@@ -20,9 +20,9 @@
     "static/media/filter-icon.svg": "/react-app-pixema/static/media/filter-icon.d66ce7ec959767e74bc68ae0f9b7c1f7.svg",
     "static/media/burger-icon.svg": "/react-app-pixema/static/media/burger-icon.aa8a474ca612273d706c94666aaa8778.svg",
     "static/media/arrow-down-icon.svg": "/react-app-pixema/static/media/arrow-down-icon.6904455cac3b74428bbf45a0e219f1d2.svg",
-    "main.e0ac782a.js.map": "/react-app-pixema/static/js/main.e0ac782a.js.map"
+    "main.f84065fe.js.map": "/react-app-pixema/static/js/main.f84065fe.js.map"
   },
   "entrypoints": [
-    "static/js/main.e0ac782a.js"
+    "static/js/main.f84065fe.js"
   ]
 }
