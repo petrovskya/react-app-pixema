@@ -1,6 +1,6 @@
-import React, { SetStateAction, memo, useEffect, useState } from "react";
+import React, { memo, useEffect, useLayoutEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { BurgerMenu, CustomLink, Nav, SearchInput } from "components";
+import { BurgerMenu, CustomLink, LittleSpinner, Nav, SearchInput, Spinner } from "components";
 import { LogoIcon, SignInIcon, SignUpIcon } from "assets";
 import { ROUTE } from "router";
 import { ArrowIcon } from "assets";
@@ -21,9 +21,11 @@ import { UseAppDispatch, useAppSelector, useWindowSize } from "store/hooks";
 import { getUserInitials } from "utils";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase";
-import { setSearchTheme, setUserAuth } from "store/features";
+import { setSearchTheme, setUserAuth, unsetUserAuth } from "store/features";
 import { useDebounce, useInput } from "hooks";
 import { fetchSearchMovies } from "store/features/moviesSlice";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 export const MainTemplate = memo(() => {
   const { theme } = useAppSelector((state) => state.theme);
   useEffect(() => {
@@ -37,18 +39,21 @@ export const MainTemplate = memo(() => {
   useEffect(() => {
     dispatch(setSearchTheme(debouncedValue));
   }, [dispatch, debouncedValue]);
+  console.log(auth);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user: any) => {
+      if (user) {
+        dispatch(setUserAuth(user));
+      } else {
+        dispatch(unsetUserAuth());
+      }
+    });
+  }, [dispatch]);
 
-  // const [authUser, setAuthUser] = useState(null);
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, (user: any) => {
-  //     if (user) {
-  //       setAuthUser(user);
-  //     } else {
-  //       setAuthUser(null);
-  //     }
-  //   });
-  // }, []);
-  // console.log(authUser);
+  const handlerClick = () => {
+    auth.signOut();
+    dispatch(unsetUserAuth());
+  };
 
   // const userSignOut = () => {
   //   signOut(auth);
@@ -67,6 +72,10 @@ export const MainTemplate = memo(() => {
   //     // }
   //   );
   // }, []);
+
+  const [user, loading] = useAuthState(auth);
+  console.log(user);
+
   return (
     <StyledMainTemplate>
       {/* <Modal /> */}
@@ -88,9 +97,9 @@ export const MainTemplate = memo(() => {
             width > 1280 &&
             (isAuth ? (
               <UserInfo>
-                <UserInitials>{getUserInitials(name)}</UserInitials>
+                <UserInitials>{name && getUserInitials(name)}</UserInitials>
                 <UserName>{name}</UserName>
-                <button>
+                <button onClick={handlerClick}>
                   <ArrowIcon />
                 </button>
               </UserInfo>
@@ -108,9 +117,7 @@ export const MainTemplate = memo(() => {
         {width && width <= 1280 && <BurgerMenu />}
         {width && width < 768 && <StyledSearchInput placeholder="Search" />}
       </FixedWrapContainer>
-      <Main>
-        <Outlet />
-      </Main>
+      <Main>{loading ? <Spinner /> : <Outlet />}</Main>
     </StyledMainTemplate>
   );
 });

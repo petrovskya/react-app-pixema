@@ -1,4 +1,4 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { auth } from "../../firebase";
 import {
   User,
@@ -11,7 +11,7 @@ import { FirebaseError } from "firebase/app";
 import { getFirebaseErrorMessage } from "utils";
 
 interface UserState {
-  name: string;
+  name: string | null;
   email: string | null;
   password: string | null;
   confirmPassword: string | null;
@@ -22,21 +22,22 @@ interface UserState {
 }
 
 export const fetchSignUpUser = createAsyncThunk<
-  Omit<UserState, "isLoading" | "errorMessage" | "isAuth">,
+  Omit<UserState, "isLoading" | "errorMessage" | "isAuth" | "token">,
   SignUpFormValues,
   { rejectValue: string }
 >(
   "user/fetchSignUpUser",
-  async ({ name, email, password, confirmPassword }, { rejectWithValue }) => {
+  async ({ name, email, password, confirmPassword }, { dispatch, rejectWithValue }) => {
     try {
       const { user } = await createUserWithEmailAndPassword(auth, email, password);
-      // updateProfile(auth.currentUser as User, { displayName: name });
+      await updateProfile(auth.currentUser as User, { displayName: name });
+      console.log(user.displayName);
       return {
         email: user.email,
-        name: name,
+        name: user.displayName,
         password: password,
         confirmPassword: confirmPassword,
-        uid: user.uid,
+        uid: null,
       };
     } catch (error) {
       const firebaseError = error as FirebaseError;
@@ -46,16 +47,18 @@ export const fetchSignUpUser = createAsyncThunk<
 );
 
 export const fetchSignInUser = createAsyncThunk<
-  Pick<UserState, "email" | "password">,
+  Pick<UserState, "email" | "password" | "name">,
   SignInFormValues,
   { rejectValue: string }
 >("user/fetchSignInUser", async ({ email, password }, { rejectWithValue }) => {
   try {
     const { user } = await signInWithEmailAndPassword(auth, email, password);
+    console.log(user);
     return {
       email: user.email,
       password: password,
       uid: user.uid,
+      name: user.displayName,
     };
   } catch (error) {
     const firebaseError = error as FirebaseError;
@@ -80,7 +83,7 @@ const userSlice = createSlice({
   reducers: {
     setUserAuth: (state, { payload }) => {
       state.isAuth = true;
-      state.name = payload.name;
+      state.name = payload.displayName;
       state.email = payload.email;
       state.uid = payload.uid;
     },
@@ -114,6 +117,7 @@ const userSlice = createSlice({
     builder.addCase(fetchSignInUser.fulfilled, (state, { payload }) => {
       state.isLoading = false;
       state.isAuth = true;
+      state.name = payload.name;
     });
     builder.addCase(fetchSignInUser.rejected, (state, { payload }) => {
       if (payload) {
