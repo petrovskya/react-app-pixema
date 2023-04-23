@@ -1,4 +1,4 @@
-import { ErrorMessage, MoviesList, Spinner } from "components";
+import { ErrorMessage, LittleSpinner, MoviesList, Spinner } from "components";
 import React, { useEffect } from "react";
 import { UseAppDispatch, useAppSelector } from "store/hooks/hooks";
 import { fetchNextTrendsPage, fetchTrendsMovies } from "store/features";
@@ -22,13 +22,12 @@ export const TrendsPage = () => {
   return (
     <StyledOutlet>
       {isLoading && <Spinner />}
-      {isLoading && <Spinner />}
       {error && <ErrorMessage error={error} />}
       {trends.length > 0 && (
         <StyledOutlet>
           <MoviesList movies={trends} />
           <ShowMoreButton type="button" onClick={handleChange}>
-            {isLoadingMore && <Spinner />}
+            {isLoadingMore && <LittleSpinner />}
           </ShowMoreButton>
         </StyledOutlet>
       )}

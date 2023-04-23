@@ -36,10 +36,11 @@ export const MainTemplate = memo(() => {
   const dispatch = UseAppDispatch();
   const searchValue = useInput();
   const debouncedValue = useDebounce(searchValue.value, 1000);
+
   useEffect(() => {
     dispatch(setSearchTheme(debouncedValue));
   }, [dispatch, debouncedValue]);
-  console.log(auth);
+
   useEffect(() => {
     onAuthStateChanged(auth, (user: any) => {
       if (user) {

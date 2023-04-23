@@ -12,6 +12,14 @@ export const store = configureStore({
     user: userReducer,
     theme: themeReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ["user/setUserAuth", "user/unsetUserAuth"],
+        ignoredActionPaths: ["meta.arg", "payload.timestamp"],
+        ignoredPaths: ["items.dates"],
+      },
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Media } from "ui";
+import { Color, Media } from "ui";
 
 export const StyledPoster = styled.div`
   display: flex;
@@ -13,6 +13,9 @@ export const StyledPoster = styled.div`
   ${Media.LAPTOP_M} {
     width: 208px;
     height: 279px;
+  }
+  &:hover {
+    border: 3px solid ${Color.PRIMARY};
   }
 `;
 export const StyledPosterImage = styled.img`

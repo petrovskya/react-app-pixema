@@ -12,8 +12,10 @@ export const MovieCard = memo(
   ({ movie: { poster, title, type, year, imdbID } }: MovieCardProps) => {
     return (
       <StyledMovieCard>
-        <Poster src={poster} alt={title} />
-        <MovieLink to={generatePath(ROUTE.MOVIE, { imdbID })}>{title}</MovieLink>
+        <MovieLink to={generatePath(ROUTE.MOVIE, { imdbID })}>
+          <Poster src={poster} alt={title} />
+          {title}
+        </MovieLink>
         <StyledMovieYear>{year}</StyledMovieYear>
       </StyledMovieCard>
     );

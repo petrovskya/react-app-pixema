@@ -1,5 +1,5 @@
 import { LittleSpinner, MoviesList, ShowMoreButton, Spinner } from "components";
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { fetchAllMovies } from "store/features";
 import { StyledOutlet } from "ui";
@@ -19,14 +19,19 @@ export const HomePage = () => {
       dispatch(fetchSearchNextPage({ searchTheme, page }));
     }
   };
-  useEffect(() => {
+
+  useLayoutEffect(() => {
     if (!movies.length) {
       dispatch(fetchAllMovies({ theme }));
     }
     if (searchTheme !== "") {
       dispatch(fetchSearchMovies({ searchTheme }));
     }
+    if (searchTheme === "") {
+      dispatch(fetchAllMovies({ theme }));
+    }
   }, [dispatch, searchTheme]);
+
   return (
     <StyledOutlet>
       {error && <ErrorMessage error={error} />}
