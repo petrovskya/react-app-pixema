@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Color } from "ui";
 
 export const StyledShowMoreButton = styled.button`
+  display: grid;
+  gap: 5px;
   width: 161px;
   padding: 8px 24px;
   margin: 0 auto;

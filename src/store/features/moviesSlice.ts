@@ -7,6 +7,7 @@ import { getRandomMoviesTheme } from "utils";
 interface MoviesState {
   movies: Movie[];
   isLoading: boolean;
+  isLoadingMore: boolean;
   error: string | null;
   page: number;
   theme: ReturnType<typeof getRandomMoviesTheme>;
@@ -89,6 +90,7 @@ export const fetchNextMoviesPage = createAsyncThunk<
 
 const initialState: MoviesState = {
   isLoading: false,
+  isLoadingMore: false,
   error: null,
   movies: [],
   page: 2,
@@ -142,32 +144,32 @@ const moviesSlice = createSlice({
       }
     });
     builder.addCase(fetchSearchNextPage.pending, (state) => {
-      state.isLoading = true;
+      state.isLoadingMore = true;
       state.error = null;
     });
     builder.addCase(fetchSearchNextPage.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
+      state.isLoadingMore = false;
       state.movies = [...state.movies, ...payload];
       state.error = null;
     });
     builder.addCase(fetchSearchNextPage.rejected, (state, { payload }) => {
       if (payload) {
-        state.isLoading = false;
+        state.isLoadingMore = false;
         state.error = payload;
       }
     });
     builder.addCase(fetchNextMoviesPage.pending, (state) => {
-      state.isLoading = true;
+      state.isLoadingMore = true;
       state.error = null;
     });
     builder.addCase(fetchNextMoviesPage.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
+      state.isLoadingMore = false;
       state.movies = [...state.movies, ...payload];
       state.error = null;
     });
     builder.addCase(fetchNextMoviesPage.rejected, (state, { payload }) => {
       if (payload) {
-        state.isLoading = false;
+        state.isLoadingMore = false;
         state.error = payload;
       }
     });

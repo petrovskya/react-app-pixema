@@ -4,6 +4,7 @@ import { Media } from "ui";
 export const StyledMoviesList = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fill, 246px);
+  align-items: start;
   width: 100%;
   gap: 40px;
   ${Media.LAPTOP_M} {

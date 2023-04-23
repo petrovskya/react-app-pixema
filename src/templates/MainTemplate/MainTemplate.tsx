@@ -74,7 +74,6 @@ export const MainTemplate = memo(() => {
   // }, []);
 
   const [user, loading] = useAuthState(auth);
-  console.log(user);
 
   return (
     <StyledMainTemplate>

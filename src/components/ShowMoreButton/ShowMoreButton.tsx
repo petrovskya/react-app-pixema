@@ -1,14 +1,15 @@
-import React, { MouseEventHandler } from "react";
+import React, { MouseEventHandler, ReactNode } from "react";
 import { StyledShowMoreButton } from "./styles";
 
 interface ShowMoreButtonProps {
   type: "button" | "submit" | "reset" | undefined;
   onClick: MouseEventHandler<HTMLButtonElement> | undefined;
+  children: ReactNode;
 }
-export const ShowMoreButton = ({ type, onClick }: ShowMoreButtonProps) => {
+export const ShowMoreButton = ({ children, type, onClick }: ShowMoreButtonProps) => {
   return (
     <StyledShowMoreButton type={type} onClick={onClick}>
-      Show more
+      Show more {children}
     </StyledShowMoreButton>
   );
 };

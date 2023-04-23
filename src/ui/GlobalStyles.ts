@@ -59,7 +59,7 @@ export const FormTitle = styled.div`
   color: ${Color.WHITE};
 `;
 export const FormText = styled.div`
-  flex: ;
+  /* flex: ; */
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;

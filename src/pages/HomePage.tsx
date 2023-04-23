@@ -1,4 +1,4 @@
-import { MoviesList, ShowMoreButton, Spinner } from "components";
+import { LittleSpinner, MoviesList, ShowMoreButton, Spinner } from "components";
 import React, { useEffect } from "react";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { fetchAllMovies } from "store/features";
@@ -8,7 +8,7 @@ import { fetchNextMoviesPage } from "store/features";
 import { fetchSearchMovies, fetchSearchNextPage } from "store/features/moviesSlice";
 
 export const HomePage = () => {
-  const { isLoading, movies, error, theme, page, searchTheme } = useAppSelector(
+  const { isLoading, isLoadingMore, movies, error, theme, page, searchTheme } = useAppSelector(
     (state) => state.movies,
   );
   const dispatch = UseAppDispatch();
@@ -29,10 +29,11 @@ export const HomePage = () => {
   }, [dispatch, searchTheme]);
   return (
     <StyledOutlet>
-      {isLoading && <Spinner />}
       {error && <ErrorMessage error={error} />}
       <MoviesList movies={movies} />
-      <ShowMoreButton type="button" onClick={handleChange} />
+      <ShowMoreButton type="button" onClick={handleChange}>
+        {isLoadingMore && <LittleSpinner />}
+      </ShowMoreButton>
     </StyledOutlet>
   );
 };

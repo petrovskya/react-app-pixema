@@ -6,7 +6,9 @@ import { ShowMoreButton } from "components";
 import { StyledOutlet } from "ui";
 
 export const TrendsPage = () => {
-  const { isLoading, trends, error, theme, page } = useAppSelector((state) => state.trends);
+  const { isLoading, isLoadingMore, trends, error, theme, page } = useAppSelector(
+    (state) => state.trends,
+  );
   const dispatch = UseAppDispatch();
   const handleChange = () => {
     dispatch(fetchNextTrendsPage({ theme, page }));
@@ -25,7 +27,9 @@ export const TrendsPage = () => {
       {trends.length > 0 && (
         <StyledOutlet>
           <MoviesList movies={trends} />
-          <ShowMoreButton type="button" onClick={handleChange} />
+          <ShowMoreButton type="button" onClick={handleChange}>
+            {isLoadingMore && <Spinner />}
+          </ShowMoreButton>
         </StyledOutlet>
       )}
     </StyledOutlet>

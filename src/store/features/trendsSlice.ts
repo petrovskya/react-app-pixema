@@ -7,6 +7,7 @@ import { getRandomMoviesTheme } from "utils";
 interface TrendsState {
   trends: Movie[];
   isLoading: boolean;
+  isLoadingMore: boolean;
   error: string | null;
   page: number;
   theme: ReturnType<typeof getRandomMoviesTheme>;
@@ -46,6 +47,7 @@ export const fetchNextTrendsPage = createAsyncThunk<
 
 const initialState: TrendsState = {
   isLoading: false,
+  isLoadingMore: false,
   error: null,
   trends: [],
   page: 2,
@@ -77,17 +79,17 @@ const trendsSlice = createSlice({
       }
     });
     builder.addCase(fetchNextTrendsPage.pending, (state) => {
-      state.isLoading = true;
+      state.isLoadingMore = true;
       state.error = null;
     });
     builder.addCase(fetchNextTrendsPage.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
+      state.isLoadingMore = false;
       state.trends = [...state.trends, ...payload];
       state.error = null;
     });
     builder.addCase(fetchNextTrendsPage.rejected, (state, { payload }) => {
       if (payload) {
-        state.isLoading = false;
+        state.isLoadingMore = false;
         state.error = payload;
       }
     });
