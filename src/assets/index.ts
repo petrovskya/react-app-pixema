@@ -16,6 +16,8 @@ import { ReactComponent as ArrowRightIcon } from "./icons/arrow-right-icon.svg";
 import { ReactComponent as FilterIcon } from "./icons/filter-icon.svg";
 import { ReactComponent as BurgerIcon } from "./icons/burger-icon.svg";
 import { ReactComponent as CancelIcon } from "./icons/cancel-icon.svg";
+import ErrorImage from "./images/error-image.png";
+
 export {
   BookmarkIcon,
   FireIcon,
@@ -36,3 +38,4 @@ export {
   BurgerIcon,
   CancelIcon,
 };
+export default ErrorImage;

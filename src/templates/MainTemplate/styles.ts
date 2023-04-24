@@ -54,7 +54,7 @@ const StyledWrap = styled.div`
   gap: 40px;
   max-width: 100%;
   padding: 56px 0;
-  margin: 0 40px 0 146px;
+  margin-left: 146px;
   ${Media.LAPTOP_M} {
     margin-left: 78px;
     padding: 32px 0;
@@ -83,8 +83,8 @@ const StyledSearchInput = styled.input`
 const UserInfo = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 40px;
-  margin: 0 15px;
+  gap: 20px;
+  /* margin: 0 15px; */
   color: ${Color.WHITE};
 `;
 
@@ -101,6 +101,8 @@ const Main = styled.div`
   }
 `;
 const UserInitials = styled.div`
+  display: flex;
+  justify-content: center;
   width: 56px;
   height: 56px;
   padding: 16px;
@@ -108,6 +110,10 @@ const UserInitials = styled.div`
   background: ${Color.PRIMARY};
   font-size: 20px;
   font-weight: 700;
+  color: ${Color.WHITE};
+  &:hover {
+    background: ${Color.PRIMARY_LIGHT};
+  }
 `;
 const UserName = styled.p`
   display: flex;

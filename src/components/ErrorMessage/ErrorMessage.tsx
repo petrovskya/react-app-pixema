@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledErrorMessage } from "./styles";
-import ErrorImage from "./../../assets/images/error-image.png";
+import ErrorImage from "assets";
 
 interface ErrorMessageProps {
   error: string;

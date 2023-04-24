@@ -1,9 +1,8 @@
-import React, { memo, useEffect, useLayoutEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { BurgerMenu, CustomLink, LittleSpinner, Nav, SearchInput, Spinner } from "components";
+import { BurgerMenu, CustomLink, Nav, SearchInput, SignOutButton, Spinner } from "components";
 import { LogoIcon, SignInIcon, SignUpIcon } from "assets";
 import { ROUTE } from "router";
-import { ArrowIcon } from "assets";
 import {
   StyledWrap,
   Main,
@@ -19,11 +18,10 @@ import {
 import { Color, CopyrightText } from "ui";
 import { UseAppDispatch, useAppSelector, useWindowSize } from "store/hooks";
 import { getUserInitials } from "utils";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import { setSearchTheme, setUserAuth, unsetUserAuth } from "store/features";
 import { useDebounce, useInput } from "hooks";
-import { fetchSearchMovies } from "store/features/moviesSlice";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 export const MainTemplate = memo(() => {
@@ -51,7 +49,7 @@ export const MainTemplate = memo(() => {
     });
   }, [dispatch]);
 
-  const handlerClick = () => {
+  const handleClick = () => {
     auth.signOut();
     dispatch(unsetUserAuth());
   };
@@ -97,11 +95,11 @@ export const MainTemplate = memo(() => {
             width > 1280 &&
             (isAuth ? (
               <UserInfo>
-                <UserInitials>{name && getUserInitials(name)}</UserInitials>
+                <Link to={ROUTE.SETTINGS}>
+                  <UserInitials>{name && getUserInitials(name)}</UserInitials>
+                </Link>
                 <UserName>{name}</UserName>
-                <button onClick={handlerClick}>
-                  <ArrowIcon />
-                </button>
+                <SignOutButton onClick={handleClick} />
               </UserInfo>
             ) : (
               <UserInfo>

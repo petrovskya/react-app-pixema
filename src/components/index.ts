@@ -26,7 +26,7 @@ import { ControlledSwitch } from "./ControlledSwitch/ControlledSwitch";
 import { BurgerMenu } from "./BurgerMenu/BurgerMenu";
 import { LogoLink } from "./LogoLink/LogoLink";
 import { LittleSpinner } from "./LittleSpinner/LittleSpinner";
-
+import { SignOutButton } from "./SignOutButton/SignOutButton";
 export {
   CustomLink,
   Nav,
@@ -56,4 +56,5 @@ export {
   BurgerMenu,
   LogoLink,
   LittleSpinner,
+  SignOutButton,
 };
