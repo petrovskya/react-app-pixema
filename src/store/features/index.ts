@@ -1,4 +1,12 @@
-import { fetchAllMovies, setSearchTheme, setNextPage } from "./moviesSlice";
+import {
+  fetchAllMovies,
+  setSearchTitle,
+  setNextPage,
+  setTitleFilter,
+  setYearFilter,
+  unsetTitleFilter,
+  unsetYearFilter,
+} from "./moviesSlice";
 import { fetchTrendsMovies } from "./trendsSlice";
 import { fetchFullMovie } from "./movieSlice";
 import { fetchNextMoviesPage } from "./moviesSlice";
@@ -7,8 +15,10 @@ import { setUserAuth, unsetUserAuth, fetchSignUpUser, fetchSignInUser } from "./
 import { setTheme } from "./themeSlice";
 export {
   setTheme,
-  setSearchTheme,
+  setSearchTitle,
   setNextPage,
+  setTitleFilter,
+  setYearFilter,
   fetchAllMovies,
   fetchTrendsMovies,
   fetchFullMovie,
@@ -18,4 +28,6 @@ export {
   fetchSignInUser,
   setUserAuth,
   unsetUserAuth,
+  unsetTitleFilter,
+  unsetYearFilter,
 };

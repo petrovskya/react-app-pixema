@@ -1,27 +1,42 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { BurgerMenu, CustomLink, Nav, SearchInput, SignOutButton, Spinner } from "components";
+import {
+  BurgerMenu,
+  CustomLink,
+  FilterBadge,
+  FilterModal,
+  Nav,
+  SearchInputGroup,
+  SignOutButton,
+  Spinner,
+} from "components";
 import { LogoIcon, SignInIcon, SignUpIcon } from "assets";
 import { ROUTE } from "router";
 import {
   StyledWrap,
   Main,
   UserInfo,
-  StyledSearchInput,
   FixedWrapContainer,
   StyledMainTemplate,
   UserInitials,
   UserName,
   Aside,
   Menu,
+  BadgeGroup,
 } from "./styles";
 import { Color, CopyrightText } from "ui";
 import { UseAppDispatch, useAppSelector, useWindowSize } from "store/hooks";
 import { getUserInitials } from "utils";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
-import { setSearchTheme, setUserAuth, unsetUserAuth } from "store/features";
-import { useDebounce, useInput } from "hooks";
+import {
+  setSearchTitle,
+  setUserAuth,
+  unsetTitleFilter,
+  unsetUserAuth,
+  unsetYearFilter,
+} from "store/features";
+import { useDebounce, useInput, useToggle } from "hooks";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 export const MainTemplate = memo(() => {
@@ -30,14 +45,22 @@ export const MainTemplate = memo(() => {
     document.documentElement.setAttribute("theme", theme);
   }, [theme]);
   const { isAuth, name } = useAppSelector((state) => state.user);
+  const [isOpen, toggleModal] = useToggle();
   const { width } = useWindowSize();
   const dispatch = UseAppDispatch();
   const searchValue = useInput();
   const debouncedValue = useDebounce(searchValue.value, 1000);
+  const { searchTitle, searchYear } = useAppSelector((state) => state.movies);
+
+  const [isFiltered, setFiltered] = useState<boolean>(false);
 
   useEffect(() => {
-    dispatch(setSearchTheme(debouncedValue));
-  }, [dispatch, debouncedValue]);
+    searchTitle || searchYear ? setFiltered(true) : setFiltered(false);
+  }, [searchTitle, searchYear]);
+
+  useEffect(() => {
+    !searchTitle && dispatch(setSearchTitle(debouncedValue));
+  }, [dispatch, debouncedValue, searchTitle]);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user: any) => {
@@ -54,29 +77,20 @@ export const MainTemplate = memo(() => {
     dispatch(unsetUserAuth());
   };
 
-  // const userSignOut = () => {
-  //   signOut(auth);
-  //   setAuthUser(null);
-  // };
-  // const dispatch = UseAppDispatch();
-  // useEffect(() => {
-  //   onAuthStateChanged(
-  //     auth,
-  //     (user) => {
-  //       console.log(user);
-  //       dispatch(setUserAuth(user));
-  //     },
-  //     // else {
-  //     //   //User is signed out
-  //     // }
-  //   );
-  // }, []);
+  const resetTitleFilter = () => {
+    dispatch(unsetTitleFilter());
+    dispatch(unsetYearFilter());
+  };
+
+  const resetYearFilter = () => {
+    dispatch(unsetYearFilter());
+  };
 
   const [user, loading] = useAuthState(auth);
 
   return (
     <StyledMainTemplate>
-      {/* <Modal /> */}
+      <FilterModal isOpen={isOpen} toggleModal={toggleModal} />
       {width && width > 1280 && (
         <Aside>
           <Menu>
@@ -90,7 +104,14 @@ export const MainTemplate = memo(() => {
           <LogoIcon fill={Color.WHITE} />
         </Link>
         <StyledWrap>
-          {width && width >= 768 && <SearchInput placeholder="Search" {...searchValue} />}
+          {width && width >= 768 && (
+            <SearchInputGroup
+              isFiltered={isFiltered}
+              props={searchValue}
+              placeholder="Search"
+              onClick={toggleModal}
+            />
+          )}
           {width &&
             width > 1280 &&
             (isAuth ? (
@@ -113,9 +134,25 @@ export const MainTemplate = memo(() => {
             ))}
         </StyledWrap>
         {width && width <= 1280 && <BurgerMenu />}
-        {width && width < 768 && <StyledSearchInput placeholder="Search" />}
+        {width && width < 768 && (
+          <SearchInputGroup
+            isFiltered={isFiltered}
+            props={searchValue}
+            placeholder="Search"
+            onClick={toggleModal}
+          />
+        )}
       </FixedWrapContainer>
-      <Main>{loading ? <Spinner /> : <Outlet />}</Main>
+      <Main>
+        <BadgeGroup>
+          {searchTitle && <FilterBadge label={searchTitle} onClick={resetTitleFilter} />}
+          {searchYear && searchTitle && (
+            <FilterBadge label={searchYear} onClick={resetYearFilter} />
+          )}
+        </BadgeGroup>
+
+        {loading ? <Spinner /> : <Outlet />}
+      </Main>
     </StyledMainTemplate>
   );
 });

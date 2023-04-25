@@ -41,11 +41,7 @@ const ResetPasswordWrapper = styled.div`
     padding: 20px;
   }
 `;
-const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: right;
-  gap: 40px;
-`;
+
 const FormText = styled.p`
   display: flex;
   flex-direction: column;
@@ -59,7 +55,6 @@ export {
   SettingsFormField,
   ResetPasswordWrapper,
   SettingsFieldWrapper,
-  ButtonWrapper,
   FormTextSecondary,
   FormText,
 };

@@ -1,4 +1,4 @@
-import { AddFavoriteButton, MovieInfo, Poster, Modal, Spinner } from "components";
+import { AddFavoriteButton, MovieInfo, Poster, Spinner } from "components";
 import { ErrorMessage } from "components";
 import React, { useEffect } from "react";
 import { fetchFullMovie } from "store/features";

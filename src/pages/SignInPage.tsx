@@ -1,12 +1,9 @@
 import { SignInForm } from "components";
-import { onAuthStateChanged } from "firebase/auth";
-import React, { useEffect, useLayoutEffect } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { ROUTE } from "router";
-import { setUserAuth, unsetUserAuth } from "store/features";
-import { UseAppDispatch, useAppSelector } from "store/hooks";
+import { useAppSelector } from "store/hooks";
 import { Color, FormText, FormTitle, FormWrapper } from "ui";
-// import { auth } from "../../firebase";
 export const SignInPage = () => {
   const { isAuth } = useAppSelector((state) => state.user);
   const navigate = useNavigate();

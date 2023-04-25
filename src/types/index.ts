@@ -7,4 +7,5 @@ export type {
   SignUpFormValues,
   SignInFormValues,
   SignFormValues,
+  ButtonProps,
 } from "./types";

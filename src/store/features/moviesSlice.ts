@@ -11,7 +11,8 @@ interface MoviesState {
   error: string | null;
   page: number;
   theme: ReturnType<typeof getRandomMoviesTheme>;
-  searchTheme: string;
+  searchTitle: string;
+  searchYear: string;
 }
 
 export const fetchAllMovies = createAsyncThunk<Movie[], { theme: string }, { rejectValue: string }>(
@@ -31,45 +32,52 @@ export const fetchAllMovies = createAsyncThunk<Movie[], { theme: string }, { rej
 
 export const fetchSearchMovies = createAsyncThunk<
   Movie[],
-  { searchTheme: string },
+  { searchTitle: string; searchYear: string },
   { rejectValue: string }
->("movies/fetchSearchMovies", async ({ searchTheme }, { dispatch, rejectWithValue }) => {
-  try {
-    const { data } = await axios.get(
-      `https://www.omdbapi.com/?apikey=af084387&s=${searchTheme}&plot=full`,
-    );
+>(
+  "movies/fetchSearchMovies",
+  async ({ searchTitle, searchYear }, { dispatch, rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(
+        `https://www.omdbapi.com/?apikey=af084387&s=${searchTitle}&y=${searchYear}&plot=full`,
+      );
 
-    if (data.Response === "False") {
-      throw new Error(data.Error);
-    }
-    return transformShortMovies(data);
-  } catch (error) {
-    if (error instanceof Error) {
-      dispatch(setMovies([]));
-      const { message } = error as Error;
+      if (data.Response === "False") {
+        throw new Error(data.Error);
+      }
+      return transformShortMovies(data);
+    } catch (error) {
+      if (error instanceof Error) {
+        dispatch(setMovies([]));
+        const { message } = error as Error;
+        return rejectWithValue(message);
+      }
+      const { message } = error as AxiosError;
       return rejectWithValue(message);
     }
-    const { message } = error as AxiosError;
-    return rejectWithValue(message);
-  }
-});
+  },
+);
 
 export const fetchSearchNextPage = createAsyncThunk<
   Movie[],
-  { searchTheme: string; page: number },
+  { searchTitle: string; searchYear: string; page: number },
   { rejectValue: string }
->("movies/fetchSearchNextPage", async ({ searchTheme, page }, { dispatch, rejectWithValue }) => {
-  try {
-    dispatch(setNextPage(page + 1));
-    const { data } = await axios.get(
-      `https://www.omdbapi.com/?apikey=af084387&s=${searchTheme}&plot=full&page=${page}`,
-    );
-    return transformShortMovies(data);
-  } catch (error) {
-    const { message } = error as AxiosError;
-    return rejectWithValue(message);
-  }
-});
+>(
+  "movies/fetchSearchNextPage",
+  async ({ searchTitle, searchYear, page }, { dispatch, rejectWithValue }) => {
+    try {
+      dispatch(setNextPage(page + 1));
+      const { data } = await axios.get(
+        // eslint-disable-next-line max-len
+        `https://www.omdbapi.com/?apikey=af084387&s=${searchTitle}&y=${searchYear}&plot=full&page=${page}`,
+      );
+      return transformShortMovies(data);
+    } catch (error) {
+      const { message } = error as AxiosError;
+      return rejectWithValue(message);
+    }
+  },
+);
 
 export const fetchNextMoviesPage = createAsyncThunk<
   Movie[],
@@ -88,6 +96,19 @@ export const fetchNextMoviesPage = createAsyncThunk<
   }
 });
 
+const getSearchYear = (): string => {
+  const searchYear = localStorage.getItem("searchYear");
+  if (searchYear) {
+    return JSON.parse(searchYear);
+  } else return "";
+};
+const getSearchTitle = (): string => {
+  const searchTitle = localStorage.getItem("searchTitle");
+  if (searchTitle) {
+    return JSON.parse(searchTitle);
+  } else return "";
+};
+
 const initialState: MoviesState = {
   isLoading: false,
   isLoadingMore: false,
@@ -95,7 +116,8 @@ const initialState: MoviesState = {
   movies: [],
   page: 2,
   theme: getRandomMoviesTheme(),
-  searchTheme: "",
+  searchTitle: getSearchTitle(),
+  searchYear: getSearchYear(),
 };
 
 const moviesSlice = createSlice({
@@ -105,11 +127,27 @@ const moviesSlice = createSlice({
     setNextPage: (state: MoviesState, { payload }) => {
       state.page = payload;
     },
-    setSearchTheme: (state: MoviesState, { payload }) => {
-      state.searchTheme = payload;
+    setSearchTitle: (state: MoviesState, { payload }) => {
+      state.searchTitle = payload;
     },
     setMovies: (state, { payload }) => {
       state.movies = payload;
+    },
+    setTitleFilter: (state: MoviesState, { payload }) => {
+      state.searchTitle = payload;
+      localStorage.setItem("searchTitle", JSON.stringify(payload));
+    },
+    unsetTitleFilter: (state: MoviesState) => {
+      state.searchTitle = initialState.searchTitle;
+      localStorage.removeItem("searchTitle");
+    },
+    setYearFilter: (state: MoviesState, { payload }) => {
+      state.searchYear = payload;
+      localStorage.setItem("searchYear", JSON.stringify(payload));
+    },
+    unsetYearFilter: (state: MoviesState) => {
+      state.searchYear = initialState.searchYear;
+      localStorage.removeItem("searchYear");
     },
   },
   extraReducers(builder) {
@@ -176,6 +214,14 @@ const moviesSlice = createSlice({
   },
 });
 
-export const { setNextPage, setSearchTheme, setMovies } = moviesSlice.actions;
+export const {
+  setNextPage,
+  setSearchTitle,
+  setMovies,
+  setTitleFilter,
+  setYearFilter,
+  unsetTitleFilter,
+  unsetYearFilter,
+} = moviesSlice.actions;
 
 export default moviesSlice.reducer;

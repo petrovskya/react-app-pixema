@@ -1,6 +1,6 @@
 import { CustomLink } from "./CustomLink/CustomLink";
 import { Nav } from "./Nav/Nav";
-import { SearchInput } from "./SearchInput/SearchInput";
+import { SearchInputGroup } from "./SearchInput/SearchInput";
 import { RequareAuth } from "./RequareAuth/RequareAuth";
 import { MoviesList } from "./MoviesList/MoviesList";
 import { MovieCard } from "./MovieCard/MovieCard";
@@ -12,7 +12,7 @@ import { AddFavoriteButton } from "./AddFavoriteButton/AddFavoriteButton";
 import { MovieInfo } from "./MovieInfo/MovieInfo";
 import { Spinner } from "./Spinner/Spinner";
 import { Portal } from "./Portal/Portal";
-import { Modal } from "./Modal/SignUpModal";
+import { FilterModal } from "./Modal/FilterModal";
 import { SignUpForm } from "./SignUpForm/SignUpForm";
 import { SignInForm } from "./SignInForm/SignInForm";
 import { Input } from "./Input/Input";
@@ -21,20 +21,29 @@ import { ResetPasswordForm } from "./ResetPasswordForm/ResetPasswordForm";
 import { ConfirmEmailForm } from "./ConfirmEmailForm/ConfirmEmailForm";
 import { SettingsForm } from "./SettingsForm/SettingsForm";
 import { SettingsInput } from "./SettingsInput/SettingsInput";
-import { SettingsFormButton } from "./SettingsFormButton/SettingsFormButton";
 import { ControlledSwitch } from "./ControlledSwitch/ControlledSwitch";
 import { BurgerMenu } from "./BurgerMenu/BurgerMenu";
 import { LogoLink } from "./LogoLink/LogoLink";
 import { LittleSpinner } from "./LittleSpinner/LittleSpinner";
 import { SignOutButton } from "./SignOutButton/SignOutButton";
+import { FilterInput } from "./FilterInput/FilterInput";
+import { SubmitButton } from "./SubmitButton/SubmitButton";
+import { CancelButton } from "./CancelButton/CancelButton";
+import { ButtonGroup } from "./ButtonGroup/ButtonGroup";
+import { FilterBadge } from "./FilterBadge/FilterBadge";
+import { FilterButton } from "./FilterButton/FilterButton";
+
 export {
   CustomLink,
   Nav,
-  SearchInput,
+  SearchInputGroup,
   RequareAuth,
   MoviesList,
   MovieCard,
+  FilterBadge,
+  FilterButton,
   ShowMoreButton,
+  ButtonGroup,
   Poster,
   MovieLink,
   ErrorMessage,
@@ -42,7 +51,7 @@ export {
   MovieInfo,
   Spinner,
   Portal,
-  Modal,
+  FilterModal,
   SignUpForm,
   SignInForm,
   ResetPasswordForm,
@@ -50,11 +59,13 @@ export {
   SettingsForm,
   Input,
   Button,
-  SettingsFormButton,
+  SubmitButton,
+  CancelButton,
   SettingsInput,
   ControlledSwitch,
   BurgerMenu,
   LogoLink,
   LittleSpinner,
   SignOutButton,
+  FilterInput,
 };

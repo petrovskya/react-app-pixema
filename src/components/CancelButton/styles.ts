@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { Color, Media } from "ui";
 
-export const StyledSettingsFormButton = styled.button`
+export const StyledCancelButton = styled.button`
   width: 25%;
   border-radius: 10px;
-  background: ${Color.PRIMARY};
+  background: ${Color.SECONDARY};
   padding: 16px 0;
   margin-top: 20px;
   font-family: inherit;
@@ -16,7 +16,7 @@ export const StyledSettingsFormButton = styled.button`
   transition-duration: 0.3s;
   cursor: pointer;
   &:hover {
-    background: ${Color.PRIMARY_LIGHT};
+    background: ${Color.LIGHT};
   }
   ${Media.LAPTOP_S} {
     width: 50%;

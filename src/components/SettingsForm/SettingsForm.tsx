@@ -1,13 +1,17 @@
-import { ControlledSwitch, SettingsFormButton, SettingsInput } from "components";
+import {
+  ButtonGroup,
+  CancelButton,
+  ControlledSwitch,
+  SettingsInput,
+  SubmitButton,
+} from "components";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { SignFormValues } from "types";
 import { FormTitle } from "ui";
 import {
-  ButtonWrapper,
   FormText,
   FormTextSecondary,
-  ResetPasswordWrapper,
   SettingsFieldWrapper,
   SettingsFormField,
   StyledSettingsForm,
@@ -120,10 +124,10 @@ export const SettingsForm = () => {
           </FormText>
         </SettingsFieldWrapper>
       </SettingsFormField>
-      <ButtonWrapper>
-        <SettingsFormButton type="reset">Cancel</SettingsFormButton>
-        <SettingsFormButton type="submit">Save</SettingsFormButton>
-      </ButtonWrapper>
+      <ButtonGroup position="right">
+        <CancelButton type="reset">Cancel</CancelButton>
+        <SubmitButton type="submit">Save</SubmitButton>
+      </ButtonGroup>
     </StyledSettingsForm>
   );
 };

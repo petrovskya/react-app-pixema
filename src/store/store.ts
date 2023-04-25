@@ -4,6 +4,7 @@ import trendsReducer from "./features/trendsSlice";
 import movieReducer from "./features/movieSlice";
 import userReducer from "./features/userSlice";
 import themeReducer from "./features/themeSlice";
+import filterReducer from "./features/filterSlice";
 export const store = configureStore({
   reducer: {
     movies: moviesReducer,
@@ -11,6 +12,7 @@ export const store = configureStore({
     movie: movieReducer,
     user: userReducer,
     theme: themeReducer,
+    filter: filterReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

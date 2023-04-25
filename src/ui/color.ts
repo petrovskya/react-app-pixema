@@ -11,4 +11,6 @@ export enum Color {
   GREEN = "var(--green)",
   YELLOW = "var(-yellow)",
   ORANGE = "var(--orange)",
+  BLACK_MODAL = "var(--blackModal)",
+  WHITE_MODAL = "var(--whiteModal)",
 }

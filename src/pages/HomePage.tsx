@@ -1,5 +1,5 @@
-import { LittleSpinner, MoviesList, ShowMoreButton, Spinner } from "components";
-import React, { useEffect, useLayoutEffect } from "react";
+import { LittleSpinner, MoviesList, ShowMoreButton } from "components";
+import React, { useLayoutEffect } from "react";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { fetchAllMovies } from "store/features";
 import { StyledOutlet } from "ui";
@@ -8,29 +8,28 @@ import { fetchNextMoviesPage } from "store/features";
 import { fetchSearchMovies, fetchSearchNextPage } from "store/features/moviesSlice";
 
 export const HomePage = () => {
-  const { isLoading, isLoadingMore, movies, error, theme, page, searchTheme } = useAppSelector(
-    (state) => state.movies,
-  );
+  const { isLoading, isLoadingMore, movies, error, theme, page, searchTitle, searchYear } =
+    useAppSelector((state) => state.movies);
   const dispatch = UseAppDispatch();
   const handleChange = () => {
-    if (searchTheme === "") {
+    if (searchTitle === "") {
       dispatch(fetchNextMoviesPage({ theme, page }));
     } else {
-      dispatch(fetchSearchNextPage({ searchTheme, page }));
+      dispatch(fetchSearchNextPage({ searchTitle, searchYear, page }));
     }
   };
 
   useLayoutEffect(() => {
-    if (!movies.length) {
+    if (!movies.length && !searchTitle && !searchYear) {
       dispatch(fetchAllMovies({ theme }));
     }
-    if (searchTheme !== "") {
-      dispatch(fetchSearchMovies({ searchTheme }));
+    if (searchTitle !== "") {
+      dispatch(fetchSearchMovies({ searchTitle, searchYear }));
     }
-    if (searchTheme === "") {
+    if (searchTitle === "") {
       dispatch(fetchAllMovies({ theme }));
     }
-  }, [dispatch, searchTheme]);
+  }, [dispatch, searchTitle, searchYear]);
 
   return (
     <StyledOutlet>

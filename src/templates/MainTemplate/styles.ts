@@ -89,11 +89,10 @@ const UserInfo = styled.div`
 `;
 
 const Main = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 64px;
+  display: grid;
+  gap: 20px;
   margin-left: 307px;
-  margin-top: 64px;
+  margin-top: 80px;
   ${Media.LAPTOP_M} {
     margin-top: 90px;
     margin-left: 0;
@@ -124,7 +123,10 @@ const UserName = styled.p`
   font-size: 16px;
   font-weight: 500;
 `;
-
+const BadgeGroup = styled.div`
+  display: flex;
+  gap: 20px;
+`;
 export {
   StyledMainTemplate,
   Aside,
@@ -136,5 +138,6 @@ export {
   Main,
   Text,
   UserInitials,
+  BadgeGroup,
   UserName,
 };

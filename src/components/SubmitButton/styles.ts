@@ -1,12 +1,10 @@
 import styled from "styled-components";
-import { Color } from "ui";
+import { Color, Media } from "ui";
 
-interface StyledButtonProps {
-  $background?: string;
-}
-export const StyledButton = styled.button<StyledButtonProps>`
+export const StyledSubmitButton = styled.button`
+  width: 25%;
   border-radius: 10px;
-  background: ${(props) => (props.$background ? props.$background : Color.PRIMARY)};
+  background: ${Color.PRIMARY};
   padding: 16px 0;
   margin-top: 20px;
   font-family: inherit;
@@ -18,6 +16,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
   transition-duration: 0.3s;
   cursor: pointer;
   &:hover {
-    color: ${Color.WHITE};
+    background: ${Color.PRIMARY_LIGHT};
+  }
+  ${Media.LAPTOP_S} {
+    width: 50%;
   }
 `;

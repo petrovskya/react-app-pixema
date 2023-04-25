@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 interface FullMovieAPI {
   Title: string;
   Year: string;
@@ -25,6 +27,7 @@ interface FullMovieAPI {
   Website: string;
   Response: string;
 }
+
 interface FullMovie {
   title: string;
   year: string;
@@ -71,6 +74,7 @@ interface MovieApi {
   Year: string;
   imdbID: string;
 }
+
 interface Movie {
   poster: string;
   title: string;
@@ -84,15 +88,23 @@ interface SignUpFormValues {
   password: string;
   confirmPassword: string;
 }
+
 interface SignInFormValues {
   email: string;
   password: string;
 }
+
 interface SignFormValues {
   name: string;
   email: string;
   password: string;
   confirmPassword: string;
+}
+
+interface ButtonProps {
+  type: "button" | "submit" | "reset" | undefined;
+  children: ReactNode;
+  onClick?: () => void;
 }
 export type {
   FullMovieAPI,
@@ -103,4 +115,5 @@ export type {
   SignUpFormValues,
   SignInFormValues,
   SignFormValues,
+  ButtonProps,
 };
