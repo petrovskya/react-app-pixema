@@ -1,8 +1,9 @@
-import { CancelIcon } from "assets";
-import { Button, CancelButton } from "components";
 import React from "react";
-import { StyledFilterBadge } from "./styles";
+
+import { CancelIcon } from "assets";
 import { Color } from "ui";
+
+import { StyledFilterBadge } from "./styles";
 
 interface FilterBadgeProps {
   label: string;
@@ -12,7 +13,6 @@ export const FilterBadge = ({ label, onClick }: FilterBadgeProps) => {
   return (
     <StyledFilterBadge onClick={onClick}>
       {label}
-
       <CancelIcon fill={Color.WHITE} width="16px" />
     </StyledFilterBadge>
   );

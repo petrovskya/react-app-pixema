@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Color, Media } from "ui";
 
 export const StyledSubmitButton = styled.button`
-  width: 25%;
+  width: 30%;
   border-radius: 10px;
   background: ${Color.PRIMARY};
   padding: 16px 0;

@@ -6,6 +6,7 @@ const StyledSearchInputGroup = styled.div`
   position: relative;
   width: 100%;
 `;
+
 const SearchInput = styled.input`
   width: 100%;
   padding: 16px 20px;

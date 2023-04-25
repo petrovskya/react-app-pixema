@@ -84,7 +84,6 @@ const UserInfo = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  /* margin: 0 15px; */
   color: ${Color.WHITE};
 `;
 

@@ -20,7 +20,6 @@ const FilterForm = styled.form`
   gap: 20px;
   padding: 48px 40px;
   width: 518px;
-  height: 50%;
   background-color: ${Color.DARK};
   border: 5px solid ${Color.PRIMARY};
   border-radius: 16px;

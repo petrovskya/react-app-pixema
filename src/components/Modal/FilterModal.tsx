@@ -65,7 +65,7 @@ export const FilterModal = ({ isOpen, toggleModal }: FilterModalProps) => {
             {errors.title && "This field is required."}
             <FilterInput
               title="Year"
-              placeholder="From"
+              placeholder="Enter year"
               type="text"
               name="year"
               register={register}
