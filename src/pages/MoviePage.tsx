@@ -41,6 +41,7 @@ export const MoviePage = () => {
     director,
     writer,
   } = movie;
+
   useEffect(() => {
     imdbID && dispatch(fetchFullMovie({ imdbID }));
   }, [dispatch, imdbID]);

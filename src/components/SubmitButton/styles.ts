@@ -1,12 +1,13 @@
 import styled from "styled-components";
+
 import { Color, Media } from "ui";
 
 export const StyledSubmitButton = styled.button`
   width: 30%;
-  border-radius: 10px;
-  background: ${Color.PRIMARY};
   padding: 16px 0;
   margin-top: 20px;
+  border-radius: 10px;
+  background: ${Color.PRIMARY};
   font-family: inherit;
   font-size: 16px;
   font-weight: 600;
@@ -15,9 +16,11 @@ export const StyledSubmitButton = styled.button`
   color: ${Color.WHITE};
   transition-duration: 0.3s;
   cursor: pointer;
+
   &:hover {
     background: ${Color.PRIMARY_LIGHT};
   }
+
   ${Media.LAPTOP_S} {
     width: 50%;
   }

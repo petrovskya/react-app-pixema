@@ -13,13 +13,14 @@ const StyledModal = styled.div`
   height: 100vh;
   background-color: ${Color.BLACK_MODAL};
 `;
+
 const FilterForm = styled.form`
   z-index: 4;
   display: grid;
   align-content: center;
   gap: 20px;
-  padding: 48px 40px;
   width: 518px;
+  padding: 48px 40px;
   background-color: ${Color.DARK};
   border: 5px solid ${Color.PRIMARY};
   border-radius: 16px;

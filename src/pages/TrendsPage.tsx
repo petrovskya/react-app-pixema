@@ -1,36 +1,47 @@
 import { ErrorMessage, LittleSpinner, MoviesList, Spinner } from "components";
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { UseAppDispatch, useAppSelector } from "store/hooks/hooks";
-import { fetchNextTrendsPage, fetchTrendsMovies } from "store/features";
+import {
+  fetchNextTrendsPage,
+  fetchSearchNextTrendsPage,
+  fetchSearchTrends,
+  fetchTrendsMovies,
+} from "store/features";
 import { ShowMoreButton } from "components";
 import { StyledOutlet } from "ui";
 
 export const TrendsPage = () => {
-  const { isLoading, isLoadingMore, trends, error, theme, page } = useAppSelector(
-    (state) => state.trends,
-  );
+  const { isLoading, isLoadingMore, trends, error, theme, page, searchTitle, searchYear } =
+    useAppSelector((state) => state.trends);
+
   const dispatch = UseAppDispatch();
+
   const handleChange = () => {
-    dispatch(fetchNextTrendsPage({ theme, page }));
+    if (searchTitle === "") {
+      dispatch(fetchNextTrendsPage({ theme, page }));
+    } else {
+      dispatch(fetchSearchNextTrendsPage({ theme, searchYear, page }));
+    }
   };
 
-  useEffect(() => {
-    if (!trends.length) {
+  useLayoutEffect(() => {
+    if (!trends.length && !searchTitle && !searchYear) {
       dispatch(fetchTrendsMovies({ theme }));
     }
-  }, [dispatch]);
-  return (
+    if (searchYear !== "") {
+      dispatch(fetchSearchTrends({ theme, searchYear }));
+    }
+  }, [dispatch, searchYear]);
+
+  return isLoading ? (
+    <Spinner />
+  ) : (
     <StyledOutlet>
-      {isLoading && <Spinner />}
       {error && <ErrorMessage error={error} />}
-      {trends.length > 0 && (
-        <StyledOutlet>
-          <MoviesList movies={trends} />
-          <ShowMoreButton type="button" onClick={handleChange}>
-            {isLoadingMore && <LittleSpinner />}
-          </ShowMoreButton>
-        </StyledOutlet>
-      )}
+      <MoviesList movies={trends} />
+      <ShowMoreButton type="button" onClick={handleChange}>
+        {isLoadingMore && <LittleSpinner />}
+      </ShowMoreButton>
     </StyledOutlet>
   );
 };

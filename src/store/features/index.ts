@@ -1,5 +1,8 @@
 import {
   fetchAllMovies,
+  fetchSearchMovies,
+  fetchSearchNextPage,
+  fetchNextMoviesPage,
   setSearchTitle,
   setNextPage,
   setTitleFilter,
@@ -7,12 +10,27 @@ import {
   unsetTitleFilter,
   unsetYearFilter,
 } from "./moviesSlice";
-import { fetchTrendsMovies } from "./trendsSlice";
+
+import {
+  fetchTrendsMovies,
+  fetchNextTrendsPage,
+  fetchSearchNextTrendsPage,
+  fetchSearchTrends,
+  setNextTrendsPage,
+  setTrends,
+  setSearchTitleTrends,
+  setTitleFilterTrends,
+  setYearFilterTrends,
+  unsetTitleFilterTrends,
+  unsetYearFilterTrends,
+} from "./trendsSlice";
+
 import { fetchFullMovie } from "./movieSlice";
-import { fetchNextMoviesPage } from "./moviesSlice";
-import { fetchNextTrendsPage } from "./trendsSlice";
+
 import { setUserAuth, unsetUserAuth, fetchSignUpUser, fetchSignInUser } from "./userSlice";
+
 import { setTheme } from "./themeSlice";
+
 export {
   setTheme,
   setSearchTitle,
@@ -23,11 +41,22 @@ export {
   fetchTrendsMovies,
   fetchFullMovie,
   fetchNextMoviesPage,
+  fetchSearchMovies,
+  fetchSearchNextPage,
   fetchNextTrendsPage,
+  fetchSearchNextTrendsPage,
+  fetchSearchTrends,
   fetchSignUpUser,
   fetchSignInUser,
   setUserAuth,
   unsetUserAuth,
   unsetTitleFilter,
   unsetYearFilter,
+  setNextTrendsPage,
+  setTrends,
+  setSearchTitleTrends,
+  setTitleFilterTrends,
+  setYearFilterTrends,
+  unsetTitleFilterTrends,
+  unsetYearFilterTrends,
 };

@@ -3,6 +3,7 @@ import axios, { AxiosError } from "axios";
 import { transformShortMovies } from "mappers";
 import { Movie } from "types";
 import { getRandomMoviesTheme } from "utils";
+import { getSearchTitle, getSearchYear } from "utils/localStorage";
 
 interface MoviesState {
   movies: Movie[];
@@ -95,19 +96,6 @@ export const fetchNextMoviesPage = createAsyncThunk<
     return rejectWithValue(message);
   }
 });
-
-const getSearchYear = (): string => {
-  const searchYear = localStorage.getItem("searchYear");
-  if (searchYear) {
-    return JSON.parse(searchYear);
-  } else return "";
-};
-const getSearchTitle = (): string => {
-  const searchTitle = localStorage.getItem("searchTitle");
-  if (searchTitle) {
-    return JSON.parse(searchTitle);
-  } else return "";
-};
 
 const initialState: MoviesState = {
   isLoading: false,

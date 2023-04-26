@@ -31,10 +31,13 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import {
   setSearchTitle,
+  setSearchTitleTrends,
   setUserAuth,
   unsetTitleFilter,
+  unsetTitleFilterTrends,
   unsetUserAuth,
   unsetYearFilter,
+  unsetYearFilterTrends,
 } from "store/features";
 import { useDebounce, useInput, useToggle } from "hooks";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -59,7 +62,10 @@ export const MainTemplate = memo(() => {
   }, [searchTitle, searchYear]);
 
   useEffect(() => {
-    !searchTitle && dispatch(setSearchTitle(debouncedValue));
+    if (!searchTitle) {
+      dispatch(setSearchTitle(debouncedValue));
+      dispatch(setSearchTitleTrends(debouncedValue));
+    }
   }, [dispatch, debouncedValue, searchTitle]);
 
   useEffect(() => {
@@ -80,10 +86,15 @@ export const MainTemplate = memo(() => {
   const resetTitleFilter = () => {
     dispatch(unsetTitleFilter());
     dispatch(unsetYearFilter());
+    dispatch(unsetYearFilterTrends());
+    dispatch(unsetTitleFilterTrends());
+    dispatch(setSearchTitle(""));
   };
 
   const resetYearFilter = () => {
     dispatch(unsetYearFilter());
+    dispatch(unsetYearFilterTrends());
+    dispatch(setSearchTitle(""));
   };
 
   const [user, loading] = useAuthState(auth);

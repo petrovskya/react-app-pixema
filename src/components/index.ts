@@ -11,7 +11,7 @@ import { ErrorMessage } from "./ErrorMessage/ErrorMessage";
 import { AddFavoriteButton } from "./AddFavoriteButton/AddFavoriteButton";
 import { MovieInfo } from "./MovieInfo/MovieInfo";
 import { Spinner } from "./Spinner/Spinner";
-import { Portal } from "./Portal/Portal";
+import { Portal, PortalTarget } from "./Portal/Portal";
 import { FilterModal } from "./Modal/FilterModal";
 import { SignUpForm } from "./SignUpForm/SignUpForm";
 import { SignInForm } from "./SignInForm/SignInForm";
@@ -51,6 +51,7 @@ export {
   MovieInfo,
   Spinner,
   Portal,
+  PortalTarget,
   FilterModal,
   SignUpForm,
   SignInForm,

@@ -1,11 +1,10 @@
 import { HTMLInputTypeAttribute } from "react";
 import { UseFormRegister } from "react-hook-form";
+
+import { FilterFormValues } from "types";
+
 import { InputTitle, InputWrapper, StyledInput } from "./styles";
 
-export interface FilterFormValues {
-  title: string;
-  year: string;
-}
 export interface FilterInputProps {
   placeholder: string;
   name: "title" | "year";

@@ -3,6 +3,8 @@ import React, { InputHTMLAttributes } from "react";
 import { FilterButton } from "components";
 
 import { SearchInput, StyledCircleIcon, StyledSearchInputGroup } from "./styles";
+import { useLocation } from "react-router-dom";
+import { ROUTE } from "router";
 
 interface SearchInputGroupProps {
   placeholder: string;
@@ -17,10 +19,15 @@ export const SearchInputGroup = ({
   placeholder,
   onClick,
 }: SearchInputGroupProps) => {
+  const { pathname } = useLocation();
+  const getAvailable = () => {
+    return pathname === ROUTE.HOME || pathname === `/${ROUTE.TRENDS}` ? true : false;
+  };
+  const isAvailable = getAvailable();
   return (
     <StyledSearchInputGroup>
-      <SearchInput {...props} placeholder={placeholder} />
-      <FilterButton onClick={onClick} />
+      <SearchInput disabled={!isAvailable} {...props} placeholder={placeholder} />
+      {isAvailable && <FilterButton onClick={onClick} />}
       {isFiltered && <StyledCircleIcon />}
     </StyledSearchInputGroup>
   );

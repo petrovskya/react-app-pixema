@@ -1,16 +1,22 @@
-import { LittleSpinner, MoviesList, ShowMoreButton } from "components";
 import React, { useLayoutEffect } from "react";
+
 import { UseAppDispatch, useAppSelector } from "store/hooks";
-import { fetchAllMovies } from "store/features";
+import {
+  fetchAllMovies,
+  fetchSearchMovies,
+  fetchSearchNextPage,
+  fetchNextMoviesPage,
+} from "store/features";
+
+import { LittleSpinner, MoviesList, ShowMoreButton, Spinner, ErrorMessage } from "components";
 import { StyledOutlet } from "ui";
-import { ErrorMessage } from "components";
-import { fetchNextMoviesPage } from "store/features";
-import { fetchSearchMovies, fetchSearchNextPage } from "store/features/moviesSlice";
 
 export const HomePage = () => {
   const { isLoading, isLoadingMore, movies, error, theme, page, searchTitle, searchYear } =
     useAppSelector((state) => state.movies);
+
   const dispatch = UseAppDispatch();
+
   const handleChange = () => {
     if (searchTitle === "") {
       dispatch(fetchNextMoviesPage({ theme, page }));
@@ -31,7 +37,9 @@ export const HomePage = () => {
     }
   }, [dispatch, searchTitle, searchYear]);
 
-  return (
+  return isLoading ? (
+    <Spinner />
+  ) : (
     <StyledOutlet>
       {error && <ErrorMessage error={error} />}
       <MoviesList movies={movies} />

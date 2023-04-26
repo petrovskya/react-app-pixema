@@ -22,6 +22,9 @@ const SearchInput = styled.input`
     border: 2px solid ${Color.PRIMARY};
     color: ${Color.WHITE};
   }
+  &:disabled {
+    background: ${Color.SECONDARY};
+  }
 `;
 
 const StyledCircleIcon = styled(CircleIcon)`
