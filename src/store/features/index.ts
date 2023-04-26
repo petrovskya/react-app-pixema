@@ -27,7 +27,13 @@ import {
 
 import { fetchFullMovie } from "./movieSlice";
 
-import { setUserAuth, unsetUserAuth, fetchSignUpUser, fetchSignInUser } from "./userSlice";
+import {
+  setUserAuth,
+  unsetUserAuth,
+  fetchSignUpUser,
+  fetchSignInUser,
+  setVerificationStatus,
+} from "./userSlice";
 
 import { setTheme } from "./themeSlice";
 
@@ -59,4 +65,5 @@ export {
   setYearFilterTrends,
   unsetTitleFilterTrends,
   unsetYearFilterTrends,
+  setVerificationStatus,
 };

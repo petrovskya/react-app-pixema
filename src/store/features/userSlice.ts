@@ -3,6 +3,7 @@ import { auth } from "../../firebase";
 import {
   User,
   createUserWithEmailAndPassword,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
@@ -19,10 +20,11 @@ interface UserState {
   errorMessage: string | null;
   isAuth: boolean;
   uid: null | string;
+  verificationStatus: boolean;
 }
 
 export const fetchSignUpUser = createAsyncThunk<
-  Omit<UserState, "isLoading" | "errorMessage" | "isAuth" | "token">,
+  Omit<UserState, "isLoading" | "errorMessage" | "isAuth">,
   SignUpFormValues,
   { rejectValue: string }
 >(
@@ -31,13 +33,15 @@ export const fetchSignUpUser = createAsyncThunk<
     try {
       const { user } = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(auth.currentUser as User, { displayName: name });
-      console.log(user.displayName);
+      await sendEmailVerification(user);
+      dispatch(setVerificationStatus(user.emailVerified));
       return {
         email: user.email,
         name: user.displayName,
         password: password,
         confirmPassword: confirmPassword,
         uid: null,
+        verificationStatus: user.emailVerified,
       };
     } catch (error) {
       const firebaseError = error as FirebaseError;
@@ -47,18 +51,19 @@ export const fetchSignUpUser = createAsyncThunk<
 );
 
 export const fetchSignInUser = createAsyncThunk<
-  Pick<UserState, "email" | "password" | "name">,
+  Pick<UserState, "email" | "password" | "name" | "verificationStatus">,
   SignInFormValues,
   { rejectValue: string }
->("user/fetchSignInUser", async ({ email, password }, { rejectWithValue }) => {
+>("user/fetchSignInUser", async ({ email, password }, { dispatch, rejectWithValue }) => {
   try {
     const { user } = await signInWithEmailAndPassword(auth, email, password);
-    console.log(user);
+    dispatch(setVerificationStatus(user.emailVerified));
     return {
       email: user.email,
       password: password,
       uid: user.uid,
       name: user.displayName,
+      verificationStatus: user.emailVerified,
     };
   } catch (error) {
     const firebaseError = error as FirebaseError;
@@ -75,12 +80,16 @@ const initialState: UserState = {
   errorMessage: null,
   isAuth: false,
   uid: "",
+  verificationStatus: false,
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    setVerificationStatus: (state, { payload }) => {
+      state.verificationStatus = payload;
+    },
     setUserAuth: (state, { payload }) => {
       state.isAuth = true;
       state.name = payload.displayName;
@@ -129,4 +138,4 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
-export const { setUserAuth, unsetUserAuth } = userSlice.actions;
+export const { setUserAuth, unsetUserAuth, setVerificationStatus } = userSlice.actions;

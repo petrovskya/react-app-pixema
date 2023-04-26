@@ -32,6 +32,7 @@ import { CancelButton } from "./CancelButton/CancelButton";
 import { ButtonGroup } from "./ButtonGroup/ButtonGroup";
 import { FilterBadge } from "./FilterBadge/FilterBadge";
 import { FilterButton } from "./FilterButton/FilterButton";
+import { ConfirmMessage } from "./ConfirmMessage/ConfirmMessage";
 
 export {
   CustomLink,
@@ -69,4 +70,5 @@ export {
   LittleSpinner,
   SignOutButton,
   FilterInput,
+  ConfirmMessage,
 };

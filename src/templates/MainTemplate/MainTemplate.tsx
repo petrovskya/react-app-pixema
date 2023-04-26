@@ -33,6 +33,7 @@ import {
   setSearchTitle,
   setSearchTitleTrends,
   setUserAuth,
+  setVerificationStatus,
   unsetTitleFilter,
   unsetTitleFilterTrends,
   unsetUserAuth,
@@ -72,6 +73,7 @@ export const MainTemplate = memo(() => {
     onAuthStateChanged(auth, (user: any) => {
       if (user) {
         dispatch(setUserAuth(user));
+        dispatch(setVerificationStatus(user.emailVerified));
       } else {
         dispatch(unsetUserAuth());
       }

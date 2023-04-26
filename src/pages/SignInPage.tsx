@@ -4,12 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { ROUTE } from "router";
 import { useAppSelector } from "store/hooks";
 import { Color, FormText, FormTitle, FormWrapper } from "ui";
+
 export const SignInPage = () => {
   const { isAuth } = useAppSelector((state) => state.user);
   const navigate = useNavigate();
   useEffect(() => {
     isAuth && navigate(-1);
   }, [isAuth, navigate]);
+
   return (
     <FormWrapper>
       <FormTitle>Sign In</FormTitle>
