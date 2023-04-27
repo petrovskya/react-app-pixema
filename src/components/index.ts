@@ -33,6 +33,8 @@ import { ButtonGroup } from "./ButtonGroup/ButtonGroup";
 import { FilterBadge } from "./FilterBadge/FilterBadge";
 import { FilterButton } from "./FilterButton/FilterButton";
 import { ConfirmMessage } from "./ConfirmMessage/ConfirmMessage";
+import { Menu } from "./Menu/Menu";
+import { UserInfo } from "./UserInfo/UserInfo";
 
 export {
   CustomLink,
@@ -50,6 +52,7 @@ export {
   ErrorMessage,
   AddFavoriteButton,
   MovieInfo,
+  UserInfo,
   Spinner,
   Portal,
   PortalTarget,
@@ -71,4 +74,5 @@ export {
   SignOutButton,
   FilterInput,
   ConfirmMessage,
+  Menu,
 };

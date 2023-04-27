@@ -2,31 +2,28 @@ import React, { memo, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import {
   BurgerMenu,
-  CustomLink,
   FilterBadge,
   FilterModal,
   Nav,
   SearchInputGroup,
-  SignOutButton,
   Spinner,
+  Menu,
+  UserInfo,
 } from "components";
-import { LogoIcon, SignInIcon, SignUpIcon } from "assets";
+import { LogoIcon } from "assets";
 import { ROUTE } from "router";
 import {
   StyledWrap,
   Main,
-  UserInfo,
   FixedWrapContainer,
   StyledMainTemplate,
-  UserInitials,
-  UserName,
   Aside,
-  Menu,
   BadgeGroup,
+  AsideMenu,
 } from "./styles";
 import { Color, CopyrightText } from "ui";
 import { UseAppDispatch, useAppSelector, useWindowSize } from "store/hooks";
-import { getUserInitials } from "utils";
+
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase";
 import {
@@ -50,13 +47,20 @@ export const MainTemplate = memo(() => {
   }, [theme]);
   const { isAuth, name } = useAppSelector((state) => state.user);
   const [isOpen, toggleModal] = useToggle();
-  const { width } = useWindowSize();
+
   const dispatch = UseAppDispatch();
   const searchValue = useInput();
   const debouncedValue = useDebounce(searchValue.value, 1000);
   const { searchTitle, searchYear } = useAppSelector((state) => state.movies);
 
   const [isFiltered, setFiltered] = useState<boolean>(false);
+
+  const [isMenuOpen, toggleMenu] = useToggle();
+  const { width = 0 } = useWindowSize();
+  const isMobile = width < 768;
+  const isDesktop = width > 1280;
+  const isLaptop = width <= 1280;
+  const isTablet = width >= 768;
 
   useEffect(() => {
     searchTitle || searchYear ? setFiltered(true) : setFiltered(false);
@@ -104,11 +108,11 @@ export const MainTemplate = memo(() => {
   return (
     <StyledMainTemplate>
       <FilterModal isOpen={isOpen} toggleModal={toggleModal} />
-      {width && width > 1280 && (
+      {isDesktop && (
         <Aside>
-          <Menu>
+          <AsideMenu>
             <Nav />
-          </Menu>
+          </AsideMenu>
           <CopyrightText>© All Rights Reserved</CopyrightText>
         </Aside>
       )}
@@ -117,7 +121,7 @@ export const MainTemplate = memo(() => {
           <LogoIcon fill={Color.WHITE} />
         </Link>
         <StyledWrap>
-          {width && width >= 768 && (
+          {isTablet && (
             <SearchInputGroup
               isFiltered={isFiltered}
               props={searchValue}
@@ -125,29 +129,10 @@ export const MainTemplate = memo(() => {
               onClick={toggleModal}
             />
           )}
-          {width &&
-            width > 1280 &&
-            (isAuth ? (
-              <UserInfo>
-                <Link to={ROUTE.SETTINGS}>
-                  <UserInitials>{name && getUserInitials(name)}</UserInitials>
-                </Link>
-                <UserName>{name}</UserName>
-                <SignOutButton onClick={handleClick} />
-              </UserInfo>
-            ) : (
-              <UserInfo>
-                <CustomLink to={ROUTE.SIGN_IN} component={SignInIcon}>
-                  Sign In
-                </CustomLink>
-                <CustomLink to={ROUTE.SIGN_UP} component={SignUpIcon}>
-                  Sign Up
-                </CustomLink>
-              </UserInfo>
-            ))}
+          {isDesktop && <UserInfo isAuth={isAuth} name={name} onClick={handleClick} />}
         </StyledWrap>
-        {width && width <= 1280 && <BurgerMenu />}
-        {width && width < 768 && (
+        {isLaptop && <BurgerMenu toggleMenu={toggleMenu} isMenuOpen={isMenuOpen} />}
+        {isMobile && (
           <SearchInputGroup
             isFiltered={isFiltered}
             props={searchValue}
@@ -155,7 +140,9 @@ export const MainTemplate = memo(() => {
             onClick={toggleModal}
           />
         )}
+        <Menu isOpen={isMenuOpen} isLaptop={isLaptop} handleClose={toggleMenu} />
       </FixedWrapContainer>
+
       <Main>
         <BadgeGroup>
           {searchTitle && <FilterBadge label={searchTitle} onClick={resetTitleFilter} />}

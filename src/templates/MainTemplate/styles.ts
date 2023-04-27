@@ -22,7 +22,7 @@ const Aside = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `;
-const Menu = styled.div`
+const AsideMenu = styled.div`
   position: fixed;
   top: 104px;
 `;
@@ -39,13 +39,17 @@ const FixedWrapContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  padding: 0 62px;
+  gap: 20px;
   width: 100%;
+  padding: 0 62px;
+
   background: ${Color.DARK};
   ${Media.TABLET} {
-    padding: 0 20px 20px;
+    padding: 20px 20px;
+    gap: 20px;
   }
 `;
+
 const StyledWrap = styled.div`
   display: flex;
   flex-grow: 2;
@@ -80,48 +84,22 @@ const StyledSearchInput = styled.input`
     color: ${Color.WHITE};
   }
 `;
-const UserInfo = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  color: ${Color.WHITE};
-`;
 
 const Main = styled.div`
   display: grid;
   gap: 20px;
   margin-left: 307px;
-  margin-top: 80px;
+  margin-top: 90px;
   ${Media.LAPTOP_M} {
     margin-top: 90px;
     margin-left: 0;
     gap: 56px;
   }
-`;
-const UserInitials = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 56px;
-  height: 56px;
-  padding: 16px;
-  border-radius: 10px;
-  background: ${Color.PRIMARY};
-  font-size: 20px;
-  font-weight: 700;
-  color: ${Color.WHITE};
-  &:hover {
-    background: ${Color.PRIMARY_LIGHT};
+  ${Media.TABLET} {
+    margin-top: 150px;
   }
 `;
-const UserName = styled.p`
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 90px;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 500;
-`;
+
 const BadgeGroup = styled.div`
   display: flex;
   gap: 20px;
@@ -129,14 +107,11 @@ const BadgeGroup = styled.div`
 export {
   StyledMainTemplate,
   Aside,
-  Menu,
+  AsideMenu,
   FixedWrapContainer,
   StyledWrap,
   StyledSearchInput,
-  UserInfo,
   Main,
   Text,
-  UserInitials,
   BadgeGroup,
-  UserName,
 };
