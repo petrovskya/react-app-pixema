@@ -1,13 +1,14 @@
-import { ConfirmMessage, ErrorMessage, MoviesList } from "components";
 import React, { useEffect } from "react";
 import { Navigate } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+
+import { ConfirmMessage, ErrorMessage, MoviesList } from "components";
 import { ROUTE } from "router";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
-import { auth } from "./../firebase";
-import { Color, StyledOutlet } from "ui";
-import { onAuthStateChanged } from "firebase/auth";
+import { StyledOutlet } from "ui";
 import { setUserAuth } from "store/features";
-import styled from "styled-components";
+
+import { auth } from "./../firebase";
 
 export const FavoritesPage = () => {
   const favorites = null;

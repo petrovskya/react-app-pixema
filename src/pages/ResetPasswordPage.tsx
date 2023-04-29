@@ -1,5 +1,4 @@
 import { ConfirmEmailForm, ResetPasswordForm } from "components";
-import React from "react";
 import { FormText, FormTitle, FormWrapper } from "ui";
 
 export const ResetPasswordPage = () => {

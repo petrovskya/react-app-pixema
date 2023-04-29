@@ -8,6 +8,7 @@ import { Color, FormText, FormTitle, FormWrapper } from "ui";
 export const SignInPage = () => {
   const { isAuth } = useAppSelector((state) => state.user);
   const navigate = useNavigate();
+
   useEffect(() => {
     isAuth && navigate(-1);
   }, [isAuth, navigate]);

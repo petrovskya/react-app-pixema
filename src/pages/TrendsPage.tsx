@@ -1,5 +1,5 @@
-import { ErrorMessage, LittleSpinner, MoviesList, Spinner } from "components";
 import { useLayoutEffect } from "react";
+
 import { UseAppDispatch, useAppSelector } from "store/hooks/hooks";
 import {
   fetchNextTrendsPage,
@@ -7,7 +7,7 @@ import {
   fetchSearchTrends,
   fetchTrendsMovies,
 } from "store/features";
-import { ShowMoreButton } from "components";
+import { ErrorMessage, LittleSpinner, MoviesList, Spinner, ShowMoreButton } from "components";
 import { StyledOutlet } from "ui";
 
 export const TrendsPage = () => {

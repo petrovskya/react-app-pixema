@@ -4,18 +4,16 @@ import { SignUpForm } from "components";
 import { ROUTE } from "router";
 import { Link } from "react-router-dom";
 
-export const SignUpPage = () => {
-  return (
-    <FormWrapper>
-      <FormTitle>Sign Up</FormTitle>
-      <SignUpForm />
-      <FormText>
-        Already have an account?{" "}
-        <Link to={ROUTE.SIGN_IN} color={Color.PRIMARY}>
-          {" "}
-          Sign In
-        </Link>
-      </FormText>
-    </FormWrapper>
-  );
-};
+export const SignUpPage = () => (
+  <FormWrapper>
+    <FormTitle>Sign Up</FormTitle>
+    <SignUpForm />
+    <FormText>
+      Already have an account?{" "}
+      <Link to={ROUTE.SIGN_IN} color={Color.PRIMARY}>
+        {" "}
+        Sign In
+      </Link>
+    </FormText>
+  </FormWrapper>
+);
