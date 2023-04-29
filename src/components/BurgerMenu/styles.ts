@@ -1,7 +1,8 @@
 import styled from "styled-components";
+
 import { Color, Media } from "ui";
 
-const StyledBurgerButton = styled.button`
+export const StyledBurgerButton = styled.button`
   z-index: 4;
   display: flex;
   justify-content: center;
@@ -17,5 +18,3 @@ const StyledBurgerButton = styled.button`
     margin-left: 0;
   }
 `;
-
-export { StyledBurgerButton };

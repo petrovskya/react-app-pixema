@@ -1,11 +1,11 @@
-import React from "react";
-import { StyledUserInfo, UserInitials, UserName } from "./styles";
 import { Link } from "react-router-dom";
+
 import { ROUTE } from "router";
-import { SignOutButton } from "components/SignOutButton/SignOutButton";
-import { CustomLink } from "components/CustomLink/CustomLink";
+import { SignOutButton, CustomLink } from "components";
 import { SignInIcon, SignUpIcon } from "assets";
 import { getUserInitials } from "utils";
+
+import { StyledUserInfo, UserInitials, UserName } from "./styles";
 
 interface UserInfoProps {
   isAuth: boolean;

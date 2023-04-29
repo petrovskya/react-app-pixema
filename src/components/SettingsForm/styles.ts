@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { Color, Media } from "ui";
 
 const StyledSettingsForm = styled.form`
@@ -7,10 +8,12 @@ const StyledSettingsForm = styled.form`
   width: 100%;
   color: ${Color.WHITE};
 `;
+
 const SettingsFormField = styled.div`
   display: grid;
   gap: 20px;
 `;
+
 const SettingsFieldWrapper = styled.div`
   display: flex;
   flex-direction: row-reverse;
@@ -26,6 +29,7 @@ const SettingsFieldWrapper = styled.div`
     padding: 20px;
   }
 `;
+
 const ResetPasswordWrapper = styled.div`
   display: flex;
   flex-direction: row-reverse;
@@ -46,6 +50,7 @@ const FormText = styled.p`
   display: flex;
   flex-direction: column;
 `;
+
 const FormTextSecondary = styled.span`
   color: ${Color.SECONDARY};
 `;

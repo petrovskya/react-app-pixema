@@ -1,7 +1,9 @@
 import { HTMLInputTypeAttribute } from "react";
 import { UseFormRegister } from "react-hook-form";
-import { InputWrapper, StyledSettingsInput } from "./styles";
+
 import { SignFormValues } from "types";
+
+import { InputWrapper, StyledSettingsInput } from "./styles";
 
 export interface InputProps {
   placeholder: string;
@@ -11,6 +13,7 @@ export interface InputProps {
   required: boolean;
   title: string;
 }
+
 export const SettingsInput = ({
   register,
   required,

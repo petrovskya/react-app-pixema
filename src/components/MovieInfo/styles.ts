@@ -1,7 +1,8 @@
 import styled from "styled-components";
+
 import { Color, S3 } from "ui";
 
-export const StyledMovieInfo = styled.p`
+const StyledMovieInfo = styled.p`
   display: grid;
   grid-template-columns: repeat(2, auto);
   justify-content: start;
@@ -10,6 +11,9 @@ export const StyledMovieInfo = styled.p`
   ${S3};
   color: ${Color.WHITE};
 `;
-export const InfoTitle = styled.span`
+
+const InfoTitle = styled.span`
   width: 100px;
 `;
+
+export { StyledMovieInfo, InfoTitle };

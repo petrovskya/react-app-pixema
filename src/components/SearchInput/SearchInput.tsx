@@ -1,10 +1,10 @@
-import React, { InputHTMLAttributes } from "react";
+import { InputHTMLAttributes } from "react";
+import { useLocation } from "react-router-dom";
 
+import { ROUTE } from "router";
 import { FilterButton } from "components";
 
 import { SearchInput, StyledCircleIcon, StyledSearchInputGroup } from "./styles";
-import { useLocation } from "react-router-dom";
-import { ROUTE } from "router";
 
 interface SearchInputGroupProps {
   placeholder: string;

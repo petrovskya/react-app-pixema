@@ -1,5 +1,6 @@
-import { AuthBackgroundImage } from "assets";
 import styled from "styled-components";
+
+import { AuthBackgroundImage } from "assets";
 import { Media } from "ui";
 
 export const StyledAuthTemplate = styled.div`

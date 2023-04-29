@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { Color } from "ui";
 
 export const StyledErrorMessage = styled.div`
@@ -13,6 +14,7 @@ export const StyledErrorMessage = styled.div`
   line-height: 32px;
   text-align: center;
   color: ${Color.SECONDARY};
+
   img {
     max-width: 405px;
     height: 360px;

@@ -1,3 +1,5 @@
+import { SubmitHandler, useForm } from "react-hook-form";
+
 import {
   ButtonGroup,
   CancelButton,
@@ -5,10 +7,11 @@ import {
   SettingsInput,
   SubmitButton,
 } from "components";
-import React, { useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useWindowSize } from "hooks";
+import { UseAppDispatch } from "store/hooks";
 import { SignFormValues } from "types";
 import { FormTitle } from "ui";
+
 import {
   FormText,
   FormTextSecondary,
@@ -16,8 +19,6 @@ import {
   SettingsFormField,
   StyledSettingsForm,
 } from "./styles";
-import { UseAppDispatch, useWindowSize } from "store/hooks";
-import { fetchSignUpUser } from "store/features";
 
 export const SettingsForm = () => {
   const { width } = useWindowSize();
@@ -27,6 +28,7 @@ export const SettingsForm = () => {
     reset,
     formState: { errors },
   } = useForm<SignFormValues>();
+
   const dispatch = UseAppDispatch();
 
   const onSubmit: SubmitHandler<SignFormValues> = (data): any => {

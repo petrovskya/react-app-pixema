@@ -1,7 +1,8 @@
 import styled from "styled-components";
+
 import { Color } from "ui";
 
-export const StyledMovieYear = styled.h2`
+const StyledMovieYear = styled.h2`
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
@@ -9,6 +10,8 @@ export const StyledMovieYear = styled.h2`
   color: ${Color.WHITE};
 `;
 
-export const StyledMovieCard = styled.li`
+const StyledMovieCard = styled.li`
   display: grid;
 `;
+
+export { StyledMovieCard, StyledMovieYear };

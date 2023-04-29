@@ -1,5 +1,8 @@
-import React, { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 import {
   BurgerMenu,
   FilterBadge,
@@ -12,20 +15,7 @@ import {
 } from "components";
 import { LogoIcon } from "assets";
 import { ROUTE } from "router";
-import {
-  StyledWrap,
-  Main,
-  FixedWrapContainer,
-  StyledMainTemplate,
-  Aside,
-  BadgeGroup,
-  AsideMenu,
-} from "./styles";
-import { Color, CopyrightText } from "ui";
-import { UseAppDispatch, useAppSelector, useWindowSize } from "store/hooks";
-
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../firebase";
+import { UseAppDispatch, useAppSelector } from "store/hooks";
 import {
   setSearchTitle,
   setSearchTitleTrends,
@@ -37,8 +27,19 @@ import {
   unsetYearFilter,
   unsetYearFilterTrends,
 } from "store/features";
-import { useDebounce, useInput, useToggle } from "hooks";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useDebounce, useInput, useToggle, useWindowSize } from "hooks";
+import { Color, CopyrightText } from "ui";
+
+import { auth } from "../../firebase";
+import {
+  StyledWrap,
+  Main,
+  FixedWrapContainer,
+  StyledMainTemplate,
+  Aside,
+  BadgeGroup,
+  AsideMenu,
+} from "./styles";
 
 export const MainTemplate = memo(() => {
   const { theme } = useAppSelector((state) => state.theme);

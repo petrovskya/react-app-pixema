@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { Media } from "ui";
 
 export const StyledNav = styled.nav`

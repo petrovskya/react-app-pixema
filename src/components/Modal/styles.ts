@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { Color } from "ui";
 
 const StyledModal = styled.div`

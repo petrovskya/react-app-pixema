@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
+
 import moviesReducer from "./features/moviesSlice";
 import trendsReducer from "./features/trendsSlice";
 import movieReducer from "./features/movieSlice";
 import userReducer from "./features/userSlice";
 import themeReducer from "./features/themeSlice";
 import filterReducer from "./features/filterSlice";
+
 export const store = configureStore({
   reducer: {
     movies: moviesReducer,

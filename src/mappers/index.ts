@@ -1,5 +1,3 @@
-import { transformShortMovies } from "./transformShortMovies";
-import { transformFullMovie } from "./transformFullMovie";
-import { filterTrends } from "./filterTrends";
-
-export { transformShortMovies, transformFullMovie, filterTrends };
+export { transformShortMovies } from "./transformShortMovies";
+export { transformFullMovie } from "./transformFullMovie";
+export { filterTrends } from "./filterTrends";

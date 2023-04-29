@@ -32,7 +32,6 @@ export const Menu = ({ isOpen, handleClose, isLaptop }: MenuProps) => {
   return (
     <StyledMenu animate={currentVariant} variants={menuVariants} initial="idle">
       <UserInfo isAuth={isAuth} name={name} onClick={handleClick} />
-
       <CustomLink to={ROUTE.HOME} component={HomeIcon} onClick={handleClose}>
         Home
       </CustomLink>

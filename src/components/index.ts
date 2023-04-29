@@ -1,78 +1,36 @@
-import { CustomLink } from "./CustomLink/CustomLink";
-import { Nav } from "./Nav/Nav";
-import { SearchInputGroup } from "./SearchInput/SearchInput";
-import { RequareAuth } from "./RequareAuth/RequareAuth";
-import { MoviesList } from "./MoviesList/MoviesList";
-import { MovieCard } from "./MovieCard/MovieCard";
-import { ShowMoreButton } from "./ShowMoreButton/ShowMoreButton";
-import { Poster } from "./Poster/Poster";
-import { MovieLink } from "./MovieLink/MovieLink";
-import { ErrorMessage } from "./ErrorMessage/ErrorMessage";
-import { AddFavoriteButton } from "./AddFavoriteButton/AddFavoriteButton";
-import { MovieInfo } from "./MovieInfo/MovieInfo";
-import { Spinner } from "./Spinner/Spinner";
-import { Portal, PortalTarget } from "./Portal/Portal";
-import { FilterModal } from "./Modal/FilterModal";
-import { SignUpForm } from "./SignUpForm/SignUpForm";
-import { SignInForm } from "./SignInForm/SignInForm";
-import { Input } from "./Input/Input";
-import { Button } from "./Button/Button";
-import { ResetPasswordForm } from "./ResetPasswordForm/ResetPasswordForm";
-import { ConfirmEmailForm } from "./ConfirmEmailForm/ConfirmEmailForm";
-import { SettingsForm } from "./SettingsForm/SettingsForm";
-import { SettingsInput } from "./SettingsInput/SettingsInput";
-import { ControlledSwitch } from "./ControlledSwitch/ControlledSwitch";
-import { BurgerMenu } from "./BurgerMenu/BurgerMenu";
-import { LogoLink } from "./LogoLink/LogoLink";
-import { LittleSpinner } from "./LittleSpinner/LittleSpinner";
-import { SignOutButton } from "./SignOutButton/SignOutButton";
-import { FilterInput } from "./FilterInput/FilterInput";
-import { SubmitButton } from "./SubmitButton/SubmitButton";
-import { CancelButton } from "./CancelButton/CancelButton";
-import { ButtonGroup } from "./ButtonGroup/ButtonGroup";
-import { FilterBadge } from "./FilterBadge/FilterBadge";
-import { FilterButton } from "./FilterButton/FilterButton";
-import { ConfirmMessage } from "./ConfirmMessage/ConfirmMessage";
-import { Menu } from "./Menu/Menu";
-import { UserInfo } from "./UserInfo/UserInfo";
-
-export {
-  CustomLink,
-  Nav,
-  SearchInputGroup,
-  RequareAuth,
-  MoviesList,
-  MovieCard,
-  FilterBadge,
-  FilterButton,
-  ShowMoreButton,
-  ButtonGroup,
-  Poster,
-  MovieLink,
-  ErrorMessage,
-  AddFavoriteButton,
-  MovieInfo,
-  UserInfo,
-  Spinner,
-  Portal,
-  PortalTarget,
-  FilterModal,
-  SignUpForm,
-  SignInForm,
-  ResetPasswordForm,
-  ConfirmEmailForm,
-  SettingsForm,
-  Input,
-  Button,
-  SubmitButton,
-  CancelButton,
-  SettingsInput,
-  ControlledSwitch,
-  BurgerMenu,
-  LogoLink,
-  LittleSpinner,
-  SignOutButton,
-  FilterInput,
-  ConfirmMessage,
-  Menu,
-};
+export { CustomLink } from "./CustomLink/CustomLink";
+export { Nav } from "./Nav/Nav";
+export { SearchInputGroup } from "./SearchInput/SearchInput";
+export { MoviesList } from "./MoviesList/MoviesList";
+export { MovieCard } from "./MovieCard/MovieCard";
+export { ShowMoreButton } from "./ShowMoreButton/ShowMoreButton";
+export { Poster } from "./Poster/Poster";
+export { MovieLink } from "./MovieLink/MovieLink";
+export { ErrorMessage } from "./ErrorMessage/ErrorMessage";
+export { AddFavoriteButton } from "./AddFavoriteButton/AddFavoriteButton";
+export { MovieInfo } from "./MovieInfo/MovieInfo";
+export { Spinner } from "./Spinner/Spinner";
+export { Portal, PortalTarget } from "./Portal/Portal";
+export { FilterModal } from "./Modal/FilterModal";
+export { SignUpForm } from "./SignUpForm/SignUpForm";
+export { SignInForm } from "./SignInForm/SignInForm";
+export { Input } from "./Input/Input";
+export { Button } from "./Button/Button";
+export { ResetPasswordForm } from "./ResetPasswordForm/ResetPasswordForm";
+export { ConfirmEmailForm } from "./ConfirmEmailForm/ConfirmEmailForm";
+export { SettingsForm } from "./SettingsForm/SettingsForm";
+export { SettingsInput } from "./SettingsInput/SettingsInput";
+export { ControlledSwitch } from "./ControlledSwitch/ControlledSwitch";
+export { BurgerMenu } from "./BurgerMenu/BurgerMenu";
+export { LogoLink } from "./LogoLink/LogoLink";
+export { LittleSpinner } from "./LittleSpinner/LittleSpinner";
+export { SignOutButton } from "./SignOutButton/SignOutButton";
+export { FilterInput } from "./FilterInput/FilterInput";
+export { SubmitButton } from "./SubmitButton/SubmitButton";
+export { CancelButton } from "./CancelButton/CancelButton";
+export { ButtonGroup } from "./ButtonGroup/ButtonGroup";
+export { FilterBadge } from "./FilterBadge/FilterBadge";
+export { FilterButton } from "./FilterButton/FilterButton";
+export { ConfirmMessage } from "./ConfirmMessage/ConfirmMessage";
+export { Menu } from "./Menu/Menu";
+export { UserInfo } from "./UserInfo/UserInfo";

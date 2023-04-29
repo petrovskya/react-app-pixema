@@ -1,9 +1,11 @@
 import styled from "styled-components";
+
 import { Color } from "ui";
 
 interface StyledButtonProps {
   $background?: string;
 }
+
 export const StyledButton = styled.button<StyledButtonProps>`
   border-radius: 10px;
   background: ${(props) => (props.$background ? props.$background : Color.PRIMARY)};

@@ -1,16 +1,14 @@
-import { createUserWithEmailAndPassword } from "@firebase/auth";
-import { Button, Input } from "components";
-import { auth } from "firebase";
-import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+
+import { Button, Input } from "components";
 import { SignFormValues } from "types";
+
 import { StyledConfirmEmailForm } from "./styles";
 
 export const ConfirmEmailForm = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<SignFormValues>();
 
@@ -27,6 +25,7 @@ export const ConfirmEmailForm = () => {
     //     // ..
     //   });
   };
+
   return (
     <StyledConfirmEmailForm onSubmit={handleSubmit(onSubmit)}>
       <Input

@@ -1,4 +1,3 @@
-import React from "react";
 import { StyledConfirmMessage } from "./styles";
 
 export const ConfirmMessage = () => (

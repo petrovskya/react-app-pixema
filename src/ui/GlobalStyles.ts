@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+
 import { Color, Media, themeColors } from "ui";
 
 export const GlobalStyles = createGlobalStyle`
@@ -11,9 +12,7 @@ export const GlobalStyles = createGlobalStyle`
   body {
    font-family: "Exo 2", "san-serif";
   }
-  input {
-    /* border: none; */
-  }
+
   button { 
     border: none;
     font-family: inherit;
@@ -32,12 +31,13 @@ export const GlobalStyles = createGlobalStyle`
   }
 `;
 
-export const CopyrightText = styled.div`
+const CopyrightText = styled.div`
   position: fixed;
   bottom: 64px;
   color: ${Color.WHITE};
 `;
-export const FormWrapper = styled.div`
+
+const FormWrapper = styled.div`
   display: grid;
   gap: 40px;
   width: 100%;
@@ -51,19 +51,22 @@ export const FormWrapper = styled.div`
     padding: 20px 20px;
   }
 `;
-export const FormTitle = styled.div`
+
+const FormTitle = styled.div`
   font-size: 24px;
   font-weight: 600;
   line-height: 36px;
   text-align: left;
   color: ${Color.WHITE};
 `;
-export const FormText = styled.div`
+
+const FormText = styled.div`
   /* flex: ; */
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
   text-align: center;
-
   color: ${Color.WHITE};
 `;
+
+export { FormText, FormTitle, FormWrapper, CopyrightText };

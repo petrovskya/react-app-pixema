@@ -1,10 +1,11 @@
 import React, { ReactNode } from "react";
 import { useMatch } from "react-router-dom";
-import { ROUTE } from "router";
-
 import { SvgIcon } from "@mui/material";
-import { StyledLink } from "./styles";
+
+import { ROUTE } from "router";
 import { Color } from "ui";
+
+import { StyledLink } from "./styles";
 
 interface CustomLinkProps {
   children: ReactNode;
@@ -14,6 +15,7 @@ interface CustomLinkProps {
   >;
   onClick?: () => void;
 }
+
 export const CustomLink = ({ children, to, component, onClick }: CustomLinkProps) => {
   const match = useMatch(to);
 

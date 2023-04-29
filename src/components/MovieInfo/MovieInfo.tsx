@@ -1,5 +1,7 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
+
 import { Color } from "ui";
+
 import { InfoTitle, StyledMovieInfo } from "./styles";
 
 interface MovieInfoProps {
@@ -7,11 +9,9 @@ interface MovieInfoProps {
   info: string;
 }
 
-export const MovieInfo = ({ children, info }: MovieInfoProps) => {
-  return (
-    <StyledMovieInfo>
-      <InfoTitle color={Color.LIGHT}>{info}</InfoTitle>
-      {children}
-    </StyledMovieInfo>
-  );
-};
+export const MovieInfo = ({ children, info }: MovieInfoProps) => (
+  <StyledMovieInfo>
+    <InfoTitle color={Color.LIGHT}>{info}</InfoTitle>
+    {children}
+  </StyledMovieInfo>
+);

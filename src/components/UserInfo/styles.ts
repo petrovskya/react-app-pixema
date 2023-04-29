@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { Color } from "ui";
 
 const StyledUserInfo = styled.div`
@@ -7,6 +8,7 @@ const StyledUserInfo = styled.div`
   gap: 40px;
   color: ${Color.WHITE};
 `;
+
 const UserInitials = styled.div`
   display: flex;
   justify-content: center;
@@ -22,6 +24,7 @@ const UserInitials = styled.div`
     background: ${Color.PRIMARY_LIGHT};
   }
 `;
+
 const UserName = styled.p`
   display: flex;
   align-items: center;

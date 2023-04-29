@@ -1,17 +1,15 @@
-import React from "react";
-import { StyledBurgerButton } from "./styles";
 import { BurgerIcon, CancelIcon } from "assets";
 import { Color } from "ui";
+
+import { StyledBurgerButton } from "./styles";
 
 interface BurgerMenuProps {
   toggleMenu: () => void;
   isMenuOpen: boolean;
 }
 
-export const BurgerMenu = ({ toggleMenu, isMenuOpen }: BurgerMenuProps) => {
-  return (
-    <StyledBurgerButton onClick={toggleMenu}>
-      {isMenuOpen ? <CancelIcon fill={Color.WHITE} /> : <BurgerIcon />}
-    </StyledBurgerButton>
-  );
-};
+export const BurgerMenu = ({ toggleMenu, isMenuOpen }: BurgerMenuProps) => (
+  <StyledBurgerButton onClick={toggleMenu}>
+    {isMenuOpen ? <CancelIcon fill={Color.WHITE} /> : <BurgerIcon />}
+  </StyledBurgerButton>
+);

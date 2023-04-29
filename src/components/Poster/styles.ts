@@ -1,7 +1,8 @@
 import styled from "styled-components";
+
 import { Color, Media } from "ui";
 
-export const StyledPoster = styled.div`
+const StyledPoster = styled.div`
   display: flex;
   justify-content: center;
   width: 266px;
@@ -18,7 +19,10 @@ export const StyledPoster = styled.div`
     border: 3px solid ${Color.PRIMARY};
   }
 `;
-export const StyledPosterImage = styled.img`
+
+const StyledPosterImage = styled.img`
   width: 100%;
   height: 100%;
 `;
+
+export { StyledPoster, StyledPosterImage };

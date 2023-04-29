@@ -1,9 +1,10 @@
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 
+import { ROUTE } from "router";
 import { UseAppDispatch } from "store/hooks";
 import {
-  setSearchTitleTrends,
   setTitleFilter,
   setTitleFilterTrends,
   setYearFilter,
@@ -13,7 +14,6 @@ import {
   unsetYearFilter,
   unsetYearFilterTrends,
 } from "store/features";
-
 import {
   Button,
   ButtonGroup,
@@ -28,8 +28,6 @@ import { Color, FormTitle } from "ui";
 import { CancelIcon } from "assets";
 
 import { FilterForm, FormHeader, StyledModal } from "./styles";
-import { useLocation, useParams } from "react-router-dom";
-import { ROUTE } from "router";
 
 interface FilterModalProps {
   isOpen: boolean;

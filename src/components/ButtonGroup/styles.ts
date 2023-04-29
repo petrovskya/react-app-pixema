@@ -6,7 +6,7 @@ interface StyledButtonGoup {
 
 export const StyledButtonGroup = styled.div<StyledButtonGoup>`
   display: flex;
-  width: 100%;
   justify-content: ${({ position }) => position};
+  width: 100%;
   gap: 40px;
 `;

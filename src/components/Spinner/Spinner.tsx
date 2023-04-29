@@ -1,6 +1,7 @@
-import React from "react";
 import MoonLoader from "react-spinners/MoonLoader";
+
 import { Color } from "ui";
+
 import { SpinnerStyles } from "./styles";
 
 export const Spinner = () => {

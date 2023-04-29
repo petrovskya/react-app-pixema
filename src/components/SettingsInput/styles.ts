@@ -1,7 +1,8 @@
 import styled from "styled-components";
+
 import { Color, Media } from "ui";
 
-export const StyledSettingsInput = styled.input`
+const StyledSettingsInput = styled.input`
   width: 100%;
   padding: 16px 20px;
   border-radius: 10px;
@@ -16,7 +17,8 @@ export const StyledSettingsInput = styled.input`
     color: ${Color.WHITE};
   }
 `;
-export const InputWrapper = styled.div`
+
+const InputWrapper = styled.div`
   display: grid;
   gap: 8px;
   width: 48%;
@@ -24,3 +26,5 @@ export const InputWrapper = styled.div`
     width: 100%;
   }
 `;
+
+export { StyledSettingsInput, InputWrapper };

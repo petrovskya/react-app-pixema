@@ -1,6 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios, { AxiosError } from "axios";
-import { transformShortMovies } from "mappers";
+import { createSlice } from "@reduxjs/toolkit";
 import { Movie } from "types";
 
 interface FilterState {

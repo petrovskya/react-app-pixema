@@ -1,10 +1,12 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
+
 import { StyledMovieLink } from "./styles";
 
 interface MovieLinkProps {
   children: ReactNode;
   to: string;
 }
-export const MovieLink = ({ children, to }: MovieLinkProps) => {
-  return <StyledMovieLink to={to}>{children}</StyledMovieLink>;
-};
+
+export const MovieLink = ({ children, to }: MovieLinkProps) => (
+  <StyledMovieLink to={to}>{children}</StyledMovieLink>
+);

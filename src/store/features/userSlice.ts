@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { auth } from "../../firebase";
 import {
   User,
   createUserWithEmailAndPassword,
@@ -7,9 +6,11 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { SignInFormValues, SignUpFormValues } from "types";
 import { FirebaseError } from "firebase/app";
+
+import { SignInFormValues, SignUpFormValues } from "types";
 import { getFirebaseErrorMessage } from "utils";
+import { auth } from "../../firebase";
 
 interface UserState {
   name: string | null;

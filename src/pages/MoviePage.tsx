@@ -1,9 +1,11 @@
-import { AddFavoriteButton, MovieInfo, Poster, Spinner } from "components";
-import { ErrorMessage } from "components";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+
+import { AddFavoriteButton, MovieInfo, Poster, Spinner, ErrorMessage } from "components";
 import { fetchFullMovie } from "store/features";
-import { UseAppDispatch, useAppSelector, useWindowSize } from "store/hooks";
-import { IMDBIcon } from "assets";
+import { UseAppDispatch, useAppSelector } from "store/hooks";
+import { useWindowSize } from "hooks";
+import { IMDBIcon, FavoritesIcon } from "assets";
 import {
   Badge,
   CommonRating,
@@ -17,8 +19,6 @@ import {
   Runtime,
   StyledOutlet,
 } from "ui";
-import { FavoritesIcon } from "assets";
-import { useParams } from "react-router-dom";
 
 export const MoviePage = () => {
   const { width } = useWindowSize();

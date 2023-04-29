@@ -1,5 +1,6 @@
-import { CircleIcon } from "assets";
 import styled from "styled-components";
+
+import { CircleIcon } from "assets";
 import { Color } from "ui";
 
 const StyledSearchInputGroup = styled.div`
@@ -32,4 +33,5 @@ const StyledCircleIcon = styled(CircleIcon)`
   top: 32px;
   right: 34px;
 `;
+
 export { StyledSearchInputGroup, SearchInput, StyledCircleIcon };

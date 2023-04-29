@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
+
 import { Media } from "ui";
 
-const StyledMenu = styled(motion.nav)`
+export const StyledMenu = styled(motion.nav)`
   display: none;
   ${Media.LAPTOP_M} {
     position: absolute;
@@ -20,5 +21,3 @@ const StyledMenu = styled(motion.nav)`
     transform: translateX(-100%);
   }
 `;
-
-export { StyledMenu };

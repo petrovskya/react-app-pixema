@@ -1,5 +1,3 @@
-import React from "react";
-
 import { CancelIcon } from "assets";
 import { Color } from "ui";
 
@@ -9,11 +7,10 @@ interface FilterBadgeProps {
   label: string;
   onClick: () => void;
 }
-export const FilterBadge = ({ label, onClick }: FilterBadgeProps) => {
-  return (
-    <StyledFilterBadge onClick={onClick}>
-      {label}
-      <CancelIcon fill={Color.WHITE} width="16px" />
-    </StyledFilterBadge>
-  );
-};
+
+export const FilterBadge = ({ label, onClick }: FilterBadgeProps) => (
+  <StyledFilterBadge onClick={onClick}>
+    {label}
+    <CancelIcon fill={Color.WHITE} width="16px" />
+  </StyledFilterBadge>
+);

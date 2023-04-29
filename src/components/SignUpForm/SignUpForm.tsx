@@ -1,12 +1,13 @@
-import { Button, Input, LittleSpinner } from "components";
-import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+
+import { Button, Input, LittleSpinner } from "components";
 import { SignUpFormValues } from "types";
-import { StyledSignUpForm } from "./styles";
 import { fetchSignUpUser, setUserAuth } from "store/features";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { ROUTE } from "router";
-import { useNavigate } from "react-router-dom";
+
+import { StyledSignUpForm } from "./styles";
 
 export const SignUpForm = () => {
   const {
@@ -27,6 +28,7 @@ export const SignUpForm = () => {
     await reset();
     await navigate(ROUTE.HOME);
   };
+
   return (
     <StyledSignUpForm onSubmit={handleSubmit(onSubmit)}>
       <Input

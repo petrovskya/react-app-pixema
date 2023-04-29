@@ -13,6 +13,7 @@ export interface FilterInputProps {
   required: boolean;
   title: string;
 }
+
 export const FilterInput = ({
   register,
   required,
@@ -20,17 +21,15 @@ export const FilterInput = ({
   name,
   placeholder,
   title,
-}: FilterInputProps) => {
-  return (
-    <InputWrapper>
-      <InputTitle>{title}</InputTitle>
-      <StyledInput
-        placeholder={placeholder}
-        type={type}
-        {...register(name, {
-          required: required,
-        })}
-      />
-    </InputWrapper>
-  );
-};
+}: FilterInputProps) => (
+  <InputWrapper>
+    <InputTitle>{title}</InputTitle>
+    <StyledInput
+      placeholder={placeholder}
+      type={type}
+      {...register(name, {
+        required: required,
+      })}
+    />
+  </InputWrapper>
+);

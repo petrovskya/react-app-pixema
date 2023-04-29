@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
+
 import { transformShortMovies } from "mappers";
 import { Movie } from "types";
 import { getRandomMoviesTheme } from "utils";

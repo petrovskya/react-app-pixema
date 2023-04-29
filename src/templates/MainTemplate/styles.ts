@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { Color, Media } from "ui";
 
 const StyledMainTemplate = styled.div`
@@ -22,15 +23,18 @@ const Aside = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `;
+
 const AsideMenu = styled.div`
   position: fixed;
   top: 104px;
 `;
+
 const Text = styled.span`
   position: fixed;
   bottom: 64px;
   color: ${Color.LIGHT};
 `;
+
 const FixedWrapContainer = styled.div`
   position: fixed;
   top: 0;
@@ -104,6 +108,7 @@ const BadgeGroup = styled.div`
   display: flex;
   gap: 20px;
 `;
+
 export {
   StyledMainTemplate,
   Aside,

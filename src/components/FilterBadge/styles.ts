@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { Color } from "ui";
 
 export const StyledFilterBadge = styled.button`

@@ -1,15 +1,15 @@
 import React from "react";
-import { StyledAddFavoriteButton } from "./styles";
 import { SvgIcon } from "@mui/material";
+
+import { StyledAddFavoriteButton } from "./styles";
 
 interface AddFavoriteButtonProps {
   component: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 }
-export const AddFavoriteButton = ({ component }: AddFavoriteButtonProps) => {
-  return (
-    <StyledAddFavoriteButton>
-      <SvgIcon component={component} inheritViewBox />
-      Add to favorites
-    </StyledAddFavoriteButton>
-  );
-};
+
+export const AddFavoriteButton = ({ component }: AddFavoriteButtonProps) => (
+  <StyledAddFavoriteButton>
+    <SvgIcon component={component} inheritViewBox />
+    Add to favorites
+  </StyledAddFavoriteButton>
+);

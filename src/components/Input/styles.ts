@@ -1,7 +1,8 @@
 import styled from "styled-components";
+
 import { Color } from "ui";
 
-export const StyledInput = styled.input`
+const StyledInput = styled.input`
   width: 100%;
   padding: 16px 20px;
   border-radius: 10px;
@@ -15,8 +16,11 @@ export const StyledInput = styled.input`
     color: ${Color.WHITE};
   }
 `;
-export const InputWrapper = styled.div`
+
+const InputWrapper = styled.div`
   display: grid;
   gap: 8px;
   width: 100%;
 `;
+
+export { InputWrapper, StyledInput };

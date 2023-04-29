@@ -1,5 +1,5 @@
 import { ErrorMessage, LittleSpinner, MoviesList, Spinner } from "components";
-import React, { useEffect, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 import { UseAppDispatch, useAppSelector } from "store/hooks/hooks";
 import {
   fetchNextTrendsPage,
