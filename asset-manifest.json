@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/react-app-pixema/static/js/main.c0a3d696.js",
+    "main.js": "/react-app-pixema/static/js/main.ebf81ace.js",
     "static/media/background-image.png": "/react-app-pixema/static/media/background-image.d83d809a6f02b33a8ba8.png",
     "static/media/not-found-image.jpg": "/react-app-pixema/static/media/not-found-image.fdcb66510c82fab146e5.jpg",
     "static/media/pixema-logo-icon.svg": "/react-app-pixema/static/media/pixema-logo-icon.912b7644753efe30be3c1dccbfa17001.svg",
@@ -22,9 +22,9 @@
     "static/media/filter-icon.svg": "/react-app-pixema/static/media/filter-icon.a628ca3e3aa3b2601aba441b840aed98.svg",
     "static/media/burger-icon.svg": "/react-app-pixema/static/media/burger-icon.31c808eae2a074639a3076cebc3b91f9.svg",
     "static/media/arrow-down-icon.svg": "/react-app-pixema/static/media/arrow-down-icon.6904455cac3b74428bbf45a0e219f1d2.svg",
-    "main.c0a3d696.js.map": "/react-app-pixema/static/js/main.c0a3d696.js.map"
+    "main.ebf81ace.js.map": "/react-app-pixema/static/js/main.ebf81ace.js.map"
   },
   "entrypoints": [
-    "static/js/main.c0a3d696.js"
+    "static/js/main.ebf81ace.js"
   ]
 }
