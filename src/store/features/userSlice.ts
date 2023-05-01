@@ -141,7 +141,7 @@ export const fetchSentResetPasswordEmail = createAsyncThunk<
   { rejectValue: string }
 >("user/fetchSentResetPasswordEmail", async ({ email }, { dispatch, rejectWithValue }) => {
   try {
-    sendPasswordResetEmail(auth, email, { url: "http://localhost:3000/react-pixema-app/sign-in" });
+    sendPasswordResetEmail(auth, email);
     return true;
   } catch (error) {
     const firebaseError = error as FirebaseError;
