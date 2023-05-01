@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Color } from "ui";
+import { Color, Media } from "ui";
 
 export const StyledErrorMessage = styled.div`
   display: flex;
@@ -15,8 +15,19 @@ export const StyledErrorMessage = styled.div`
   text-align: center;
   color: ${Color.SECONDARY};
 
+  ${Media.MOBILE_M} {
+    padding: 10px;
+  }
   img {
     max-width: 405px;
     height: 360px;
+    ${Media.TABLET} {
+      max-width: 295px;
+      height: 220px;
+    }
+    ${Media.MOBILE_M} {
+      max-width: 202px;
+      height: 180px;
+    }
   }
 `;
