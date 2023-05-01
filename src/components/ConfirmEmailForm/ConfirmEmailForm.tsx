@@ -1,34 +1,34 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { Button, Input } from "components";
+import { Button, LittleSpinner } from "components";
 import { SignFormValues } from "types";
 
+import { UseAppDispatch, useAppSelector } from "store/hooks";
+import { fetchSentResetPasswordEmail } from "store/features";
+
 import { StyledConfirmEmailForm } from "./styles";
+import { ConfirmEmailInput } from "./ConfirmEmailInput";
 
 export const ConfirmEmailForm = () => {
+  const { isLoading, errorMessage } = useAppSelector((state) => state.user);
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm<SignFormValues>();
+  } = useForm<Pick<SignFormValues, "email">>();
 
-  const onSubmit: SubmitHandler<SignFormValues> = ({ email, password }): any => {
-    // createUserWithEmailAndPassword(auth, email, password)
-    //   .then((userCredential) => {
-    //     // Signed in
-    //     const user = userCredential.user;
-    //     // ...
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     // ..
-    //   });
+  const dispatch = UseAppDispatch();
+
+  const onSubmit: SubmitHandler<{ email: string }> = (email): any => {
+    dispatch(fetchSentResetPasswordEmail(email));
+    reset();
   };
 
   return (
     <StyledConfirmEmailForm onSubmit={handleSubmit(onSubmit)}>
-      <Input
+      <ConfirmEmailInput
         name="email"
         type="email"
         placeholder="Your email"
@@ -37,7 +37,8 @@ export const ConfirmEmailForm = () => {
         title={"Email"}
       />
       {errors.email && "This field is required."}
-      <Button type="submit">Reset</Button>
+      {errorMessage && <>{errorMessage}</>}
+      <Button type="submit">Reset {isLoading && <LittleSpinner />}</Button>
     </StyledConfirmEmailForm>
   );
 };

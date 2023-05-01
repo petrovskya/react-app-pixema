@@ -1,34 +1,43 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { createUserWithEmailAndPassword } from "@firebase/auth";
+import { confirmPasswordReset } from "firebase/auth";
 
-import { Button, Input } from "components";
+import { Button, ErrorMessage, Input, LittleSpinner } from "components";
 import { SignFormValues } from "types";
 
 import { StyledResetPasswordForm } from "./styles";
+import { auth } from "../../firebase";
+import { Url } from "url";
+import { useLocation, useNavigate } from "react-router-dom";
+import { ROUTE } from "router";
+import { LocationQuery } from "pages/ResetPasswordPage";
+import { UseAppDispatch, useAppSelector } from "store/hooks";
+import { fetchConfirmResetPassword } from "store/features";
 
-export const ResetPasswordForm = () => {
+interface ResetPasswordFormProps {
+  query: LocationQuery;
+}
+
+export const ResetPasswordForm = ({ query }: ResetPasswordFormProps) => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm<SignFormValues>();
+  const dispatch = UseAppDispatch();
 
-  const onSubmit: SubmitHandler<SignFormValues> = ({ email, password }): any => {
-    // createUserWithEmailAndPassword(auth, email, password)
-    //   .then((userCredential) => {
-    //     // Signed in
-    //     const user = userCredential.user;
-    //     // ...
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     // ..
-    //   });
+  const navigate = useNavigate();
+  const onSubmit: SubmitHandler<SignFormValues> = ({ password }): any => {
+    dispatch(fetchConfirmResetPassword({ oobCode: query.oobCode, password: password })).then(() => {
+      navigate(ROUTE.SIGN_IN);
+    });
   };
+
+  const { isLoading, errorMessage } = useAppSelector((state) => state.user);
+
   return (
     <StyledResetPasswordForm onSubmit={handleSubmit(onSubmit)}>
+      {errorMessage && <>{errorMessage}</>}
       <Input
         name="password"
         type="password"
@@ -47,7 +56,7 @@ export const ResetPasswordForm = () => {
         title={"Confirm password"}
       />
       {errors.password && "This field is required."}
-      <Button type="submit">Set password</Button>
+      <Button type="submit">Set password {isLoading && <LittleSpinner />}</Button>
     </StyledResetPasswordForm>
   );
 };

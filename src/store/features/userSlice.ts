@@ -2,9 +2,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   EmailAuthProvider,
   User,
+  confirmPasswordReset,
   createUserWithEmailAndPassword,
   reauthenticateWithCredential,
   sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   updateEmail,
   updatePassword,
@@ -26,6 +28,7 @@ interface UserState {
   verificationStatus: boolean;
   isOpenModal: boolean;
   isPasswordChanged: boolean;
+  isResetEmailSent: boolean;
 }
 
 export const fetchSignUpUser = createAsyncThunk<
@@ -38,7 +41,7 @@ export const fetchSignUpUser = createAsyncThunk<
     try {
       const { user } = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(auth.currentUser as User, { displayName: name });
-      await sendEmailVerification(user);
+      await sendEmailVerification(user, { url: "http://localhost:3000/react-pixema-app/sign-in" });
       dispatch(setVerificationStatus(user.emailVerified));
       return {
         email: user.email as string,
@@ -84,7 +87,7 @@ export const fetchChangeUserEmail = createAsyncThunk<
       const credential = EmailAuthProvider.credential(user.email as string, password);
       await reauthenticateWithCredential(user, credential);
       await updateEmail(user, newEmail);
-      await sendEmailVerification(user);
+      await sendEmailVerification(user, { url: "http://localhost:3000/react-pixema-app/sign-in" });
       dispatch(setVerificationStatus(user.emailVerified));
       dispatch(handleConfirmModal(false));
     }
@@ -132,6 +135,33 @@ export const fetchChangePassword = createAsyncThunk<
   }
 });
 
+export const fetchSentResetPasswordEmail = createAsyncThunk<
+  boolean,
+  { email: string },
+  { rejectValue: string }
+>("user/fetchSentResetPasswordEmail", async ({ email }, { dispatch, rejectWithValue }) => {
+  try {
+    sendPasswordResetEmail(auth, email, { url: "http://localhost:3000/react-pixema-app/sign-in" });
+    return true;
+  } catch (error) {
+    const firebaseError = error as FirebaseError;
+    return rejectWithValue(getFirebaseErrorMessage(firebaseError.code));
+  }
+});
+
+export const fetchConfirmResetPassword = createAsyncThunk<
+  void,
+  { oobCode: string; password: string },
+  { rejectValue: string }
+>("user/fetchConfirmResetPassword", async ({ oobCode, password }, { rejectWithValue }) => {
+  try {
+    confirmPasswordReset(auth, oobCode, password);
+  } catch (error) {
+    const firebaseError = error as FirebaseError;
+    return rejectWithValue(getFirebaseErrorMessage(firebaseError.code));
+  }
+});
+
 const initialState: UserState = {
   email: "",
   name: "",
@@ -142,6 +172,7 @@ const initialState: UserState = {
   verificationStatus: false,
   isOpenModal: false,
   isPasswordChanged: false,
+  isResetEmailSent: false,
 };
 
 const userSlice = createSlice({
@@ -237,6 +268,33 @@ const userSlice = createSlice({
       state.isPasswordChanged = true;
     });
     builder.addCase(fetchChangePassword.rejected, (state, { payload }) => {
+      if (payload) {
+        state.isLoading = false;
+        state.errorMessage = payload;
+      }
+    });
+    builder.addCase(fetchSentResetPasswordEmail.pending, (state) => {
+      state.isLoading = true;
+      state.errorMessage = null;
+    });
+    builder.addCase(fetchSentResetPasswordEmail.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.isResetEmailSent = payload;
+    });
+    builder.addCase(fetchSentResetPasswordEmail.rejected, (state, { payload }) => {
+      if (payload) {
+        state.isLoading = false;
+        state.errorMessage = payload;
+      }
+    });
+    builder.addCase(fetchConfirmResetPassword.pending, (state) => {
+      state.isLoading = true;
+      state.errorMessage = null;
+    });
+    builder.addCase(fetchConfirmResetPassword.fulfilled, (state) => {
+      state.isLoading = false;
+    });
+    builder.addCase(fetchConfirmResetPassword.rejected, (state, { payload }) => {
       if (payload) {
         state.isLoading = false;
         state.errorMessage = payload;
