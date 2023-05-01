@@ -1,3 +1,3 @@
-import { getSearchYear } from "./getSearchYear";
-import { getSearchTitle } from "./getSearchTitle";
-export { getSearchYear, getSearchTitle };
+export { getSearchYear } from "./getSearchYear";
+export { getSearchTitle } from "./getSearchTitle";
+export { getAppTheme } from "./getAppTheme";

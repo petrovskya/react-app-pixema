@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 
 import { setUserAuth } from "store/features";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
-import { ConfirmMessage, SettingsForm } from "components";
+import { ConfirmEmailMessage, SettingsForm } from "components";
 import { ROUTE } from "router";
 import { StyledOutlet } from "ui";
 
@@ -24,7 +24,7 @@ export const SettingsPage = () => {
 
   return isAuth ? (
     <StyledOutlet>
-      {!verificationStatus && <ConfirmMessage />}
+      {!verificationStatus && <ConfirmEmailMessage />}
       {verificationStatus && <SettingsForm />}
     </StyledOutlet>
   ) : (

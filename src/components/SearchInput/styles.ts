@@ -17,11 +17,10 @@ const SearchInput = styled.input`
   font-family: inherit;
   font-size: 16px;
   font-weight: 500;
-  color: ${Color.SECONDARY};
+  color: ${Color.WHITE};
   &:focus {
     outline-color: ${Color.PRIMARY};
     border: 2px solid ${Color.PRIMARY};
-    color: ${Color.WHITE};
   }
   &:disabled {
     background: ${Color.SECONDARY};

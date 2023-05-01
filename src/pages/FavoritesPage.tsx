@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 
-import { ConfirmMessage, ErrorMessage, MoviesList } from "components";
+import { ConfirmEmailMessage, ErrorMessage, MoviesList } from "components";
 import { ROUTE } from "router";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { StyledOutlet } from "ui";
@@ -25,7 +25,7 @@ export const FavoritesPage = () => {
 
   return isAuth ? (
     <StyledOutlet>
-      {!verificationStatus && <ConfirmMessage />}
+      {!verificationStatus && <ConfirmEmailMessage />}
       {/* {isLoading && <Spinner />}
     {isLoading && <Spinner />}
     {error && <ErrorMessage error={error} />} */}

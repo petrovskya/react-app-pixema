@@ -10,10 +10,10 @@ const StyledInput = styled.input`
   font-size: 16px;
   font-weight: 500;
   background-color: ${Color.GRAPHITE};
+  color: ${Color.WHITE};
   &:focus {
     outline-color: ${Color.PRIMARY};
     border: 2px solid ${Color.PRIMARY};
-    color: ${Color.WHITE};
   }
 `;
 

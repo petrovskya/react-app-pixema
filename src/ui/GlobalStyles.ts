@@ -53,6 +53,9 @@ const FormWrapper = styled.div`
 `;
 
 const FormTitle = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
   font-size: 24px;
   font-weight: 600;
   line-height: 36px;

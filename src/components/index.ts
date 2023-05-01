@@ -31,6 +31,7 @@ export { CancelButton } from "./CancelButton/CancelButton";
 export { ButtonGroup } from "./ButtonGroup/ButtonGroup";
 export { FilterBadge } from "./FilterBadge/FilterBadge";
 export { FilterButton } from "./FilterButton/FilterButton";
-export { ConfirmMessage } from "./ConfirmMessage/ConfirmMessage";
+export { ConfirmEmailMessage } from "./ConfirmEmailMessage/ConfirmEmailMessage";
+export { ConfirmModal } from "./ConfirmModal/ConfirmModal";
 export { Menu } from "./Menu/Menu";
 export { UserInfo } from "./UserInfo/UserInfo";

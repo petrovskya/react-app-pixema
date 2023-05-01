@@ -19,6 +19,14 @@ interface SignFormValues {
   confirmPassword: string;
 }
 
+interface SettingsFormValues {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  newPassword: string;
+}
+
 interface ButtonProps {
   type: "button" | "submit" | "reset" | undefined;
   children: ReactNode;
@@ -30,4 +38,11 @@ interface FilterFormValues {
   year: string;
 }
 
-export type { SignUpFormValues, SignInFormValues, SignFormValues, ButtonProps, FilterFormValues };
+export type {
+  SignUpFormValues,
+  SignInFormValues,
+  SignFormValues,
+  ButtonProps,
+  FilterFormValues,
+  SettingsFormValues,
+};

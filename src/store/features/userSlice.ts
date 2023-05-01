@@ -1,31 +1,33 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
+  EmailAuthProvider,
   User,
   createUserWithEmailAndPassword,
+  reauthenticateWithCredential,
   sendEmailVerification,
   signInWithEmailAndPassword,
+  updateEmail,
   updateProfile,
 } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 
-import { SignInFormValues, SignUpFormValues } from "types";
+import { SettingsFormValues, SignInFormValues, SignUpFormValues } from "types";
 import { getFirebaseErrorMessage } from "utils";
 import { auth } from "../../firebase";
 
 interface UserState {
-  name: string | null;
-  email: string | null;
-  password: string | null;
-  confirmPassword: string | null;
+  name: string;
+  email: string;
   isLoading: boolean;
   errorMessage: string | null;
   isAuth: boolean;
   uid: null | string;
   verificationStatus: boolean;
+  isOpenModal: boolean;
 }
 
 export const fetchSignUpUser = createAsyncThunk<
-  Omit<UserState, "isLoading" | "errorMessage" | "isAuth">,
+  Omit<UserState, "isLoading" | "errorMessage" | "isAuth" | "userTheme" | "isOpenModal">,
   SignUpFormValues,
   { rejectValue: string }
 >(
@@ -37,10 +39,8 @@ export const fetchSignUpUser = createAsyncThunk<
       await sendEmailVerification(user);
       dispatch(setVerificationStatus(user.emailVerified));
       return {
-        email: user.email,
-        name: user.displayName,
-        password: password,
-        confirmPassword: confirmPassword,
+        email: user.email as string,
+        name: user.displayName as string,
         uid: null,
         verificationStatus: user.emailVerified,
       };
@@ -52,7 +52,7 @@ export const fetchSignUpUser = createAsyncThunk<
 );
 
 export const fetchSignInUser = createAsyncThunk<
-  Pick<UserState, "email" | "password" | "name" | "verificationStatus">,
+  Pick<UserState, "email" | "name" | "verificationStatus">,
   SignInFormValues,
   { rejectValue: string }
 >("user/fetchSignInUser", async ({ email, password }, { dispatch, rejectWithValue }) => {
@@ -60,11 +60,50 @@ export const fetchSignInUser = createAsyncThunk<
     const { user } = await signInWithEmailAndPassword(auth, email, password);
     dispatch(setVerificationStatus(user.emailVerified));
     return {
-      email: user.email,
-      password: password,
+      email: user.email as string,
       uid: user.uid,
-      name: user.displayName,
+      name: user.displayName as string,
       verificationStatus: user.emailVerified,
+    };
+  } catch (error) {
+    const firebaseError = error as FirebaseError;
+    return rejectWithValue(getFirebaseErrorMessage(firebaseError.code));
+  }
+});
+
+export const fetchChangeUserEmail = createAsyncThunk<
+  Pick<UserState, "email">,
+  { newEmail: string; password: string },
+  { rejectValue: string }
+>("user/fetchChangeUserEmail", async ({ newEmail, password }, { dispatch, rejectWithValue }) => {
+  try {
+    const user = auth.currentUser as User;
+    if (user) {
+      const credential = EmailAuthProvider.credential(user.email as string, password);
+      await reauthenticateWithCredential(user, credential);
+      await updateEmail(user, newEmail);
+      await sendEmailVerification(user);
+      dispatch(setVerificationStatus(user.emailVerified));
+    }
+    return {
+      email: auth.currentUser?.email as string,
+    };
+  } catch (error) {
+    const firebaseError = error as FirebaseError;
+    return rejectWithValue(getFirebaseErrorMessage(firebaseError.code));
+  }
+});
+
+export const fetchChangeUserName = createAsyncThunk<
+  Pick<UserState, "name">,
+  { name: string },
+  { rejectValue: string }
+>("user/fetchChangeUserName", async ({ name }, { dispatch, rejectWithValue }) => {
+  try {
+    await updateProfile(auth.currentUser as User, { displayName: name });
+
+    return {
+      name: auth.currentUser?.displayName as string,
     };
   } catch (error) {
     const firebaseError = error as FirebaseError;
@@ -75,13 +114,12 @@ export const fetchSignInUser = createAsyncThunk<
 const initialState: UserState = {
   email: "",
   name: "",
-  password: null,
-  confirmPassword: null,
   isLoading: false,
   errorMessage: null,
   isAuth: false,
   uid: "",
   verificationStatus: false,
+  isOpenModal: false,
 };
 
 const userSlice = createSlice({
@@ -102,6 +140,9 @@ const userSlice = createSlice({
       state.name = initialState.name;
       state.email = initialState.email;
       state.uid = initialState.uid;
+    },
+    handleConfirmModal: (state, { payload }) => {
+      state.isOpenModal = payload;
     },
   },
   extraReducers(builder) {
@@ -135,8 +176,37 @@ const userSlice = createSlice({
         state.errorMessage = payload;
       }
     });
+    builder.addCase(fetchChangeUserEmail.pending, (state) => {
+      state.isLoading = true;
+      state.errorMessage = null;
+    });
+    builder.addCase(fetchChangeUserEmail.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.email = payload.email;
+    });
+    builder.addCase(fetchChangeUserEmail.rejected, (state, { payload }) => {
+      if (payload) {
+        state.isLoading = false;
+        state.errorMessage = payload;
+      }
+    });
+    builder.addCase(fetchChangeUserName.pending, (state) => {
+      state.isLoading = true;
+      state.errorMessage = null;
+    });
+    builder.addCase(fetchChangeUserName.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.name = payload.name;
+    });
+    builder.addCase(fetchChangeUserName.rejected, (state, { payload }) => {
+      if (payload) {
+        state.isLoading = false;
+        state.errorMessage = payload;
+      }
+    });
   },
 });
 
 export default userSlice.reducer;
-export const { setUserAuth, unsetUserAuth, setVerificationStatus } = userSlice.actions;
+export const { setUserAuth, unsetUserAuth, setVerificationStatus, handleConfirmModal } =
+  userSlice.actions;

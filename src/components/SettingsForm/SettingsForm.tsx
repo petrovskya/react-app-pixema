@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import {
@@ -6,37 +7,49 @@ import {
   ControlledSwitch,
   SettingsInput,
   SubmitButton,
+  ConfirmModal,
 } from "components";
-import { useWindowSize } from "hooks";
-import { UseAppDispatch } from "store/hooks";
-import { SignFormValues } from "types";
+import { useToggle } from "hooks";
+import { UseAppDispatch, useAppSelector } from "store/hooks";
+import { handleConfirmModal } from "store/features";
+import { SettingsFormValues } from "types";
 import { FormTitle } from "ui";
 
 import {
   FormText,
   FormTextSecondary,
+  SettingsColumnFieldWrapper,
   SettingsFieldWrapper,
   SettingsFormField,
   StyledSettingsForm,
+  StyledSwitch,
 } from "./styles";
 
-export const SettingsForm = () => {
-  const { width } = useWindowSize();
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<SignFormValues>();
+import {} from "components/ConfirmModal/ConfirmModal";
 
+export const SettingsForm = () => {
+  const { register, handleSubmit, reset } = useForm<SettingsFormValues>();
+  const { name, email, errorMessage, isOpenModal } = useAppSelector((state) => state.user);
   const dispatch = UseAppDispatch();
 
-  const onSubmit: SubmitHandler<SignFormValues> = (data): any => {
-    // dispatch(fetchSignUpUser(data));
+  const [newUserInfo, setNewUserInfo] = useState<SettingsFormValues>({} as SettingsFormValues);
+
+  useEffect(() => {
+    dispatch(handleConfirmModal(isOpenModal));
+  }, [dispatch, isOpenModal]);
+
+  const [isChangePasswordMode, setChangeMode] = useToggle(false);
+
+  const onSubmitData: SubmitHandler<SettingsFormValues> = (data): any => {
+    setNewUserInfo(data);
+    dispatch(handleConfirmModal(true));
   };
 
+  const handleCancel = () => reset();
+
   return (
-    <StyledSettingsForm onSubmit={handleSubmit(onSubmit)}>
+    <StyledSettingsForm onSubmit={handleSubmit(onSubmitData)}>
+      <ConfirmModal isOpen={isOpenModal} userInfo={newUserInfo} />
       <SettingsFormField>
         <FormTitle>Profile</FormTitle>
         <SettingsFieldWrapper>
@@ -44,6 +57,7 @@ export const SettingsForm = () => {
             name="email"
             type="email"
             placeholder="Your email"
+            defaultValue={email}
             register={register}
             required={true}
             title={"Email"}
@@ -52,52 +66,20 @@ export const SettingsForm = () => {
             name="name"
             type="text"
             placeholder="Your name"
+            defaultValue={name}
             register={register}
             required={true}
             title={"Name"}
           />
+          {errorMessage && <>{errorMessage}</>}
         </SettingsFieldWrapper>
       </SettingsFormField>
       <SettingsFormField>
-        <FormTitle>Password</FormTitle>
-        {width && width < 768 ? (
-          <SettingsFieldWrapper>
-            <SettingsInput
-              name="confirmPassword"
-              type="password"
-              placeholder="Confirm your password"
-              register={register}
-              required={true}
-              title={"Confirm password"}
-            />
-            <SettingsInput
-              name="password"
-              type="password"
-              placeholder="Your password"
-              register={register}
-              required={true}
-              title={"New password"}
-            />
-            <SettingsInput
-              name="password"
-              type="password"
-              placeholder="Your password"
-              register={register}
-              required={true}
-              title={"Password"}
-            />
-          </SettingsFieldWrapper>
-        ) : (
-          <SettingsFieldWrapper>
-            {" "}
-            <SettingsInput
-              name="password"
-              type="password"
-              placeholder="Your password"
-              register={register}
-              required={true}
-              title={"New password"}
-            />
+        <FormTitle>
+          Change password <StyledSwitch checked={isChangePasswordMode} onChange={setChangeMode} />
+        </FormTitle>
+        {isChangePasswordMode && (
+          <SettingsColumnFieldWrapper>
             <SettingsInput
               name="password"
               type="password"
@@ -107,6 +89,14 @@ export const SettingsForm = () => {
               title={"Password"}
             />
             <SettingsInput
+              name="newPassword"
+              type="password"
+              placeholder="Your password"
+              register={register}
+              required={true}
+              title={"New password"}
+            />
+            <SettingsInput
               name="confirmPassword"
               type="password"
               placeholder="Confirm your password"
@@ -114,7 +104,7 @@ export const SettingsForm = () => {
               required={true}
               title={"Confirm password"}
             />
-          </SettingsFieldWrapper>
+          </SettingsColumnFieldWrapper>
         )}
       </SettingsFormField>
       <SettingsFormField>
@@ -127,7 +117,9 @@ export const SettingsForm = () => {
         </SettingsFieldWrapper>
       </SettingsFormField>
       <ButtonGroup position="right">
-        <CancelButton type="reset">Cancel</CancelButton>
+        <CancelButton type="reset" onClick={handleCancel}>
+          Cancel
+        </CancelButton>
         <SubmitButton type="submit">Save</SubmitButton>
       </ButtonGroup>
     </StyledSettingsForm>

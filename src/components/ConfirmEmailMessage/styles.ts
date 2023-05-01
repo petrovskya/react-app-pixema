@@ -2,12 +2,16 @@ import styled from "styled-components";
 
 import { Color, Media } from "ui";
 
-export const StyledConfirmMessage = styled.div`
+export const StyledConfirmEmailMessage = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 25vh 25vw;
-  width: 100%;
+  gap: 10px;
+  padding: 25px 25px;
+  margin: 0 auto;
+  background-color: ${Color.PRIMARY};
+  border-radius: 25px;
   font-size: 20px;
   text-align: center;
   line-height: 35px;

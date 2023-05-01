@@ -33,6 +33,9 @@ export {
   fetchSignUpUser,
   fetchSignInUser,
   setVerificationStatus,
+  fetchChangeUserEmail,
+  fetchChangeUserName,
+  handleConfirmModal,
 } from "./userSlice";
 
 export { setTheme } from "./themeSlice";

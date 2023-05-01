@@ -1,20 +1,21 @@
-import styled from "styled-components";
+import { styled } from "@mui/material/styles";
+import Switch from "@mui/material/Switch";
 
 import { Color, Media } from "ui";
 
-const StyledSettingsForm = styled.form`
+const StyledSettingsForm = styled("form")`
   display: grid;
   gap: 40px;
   width: 100%;
   color: ${Color.WHITE};
 `;
 
-const SettingsFormField = styled.div`
+const SettingsFormField = styled("div")`
   display: grid;
   gap: 20px;
 `;
 
-const SettingsFieldWrapper = styled.div`
+const SettingsFieldWrapper = styled("div")`
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap;
@@ -30,7 +31,19 @@ const SettingsFieldWrapper = styled.div`
   }
 `;
 
-const ResetPasswordWrapper = styled.div`
+const SettingsColumnFieldWrapper = styled("div")`
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  padding: 40px;
+  border-radius: 10px;
+  background-color: ${Color.BLACK};
+  ${Media.TABLET} {
+    padding: 20px;
+  }
+`;
+
+const ResetPasswordWrapper = styled("div")`
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap;
@@ -46,14 +59,56 @@ const ResetPasswordWrapper = styled.div`
   }
 `;
 
-const FormText = styled.p`
+const FormText = styled("p")`
   display: flex;
   flex-direction: column;
 `;
 
-const FormTextSecondary = styled.span`
+const FormTextSecondary = styled("span")`
   color: ${Color.SECONDARY};
 `;
+
+const StyledSwitch = styled(Switch)(({ theme }) => ({
+  display: "flex",
+  width: 32,
+  height: 20,
+  padding: 0,
+  borderRadius: 10,
+  "&:active": {
+    "& .MuiSwitch-thumb": {
+      width: 15,
+    },
+    "& .MuiSwitch-switchBase.Mui-checked": {
+      transform: "translateX(9px)",
+    },
+  },
+  "& .MuiSwitch-switchBase": {
+    padding: 2,
+    "&.Mui-checked": {
+      color: "#fff",
+      transform: "translateX(12px)",
+      "& + .MuiSwitch-track": {
+        backgroundColor: theme.palette.mode === "dark" ? Color.PRIMARY : Color.PRIMARY_LIGHT,
+        opacity: 1,
+      },
+    },
+  },
+  "& .MuiSwitch-thumb": {
+    width: 16,
+    height: 16,
+    borderRadius: 12,
+    boxShadow: "0 2px 4px 0 rgb(0 35 11 / 20%)",
+    transition: theme.transitions.create(["width"], {
+      duration: 200,
+    }),
+  },
+  "& .MuiSwitch-track": {
+    borderRadius: 16 / 2,
+    backgroundColor: theme.palette.mode === "dark" ? Color.SECONDARY : Color.GRAPHITE,
+    boxSizing: "border-box",
+    opacity: 1,
+  },
+}));
 
 export {
   StyledSettingsForm,
@@ -62,4 +117,6 @@ export {
   SettingsFieldWrapper,
   FormTextSecondary,
   FormText,
+  StyledSwitch,
+  SettingsColumnFieldWrapper,
 };
