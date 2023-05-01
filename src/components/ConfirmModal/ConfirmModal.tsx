@@ -3,7 +3,15 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { fetchChangeUserEmail, fetchChangeUserName, handleConfirmModal } from "store/features";
-import { Button, ButtonGroup, CancelButton, SubmitButton, Portal, PortalTarget } from "components";
+import {
+  Button,
+  ButtonGroup,
+  CancelButton,
+  SubmitButton,
+  Portal,
+  PortalTarget,
+  LittleSpinner,
+} from "components";
 import { SettingsFormValues } from "types";
 import { Color, FormTitle } from "ui";
 import { CancelIcon } from "assets";
@@ -13,14 +21,14 @@ import { ConfirmInput } from "./ConfirmInput";
 
 interface ConfirmModalProps {
   isOpen: boolean;
-  userInfo: SettingsFormValues | undefined;
+  newEmail: string;
 }
 
 export interface ConfirmModalValues {
   password: string;
 }
 
-export const ConfirmModal = ({ isOpen, userInfo }: ConfirmModalProps) => {
+export const ConfirmModal = ({ isOpen, newEmail }: ConfirmModalProps) => {
   const dispatch = UseAppDispatch();
 
   const {
@@ -40,22 +48,11 @@ export const ConfirmModal = ({ isOpen, userInfo }: ConfirmModalProps) => {
     }
   };
 
-  const { name, email } = useAppSelector((state) => state.user);
+  const { email, isLoading, errorMessage } = useAppSelector((state) => state.user);
 
   const onSubmit: SubmitHandler<ConfirmModalValues> = ({ password }) => {
-    if (password === "") {
-      dispatch(handleConfirmModal(true));
-    }
-    if (userInfo && userInfo.name !== name) {
-      dispatch(fetchChangeUserName({ name: userInfo.name }));
-      dispatch(handleConfirmModal(false));
-    }
-    if (userInfo && userInfo.email !== email) {
-      dispatch(fetchChangeUserEmail({ newEmail: userInfo.email, password: password }));
-      dispatch(handleConfirmModal(false));
-    }
-    if (userInfo && userInfo.newPassword) {
-      dispatch(handleConfirmModal(false));
+    if (newEmail !== email) {
+      dispatch(fetchChangeUserEmail({ newEmail: newEmail, password: password }));
     }
     reset();
   };
@@ -84,9 +81,10 @@ export const ConfirmModal = ({ isOpen, userInfo }: ConfirmModalProps) => {
               required={true}
             />
             {errors.password && "This field is required."}
+            {errorMessage && <>{errorMessage}</>}
             <ButtonGroup position="center">
               <CancelButton type="reset">Clear</CancelButton>
-              <SubmitButton type="submit">Confirm</SubmitButton>
+              <SubmitButton type="submit">Confirm{isLoading && <LittleSpinner />}</SubmitButton>
             </ButtonGroup>
           </Form>
         </StyledModal>

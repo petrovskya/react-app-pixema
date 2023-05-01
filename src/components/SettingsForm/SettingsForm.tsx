@@ -8,10 +8,11 @@ import {
   SettingsInput,
   SubmitButton,
   ConfirmModal,
+  LittleSpinner,
 } from "components";
 import { useToggle } from "hooks";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
-import { handleConfirmModal } from "store/features";
+import { fetchChangeUserName, fetchChangePassword, handleConfirmModal } from "store/features";
 import { SettingsFormValues } from "types";
 import { FormTitle } from "ui";
 
@@ -25,14 +26,14 @@ import {
   StyledSwitch,
 } from "./styles";
 
-import {} from "components/ConfirmModal/ConfirmModal";
-
 export const SettingsForm = () => {
   const { register, handleSubmit, reset } = useForm<SettingsFormValues>();
-  const { name, email, errorMessage, isOpenModal } = useAppSelector((state) => state.user);
+  const { name, email, errorMessage, isOpenModal, isPasswordChanged, isLoading } = useAppSelector(
+    (state) => state.user,
+  );
   const dispatch = UseAppDispatch();
 
-  const [newUserInfo, setNewUserInfo] = useState<SettingsFormValues>({} as SettingsFormValues);
+  const [newEmail, setNewEmail] = useState<string>(email);
 
   useEffect(() => {
     dispatch(handleConfirmModal(isOpenModal));
@@ -40,16 +41,28 @@ export const SettingsForm = () => {
 
   const [isChangePasswordMode, setChangeMode] = useToggle(false);
 
-  const onSubmitData: SubmitHandler<SettingsFormValues> = (data): any => {
-    setNewUserInfo(data);
-    dispatch(handleConfirmModal(true));
+  const onSubmitData: SubmitHandler<SettingsFormValues> = (formValues): any => {
+    if (formValues.password) {
+      dispatch(
+        fetchChangePassword({ password: formValues.password, newPassword: formValues.newPassword }),
+      );
+      reset();
+    } else {
+    }
+    if (formValues.name !== name) {
+      dispatch(fetchChangeUserName({ name: formValues.name }));
+    }
+    if (formValues.email !== email) {
+      setNewEmail(formValues.email);
+      dispatch(handleConfirmModal(true));
+    }
   };
 
   const handleCancel = () => reset();
 
   return (
     <StyledSettingsForm onSubmit={handleSubmit(onSubmitData)}>
-      <ConfirmModal isOpen={isOpenModal} userInfo={newUserInfo} />
+      <ConfirmModal isOpen={isOpenModal} newEmail={newEmail} />
       <SettingsFormField>
         <FormTitle>Profile</FormTitle>
         <SettingsFieldWrapper>
@@ -80,6 +93,7 @@ export const SettingsForm = () => {
         </FormTitle>
         {isChangePasswordMode && (
           <SettingsColumnFieldWrapper>
+            {isPasswordChanged && <p>Password changed successfully!</p>}
             <SettingsInput
               name="password"
               type="password"
@@ -104,6 +118,7 @@ export const SettingsForm = () => {
               required={true}
               title={"Confirm password"}
             />
+            {errorMessage && <span>{errorMessage}</span>}
           </SettingsColumnFieldWrapper>
         )}
       </SettingsFormField>
@@ -120,7 +135,7 @@ export const SettingsForm = () => {
         <CancelButton type="reset" onClick={handleCancel}>
           Cancel
         </CancelButton>
-        <SubmitButton type="submit">Save</SubmitButton>
+        <SubmitButton type="submit">Save {isLoading && <LittleSpinner />}</SubmitButton>
       </ButtonGroup>
     </StyledSettingsForm>
   );

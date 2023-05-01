@@ -36,6 +36,7 @@ export {
   fetchChangeUserEmail,
   fetchChangeUserName,
   handleConfirmModal,
+  fetchChangePassword,
 } from "./userSlice";
 
 export { setTheme } from "./themeSlice";

@@ -7,11 +7,12 @@ import {
   sendEmailVerification,
   signInWithEmailAndPassword,
   updateEmail,
+  updatePassword,
   updateProfile,
 } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 
-import { SettingsFormValues, SignInFormValues, SignUpFormValues } from "types";
+import { SignInFormValues, SignUpFormValues } from "types";
 import { getFirebaseErrorMessage } from "utils";
 import { auth } from "../../firebase";
 
@@ -24,10 +25,11 @@ interface UserState {
   uid: null | string;
   verificationStatus: boolean;
   isOpenModal: boolean;
+  isPasswordChanged: boolean;
 }
 
 export const fetchSignUpUser = createAsyncThunk<
-  Omit<UserState, "isLoading" | "errorMessage" | "isAuth" | "userTheme" | "isOpenModal">,
+  Pick<UserState, "email" | "name" | "verificationStatus" | "uid">,
   SignUpFormValues,
   { rejectValue: string }
 >(
@@ -41,7 +43,7 @@ export const fetchSignUpUser = createAsyncThunk<
       return {
         email: user.email as string,
         name: user.displayName as string,
-        uid: null,
+        uid: user.uid,
         verificationStatus: user.emailVerified,
       };
     } catch (error) {
@@ -52,7 +54,7 @@ export const fetchSignUpUser = createAsyncThunk<
 );
 
 export const fetchSignInUser = createAsyncThunk<
-  Pick<UserState, "email" | "name" | "verificationStatus">,
+  Pick<UserState, "email" | "name" | "verificationStatus" | "uid">,
   SignInFormValues,
   { rejectValue: string }
 >("user/fetchSignInUser", async ({ email, password }, { dispatch, rejectWithValue }) => {
@@ -84,6 +86,7 @@ export const fetchChangeUserEmail = createAsyncThunk<
       await updateEmail(user, newEmail);
       await sendEmailVerification(user);
       dispatch(setVerificationStatus(user.emailVerified));
+      dispatch(handleConfirmModal(false));
     }
     return {
       email: auth.currentUser?.email as string,
@@ -101,10 +104,28 @@ export const fetchChangeUserName = createAsyncThunk<
 >("user/fetchChangeUserName", async ({ name }, { dispatch, rejectWithValue }) => {
   try {
     await updateProfile(auth.currentUser as User, { displayName: name });
-
+    dispatch(handleConfirmModal(false));
     return {
       name: auth.currentUser?.displayName as string,
     };
+  } catch (error) {
+    const firebaseError = error as FirebaseError;
+    return rejectWithValue(getFirebaseErrorMessage(firebaseError.code));
+  }
+});
+
+export const fetchChangePassword = createAsyncThunk<
+  void,
+  { password: string; newPassword: string },
+  { rejectValue: string }
+>("user/fetchChangePassword", async ({ password, newPassword }, { dispatch, rejectWithValue }) => {
+  try {
+    const user = auth.currentUser as User;
+    if (user) {
+      const credential = EmailAuthProvider.credential(user.email as string, password);
+      await reauthenticateWithCredential(user, credential);
+      await updatePassword(user, newPassword);
+    }
   } catch (error) {
     const firebaseError = error as FirebaseError;
     return rejectWithValue(getFirebaseErrorMessage(firebaseError.code));
@@ -117,9 +138,10 @@ const initialState: UserState = {
   isLoading: false,
   errorMessage: null,
   isAuth: false,
-  uid: "",
+  uid: null,
   verificationStatus: false,
   isOpenModal: false,
+  isPasswordChanged: false,
 };
 
 const userSlice = createSlice({
@@ -154,6 +176,7 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.isAuth = true;
       state.name = payload.name;
+      state.uid = payload.uid;
     });
     builder.addCase(fetchSignUpUser.rejected, (state, { payload }) => {
       if (payload) {
@@ -169,6 +192,7 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.isAuth = true;
       state.name = payload.name;
+      state.uid = payload.uid;
     });
     builder.addCase(fetchSignInUser.rejected, (state, { payload }) => {
       if (payload) {
@@ -199,6 +223,20 @@ const userSlice = createSlice({
       state.name = payload.name;
     });
     builder.addCase(fetchChangeUserName.rejected, (state, { payload }) => {
+      if (payload) {
+        state.isLoading = false;
+        state.errorMessage = payload;
+      }
+    });
+    builder.addCase(fetchChangePassword.pending, (state) => {
+      state.isLoading = true;
+      state.errorMessage = null;
+    });
+    builder.addCase(fetchChangePassword.fulfilled, (state) => {
+      state.isLoading = false;
+      state.isPasswordChanged = true;
+    });
+    builder.addCase(fetchChangePassword.rejected, (state, { payload }) => {
       if (payload) {
         state.isLoading = false;
         state.errorMessage = payload;
