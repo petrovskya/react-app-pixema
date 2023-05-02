@@ -1,17 +1,20 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { confirmPasswordReset } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
-import { Button, ErrorMessage, Input, LittleSpinner } from "components";
+import { Button, Input, LittleSpinner } from "components";
 import { SignFormValues } from "types";
-
-import { StyledResetPasswordForm } from "./styles";
-import { auth } from "../../firebase";
-import { Url } from "url";
-import { useLocation, useNavigate } from "react-router-dom";
-import { ROUTE } from "router";
-import { LocationQuery } from "pages/ResetPasswordPage";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { fetchConfirmResetPassword } from "store/features";
+
+import { StyledResetPasswordForm } from "./styles";
+
+import { ROUTE } from "router";
+
+export interface LocationQuery {
+  mode: string;
+  oobCode: string;
+  continueUrl: string;
+}
 
 interface ResetPasswordFormProps {
   query: LocationQuery;
@@ -21,7 +24,6 @@ export const ResetPasswordForm = ({ query }: ResetPasswordFormProps) => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<SignFormValues>();
   const dispatch = UseAppDispatch();

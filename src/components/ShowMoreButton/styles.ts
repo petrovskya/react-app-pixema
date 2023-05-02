@@ -7,7 +7,7 @@ export const StyledShowMoreButton = styled.button`
   gap: 5px;
   width: 161px;
   padding: 8px 24px;
-  margin: 0 auto;
+  margin: 40px auto;
   background-color: ${Color.GRAPHITE};
   border-radius: 40px;
   font-family: inherit;

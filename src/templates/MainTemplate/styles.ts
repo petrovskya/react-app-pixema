@@ -5,7 +5,6 @@ import { Color, Media } from "ui";
 const StyledMainTemplate = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 56px;
   max-width: 100vw;
   min-height: 100vh;
   padding: 40px 62px 64px;
@@ -26,7 +25,7 @@ const Aside = styled.div`
 
 const AsideMenu = styled.div`
   position: fixed;
-  top: 104px;
+  top: 90px;
 `;
 
 const Text = styled.span`
@@ -61,7 +60,7 @@ const StyledWrap = styled.div`
   align-items: center;
   gap: 40px;
   max-width: 100%;
-  padding: 56px 0;
+  padding: 40px 0;
   margin-left: 146px;
   ${Media.LAPTOP_M} {
     margin-left: 78px;
@@ -91,13 +90,14 @@ const StyledSearchInput = styled.input`
 
 const Main = styled.div`
   display: grid;
-  gap: 20px;
+  /* gap: 20px; */
   margin-left: 307px;
-  margin-top: 90px;
+  margin-top: 110px;
+
   ${Media.LAPTOP_M} {
     margin-top: 90px;
     margin-left: 0;
-    gap: 56px;
+    gap: 20px;
   }
   ${Media.TABLET} {
     margin-top: 150px;
@@ -107,6 +107,10 @@ const Main = styled.div`
 const BadgeGroup = styled.div`
   display: flex;
   gap: 20px;
+  ${Media.MOBILE_M} {
+    display: grid;
+    place-items: center;
+  }
 `;
 
 export {

@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { AddFavoriteButton, MovieInfo, Poster, Spinner, ErrorMessage } from "components";
 import { fetchFullMovie } from "store/features";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { useWindowSize } from "hooks";
-import { IMDBIcon, FavoritesIcon } from "assets";
+import { IMDBIcon, FavoritesIcon, ArrowLeftIcon } from "assets";
 import {
   Badge,
   CommonRating,
@@ -25,6 +25,7 @@ export const MoviePage = () => {
   const { isLoading, movie, error } = useAppSelector((state) => state.movie);
   const { imdbID } = useParams();
   const dispatch = UseAppDispatch();
+  const navigate = useNavigate();
   const {
     poster,
     title,
@@ -47,6 +48,7 @@ export const MoviePage = () => {
   }, [dispatch, imdbID]);
   return (
     <StyledOutlet>
+      <ArrowLeftIcon onClick={() => navigate(-1)} />
       {isLoading && <Spinner />}
       {error && <ErrorMessage error={error} />}
       {!isLoading && (

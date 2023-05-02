@@ -5,7 +5,6 @@ import { Color, Media } from "ui";
 export const StyledCancelButton = styled.button`
   width: 30%;
   padding: 16px 0;
-  margin-top: 20px;
   border-radius: 10px;
   background: ${Color.SECONDARY};
   font-family: inherit;
@@ -23,5 +22,8 @@ export const StyledCancelButton = styled.button`
 
   ${Media.LAPTOP_S} {
     width: 50%;
+  }
+  ${Media.TABLET} {
+    width: 80%;
   }
 `;

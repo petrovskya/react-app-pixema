@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Color } from "ui";
+import { Color, Media } from "ui";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -18,21 +18,31 @@ const StyledModal = styled.div`
 const FilterForm = styled.form`
   z-index: 4;
   display: grid;
-  align-content: center;
   gap: 20px;
-  width: 518px;
+  width: 30%;
+  margin: 0 auto;
   padding: 48px 40px;
   background-color: ${Color.DARK};
-  border: 5px solid ${Color.PRIMARY};
+  border: 4px solid ${Color.PRIMARY};
   border-radius: 16px;
+  ${Media.LAPTOP_L} {
+    width: 40%;
+  }
+  ${Media.LAPTOP_S} {
+    width: 50%;
+  }
+  ${Media.TABLET} {
+    width: 85%;
+    padding: 28px 20px;
+  }
 `;
 
 const FormHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
-  border-bottom: 4px solid ${Color.SECONDARY};
+  margin-bottom: 20px;
+  border-bottom: 2px solid ${Color.SECONDARY};
 `;
 
 export { StyledModal, FilterForm, FormHeader };

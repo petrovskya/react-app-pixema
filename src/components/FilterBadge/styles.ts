@@ -10,7 +10,7 @@ export const StyledFilterBadge = styled.button`
   gap: 10px;
   width: 153px;
   height: 40px;
-
+  margin-bottom: 20px;
   background: ${Color.GRAPHITE};
   border-radius: 40px;
   font-family: inherit;

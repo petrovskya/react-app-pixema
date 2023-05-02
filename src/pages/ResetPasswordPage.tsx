@@ -1,42 +1,56 @@
-import { ConfirmEmailForm, ResetPasswordForm } from "components";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { Location, useLocation, useNavigate } from "react-router-dom";
+import { ConfirmEmailForm } from "components";
+
 import { ROUTE } from "router";
 import { useAppSelector } from "store/hooks";
 import { FormText, FormTitle, FormWrapper } from "ui";
 
-export interface LocationQuery {
-  mode: string;
-  oobCode: string;
-  continueUrl: string;
-}
 export const ResetPasswordPage = () => {
   const { isAuth, isResetEmailSent } = useAppSelector((state) => state.user);
-  const location = useLocation();
-
-  const useQuery = (location: Location): LocationQuery => {
-    const parameters = new URLSearchParams(location.search);
-    const mode = parameters.get("mode");
-    const oobCode = parameters.get("oobCode");
-    const continueUrl = parameters.get("continueUrl");
-    return {
-      mode: mode as string,
-      oobCode: oobCode as string,
-      continueUrl: continueUrl as string,
-    };
-  };
-
-  const query = useQuery(location);
-  const isRequested = query.mode;
+  const [isShowMessage, setShowMessage] = useState<boolean>(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isResetEmailSent) {
+      setShowMessage(true);
+      setTimeout(() => {
+        navigate(ROUTE.SIGN_IN);
+      }, 5000);
+    }
+  }, [isResetEmailSent, navigate]);
+
   useEffect(() => {
     isAuth && navigate(ROUTE.HOME);
   }, [isAuth, navigate]);
 
+  // const location = useLocation();
+
+  // const useQuery = (location: Location): LocationQuery => {
+  //   const parameters = new URLSearchParams(location.search);
+  //   const mode = parameters.get("mode");
+  //   const oobCode = parameters.get("oobCode");
+  //   const continueUrl = parameters.get("continueUrl");
+  //   return {
+  //     mode: mode as string,
+  //     oobCode: oobCode as string,
+  //     continueUrl: continueUrl as string,
+  //   };
+  // };
+
+  // const query = useQuery(location);
+  // const isRequested = query.mode;
+
   return (
     <FormWrapper>
-      {isRequested || isResetEmailSent ? (
+      {isShowMessage && (
+        <FormText>You will receive an email with a link to reset your password! </FormText>
+      )}
+      <FormTitle>Reset password</FormTitle>
+      <ConfirmEmailForm />
+
+      {/* {isRequested || isResetEmailSent ? (
         <>
           <FormTitle>New password</FormTitle>
           <FormText>You will receive an email with a link to reset your password! </FormText>
@@ -47,7 +61,7 @@ export const ResetPasswordPage = () => {
           <FormTitle>Reset password</FormTitle>
           <ConfirmEmailForm />
         </>
-      )}
+      )} */}
     </FormWrapper>
   );
 };
