@@ -6,9 +6,9 @@ import { Button, Input, LittleSpinner } from "components";
 import { fetchSignInUser, setUserAuth } from "store/features";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { SignFormValues, SignInFormValues } from "types";
-import { Color } from "ui";
 
 import { StyledSignInForm } from "./styles";
+import { StyledLink } from "ui";
 
 export const SignInForm = () => {
   const {
@@ -52,9 +52,7 @@ export const SignInForm = () => {
         title={"Password"}
       />
       {errors.password && "This field is required."}
-      <Link to={ROUTE.RESET_PASSWORD} color={Color.SECONDARY}>
-        Forgot the password?
-      </Link>
+      <StyledLink to={ROUTE.RESET_PASSWORD}>Forgot the password?</StyledLink>
       <Button type="submit">{isLoading ? <LittleSpinner /> : <>Sign in</>}</Button>
       {errorMessage && <span>{errorMessage}</span>}
     </StyledSignInForm>

@@ -61,7 +61,7 @@ const StyledWrap = styled.div`
   gap: 40px;
   max-width: 100%;
   padding: 40px 0;
-  margin-left: 146px;
+  margin-left: 126px;
   ${Media.LAPTOP_M} {
     margin-left: 78px;
     padding: 32px 0;

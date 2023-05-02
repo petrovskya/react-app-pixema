@@ -10,7 +10,6 @@ import { StyledAuthTemplate } from "./styles";
 import { auth } from "../../firebase";
 
 export const AuthTemplate = () => {
-  const { isAuth } = useAppSelector((state) => state.user);
   const { theme } = useAppSelector((state) => state.theme);
 
   useEffect(() => {
@@ -30,7 +29,7 @@ export const AuthTemplate = () => {
 
   return (
     <StyledAuthTemplate>
-      <LogoLink />
+      <LogoLink fill={"#fff"} />
       <Outlet />
       <p style={{ color: "#fff" }}>© All Rights Reserved</p>
     </StyledAuthTemplate>

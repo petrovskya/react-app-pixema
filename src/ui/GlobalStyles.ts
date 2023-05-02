@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 
 import { Color, Media, themeColors } from "ui";
@@ -25,9 +26,6 @@ export const GlobalStyles = createGlobalStyle`
     &:active {
       color: ${Color.PRIMARY_LIGHT};
     }
-    /* &:visited {
-      color: ${Color.PRIMARY};
-    } */
   }
 `;
 
@@ -71,4 +69,11 @@ const FormText = styled.div`
   color: ${Color.WHITE};
 `;
 
-export { FormText, FormTitle, FormWrapper, CopyrightText };
+const StyledLink = styled(Link)`
+  color: ${Color.SECONDARY};
+  &:visited {
+    color: ${Color.SECONDARY};
+  }
+`;
+
+export { FormText, FormTitle, FormWrapper, CopyrightText, StyledLink };
