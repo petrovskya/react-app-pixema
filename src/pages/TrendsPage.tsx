@@ -13,6 +13,7 @@ import { StyledOutlet } from "ui";
 export const TrendsPage = () => {
   const { isLoading, isLoadingMore, trends, error, theme, page, searchTitle, searchYear } =
     useAppSelector((state) => state.trends);
+  const { favorites } = useAppSelector((state) => state.favorites);
 
   const dispatch = UseAppDispatch();
 
@@ -31,7 +32,7 @@ export const TrendsPage = () => {
     if (searchYear !== "") {
       dispatch(fetchSearchTrends({ theme, searchYear }));
     }
-  }, [dispatch, searchYear]);
+  }, [dispatch, searchYear, favorites, trends.length, searchTitle, theme]);
 
   return isLoading ? (
     <Spinner />

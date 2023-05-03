@@ -1,3 +1,11 @@
+export { default as moviesReducer } from "./moviesSlice";
+export { default as trendsReducer } from "./trendsSlice";
+export { default as movieReducer } from "./movieSlice";
+export { default as userReducer } from "./userSlice";
+export { default as themeReducer } from "./themeSlice";
+export { default as filterReducer } from "./filterSlice";
+export { default as favoritesReducer } from "./favoritesSlice";
+
 export {
   fetchAllMovies,
   fetchSearchMovies,
@@ -9,6 +17,7 @@ export {
   setYearFilter,
   unsetTitleFilter,
   unsetYearFilter,
+  toggleFavorite,
 } from "./moviesSlice";
 
 export {
@@ -23,6 +32,7 @@ export {
   setYearFilterTrends,
   unsetTitleFilterTrends,
   unsetYearFilterTrends,
+  setFavorites,
 } from "./trendsSlice";
 
 export { fetchFullMovie } from "./movieSlice";
@@ -42,3 +52,5 @@ export {
 } from "./userSlice";
 
 export { setTheme } from "./themeSlice";
+
+export { addToFavorites, deleteFromFavorites } from "./favoritesSlice";

@@ -138,6 +138,10 @@ const moviesSlice = createSlice({
       state.searchYear = initialState.searchYear;
       localStorage.removeItem("searchYear");
     },
+    toggleFavorite: (state: MoviesState, { payload }) => {
+      const movie = state.movies.find(({ imdbID }) => imdbID === payload.imdbID);
+      movie && (movie.isFavorite = payload.isFavorite);
+    },
   },
   extraReducers(builder) {
     builder.addCase(fetchAllMovies.pending, (state) => {
@@ -211,6 +215,7 @@ export const {
   setYearFilter,
   unsetTitleFilter,
   unsetYearFilter,
+  toggleFavorite,
 } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

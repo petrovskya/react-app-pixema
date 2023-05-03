@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 
-import { filterTrends, transformShortMovies } from "mappers";
+import { filterTrends, findInFavorites, transformShortMovies } from "mappers";
 import { Movie } from "types";
 import { getRandomMoviesTheme } from "utils";
-import { getSearchTitle, getSearchYear } from "utils/localStorage";
+import { getFavoritesMovies, getSearchTitle, getSearchYear } from "utils/localStorage";
 
 interface TrendsState {
   trends: Movie[];
@@ -136,6 +136,15 @@ const trendsSlice = createSlice({
       state.searchYear = initialState.searchYear;
       localStorage.removeItem("searchYear");
     },
+    setFavorites: (state: TrendsState, { payload }) => {
+      if (findInFavorites(payload.imdbID, getFavoritesMovies())) {
+        const movieToAdd = state.trends.find(({ imdbID }) => imdbID === payload.imdbID);
+        movieToAdd && (movieToAdd.isFavorite = true);
+      } else {
+        const movieToDelete = state.trends.find(({ imdbID }) => imdbID === payload.imdbID);
+        movieToDelete && (movieToDelete.isFavorite = false);
+      }
+    },
   },
   extraReducers(builder) {
     builder.addCase(fetchTrendsMovies.pending, (state, { payload }) => {
@@ -209,5 +218,6 @@ export const {
   setYearFilterTrends,
   unsetTitleFilterTrends,
   unsetYearFilterTrends,
+  setFavorites,
 } = trendsSlice.actions;
 export default trendsSlice.reducer;

@@ -9,10 +9,10 @@ interface MoviesListProps {
   movies: Movie[];
 }
 
-export const MoviesList = memo(({ movies }: MoviesListProps) => (
+export const MoviesList = ({ movies }: MoviesListProps) => (
   <StyledMoviesList>
     {movies.map((movie): any => (
       <MovieCard movie={movie} key={movie.imdbID} />
     ))}
   </StyledMoviesList>
-));
+);

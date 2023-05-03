@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { AddFavoriteButton, MovieInfo, Poster, Spinner, ErrorMessage } from "components";
-import { fetchFullMovie } from "store/features";
+import { addToFavorites, deleteFromFavorites, fetchFullMovie } from "store/features";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
-import { useWindowSize } from "hooks";
+import { useToggle, useWindowSize } from "hooks";
 import { IMDBIcon, FavoritesIcon, ArrowLeftIcon } from "assets";
 import {
   Badge,
@@ -19,10 +19,12 @@ import {
   Runtime,
   StyledOutlet,
 } from "ui";
+import { findInFavorites } from "mappers";
 
 export const MoviePage = () => {
   const { width } = useWindowSize();
   const { isLoading, movie, error } = useAppSelector((state) => state.movie);
+  const { favorites } = useAppSelector((state) => state.favorites);
   const { imdbID } = useParams();
   const dispatch = UseAppDispatch();
   const navigate = useNavigate();
@@ -41,11 +43,28 @@ export const MoviePage = () => {
     actors,
     director,
     writer,
+    type,
   } = movie;
+
+  const [isFavorite, setFavorite] = useToggle(findInFavorites(imdbID as string, favorites));
+
+  const handleClick = () => {
+    const addedMovie = {
+      poster: poster,
+      title: title,
+      type: type,
+      year: year,
+      imdbID: imdbID,
+      isFavorite: true,
+    };
+    isFavorite ? dispatch(deleteFromFavorites(imdbID)) : dispatch(addToFavorites(addedMovie));
+    setFavorite();
+  };
 
   useEffect(() => {
     imdbID && dispatch(fetchFullMovie({ imdbID }));
   }, [dispatch, imdbID]);
+
   return (
     <StyledOutlet>
       <ArrowLeftIcon onClick={() => navigate(-1)} />
@@ -56,7 +75,11 @@ export const MoviePage = () => {
           {width && width >= 768 && (
             <MoviePresentation>
               <Poster src={poster} alt={title} />
-              <AddFavoriteButton component={FavoritesIcon} />
+              <AddFavoriteButton
+                $isFavorite={isFavorite}
+                component={FavoritesIcon}
+                onClick={handleClick}
+              />
             </MoviePresentation>
           )}
           <MovieDescription>
@@ -65,7 +88,11 @@ export const MoviePage = () => {
             {width && width < 768 && (
               <MoviePresentation>
                 <Poster src={poster} alt={title} />
-                <AddFavoriteButton component={FavoritesIcon} />
+                <AddFavoriteButton
+                  $isFavorite={isFavorite}
+                  component={FavoritesIcon}
+                  onClick={handleClick}
+                />
               </MoviePresentation>
             )}
             <Badge>

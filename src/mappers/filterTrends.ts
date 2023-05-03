@@ -1,4 +1,7 @@
 import { MoviesApi, Movie } from "types";
+import { getFavoritesMovies } from "utils/localStorage";
+
+import { findInFavorites } from "./findInFavorites";
 
 export const filterTrends = (movies: MoviesApi, year: string): Movie[] => {
   const filteredMovies = movies.Search.filter(({ Year }) => Year === year);
@@ -8,5 +11,6 @@ export const filterTrends = (movies: MoviesApi, year: string): Movie[] => {
     type: Type,
     year: Year,
     imdbID: imdbID,
+    isFavorite: findInFavorites(imdbID, getFavoritesMovies()),
   }));
 };

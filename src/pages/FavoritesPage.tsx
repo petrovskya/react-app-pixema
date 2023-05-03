@@ -11,9 +11,9 @@ import { setUserAuth } from "store/features";
 import { auth } from "./../firebase";
 
 export const FavoritesPage = () => {
-  const favorites = null;
-  const dispatch = UseAppDispatch();
   const { isAuth, verificationStatus } = useAppSelector((state) => state.user);
+  const { favorites } = useAppSelector((state) => state.favorites);
+  const dispatch = UseAppDispatch();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user: any) => {
@@ -29,8 +29,8 @@ export const FavoritesPage = () => {
       {/* {isLoading && <Spinner />}
     {isLoading && <Spinner />}
     {error && <ErrorMessage error={error} />} */}
-      {verificationStatus && !favorites && <ErrorMessage error={"No films"} />}
-      {verificationStatus && favorites && <MoviesList movies={favorites} />}
+      {verificationStatus && !favorites.length && <ErrorMessage error={"No films"} />}
+      {verificationStatus && favorites.length && <MoviesList movies={favorites} />}
       {/* {(verificationStatus &&  && <ShowMoreButton type="button" onClick={handleChange} />} */}
     </StyledOutlet>
   ) : (

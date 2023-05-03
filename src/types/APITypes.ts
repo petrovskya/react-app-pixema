@@ -79,6 +79,7 @@ interface Movie {
   type: string;
   year: string;
   imdbID: string;
+  isFavorite: boolean;
 }
 
 export type { FullMovieAPI, Movie, MoviesApi, MovieApi, FullMovie };

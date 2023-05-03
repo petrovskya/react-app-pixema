@@ -5,11 +5,13 @@ import { StyledAddFavoriteButton } from "./styles";
 
 interface AddFavoriteButtonProps {
   component: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  onClick: () => void;
+  $isFavorite: boolean;
 }
 
-export const AddFavoriteButton = ({ component }: AddFavoriteButtonProps) => (
-  <StyledAddFavoriteButton>
+export const AddFavoriteButton = ({ component, onClick, $isFavorite }: AddFavoriteButtonProps) => (
+  <StyledAddFavoriteButton $isFavorite={$isFavorite} onClick={onClick}>
     <SvgIcon component={component} inheritViewBox />
-    Add to favorites
+    {$isFavorite ? <>Delete from favorites</> : <>Add to favorites</>}
   </StyledAddFavoriteButton>
 );
