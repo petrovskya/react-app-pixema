@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 
 import { setUserAuth, unsetUserAuth } from "store/features";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
+import { getTheme } from "store/selectors";
 import { onAuthStateChanged } from "firebase/auth";
 import { LogoLink } from "components";
 
@@ -10,7 +11,7 @@ import { StyledAuthTemplate } from "./styles";
 import { auth } from "../../firebase";
 
 export const AuthTemplate = () => {
-  const { theme } = useAppSelector((state) => state.theme);
+  const { theme } = useAppSelector(getTheme);
 
   useEffect(() => {
     document.documentElement.setAttribute("theme", theme);

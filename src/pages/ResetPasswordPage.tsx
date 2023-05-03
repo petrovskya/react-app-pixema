@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ConfirmEmailForm } from "components";
-
 import { ROUTE } from "router";
 import { useAppSelector } from "store/hooks";
+import { getUser } from "store/selectors";
 import { FormText, FormTitle, FormWrapper } from "ui";
 
 export const ResetPasswordPage = () => {
-  const { isAuth, isResetEmailSent } = useAppSelector((state) => state.user);
+  const { isAuth, isResetEmailSent } = useAppSelector(getUser);
   const [isShowMessage, setShowMessage] = useState<boolean>(false);
   const navigate = useNavigate();
 

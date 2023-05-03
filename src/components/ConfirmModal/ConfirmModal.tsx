@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { UseAppDispatch, useAppSelector } from "store/hooks";
-import { fetchChangeUserEmail, fetchChangeUserName, handleConfirmModal } from "store/features";
+import { getUser } from "store/selectors";
+import { fetchChangeUserEmail, handleConfirmModal } from "store/features";
 import {
   Button,
   ButtonGroup,
@@ -12,7 +13,6 @@ import {
   PortalTarget,
   LittleSpinner,
 } from "components";
-import { SettingsFormValues } from "types";
 import { Color, FormTitle } from "ui";
 import { CancelIcon } from "assets";
 
@@ -29,6 +29,7 @@ export interface ConfirmModalValues {
 }
 
 export const ConfirmModal = ({ isOpen, newEmail }: ConfirmModalProps) => {
+  const { email, isLoading, errorMessage } = useAppSelector(getUser);
   const dispatch = UseAppDispatch();
 
   const {
@@ -47,8 +48,6 @@ export const ConfirmModal = ({ isOpen, newEmail }: ConfirmModalProps) => {
       dispatch(handleConfirmModal(false));
     }
   };
-
-  const { email, isLoading, errorMessage } = useAppSelector((state) => state.user);
 
   const onSubmit: SubmitHandler<ConfirmModalValues> = ({ password }) => {
     if (newEmail !== email) {

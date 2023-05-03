@@ -12,6 +12,7 @@ import {
 } from "components";
 import { useToggle } from "hooks";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
+import { getUser } from "store/selectors";
 import { fetchChangeUserName, fetchChangePassword, handleConfirmModal } from "store/features";
 import { SettingsFormValues } from "types";
 import { FormTitle } from "ui";
@@ -27,13 +28,12 @@ import {
 } from "./styles";
 
 export const SettingsForm = () => {
-  const { register, handleSubmit, reset } = useForm<SettingsFormValues>();
-  const { name, email, errorMessage, isOpenModal, isPasswordChanged, isLoading } = useAppSelector(
-    (state) => state.user,
-  );
-  const dispatch = UseAppDispatch();
-
+  const { name, email, errorMessage, isOpenModal, isPasswordChanged, isLoading } =
+    useAppSelector(getUser);
   const [newEmail, setNewEmail] = useState<string>(email);
+  const { register, handleSubmit, reset } = useForm<SettingsFormValues>();
+
+  const dispatch = UseAppDispatch();
 
   useEffect(() => {
     dispatch(handleConfirmModal(isOpenModal));

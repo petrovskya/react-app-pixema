@@ -1,16 +1,18 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { ROUTE } from "router";
 import { Button, Input, LittleSpinner } from "components";
 import { fetchSignInUser, setUserAuth } from "store/features";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { SignFormValues, SignInFormValues } from "types";
+import { getUser } from "store/selectors";
 
 import { StyledSignInForm } from "./styles";
 import { StyledLink } from "ui";
 
 export const SignInForm = () => {
+  const { isLoading, errorMessage } = useAppSelector(getUser);
   const {
     register,
     handleSubmit,
@@ -20,7 +22,6 @@ export const SignInForm = () => {
 
   const dispatch = UseAppDispatch();
   const navigate = useNavigate();
-  const { isLoading, errorMessage } = useAppSelector((state) => state.user);
 
   const onSubmit: SubmitHandler<SignInFormValues> = async (signUpFormValues) => {
     await dispatch(fetchSignInUser(signUpFormValues))
@@ -28,8 +29,8 @@ export const SignInForm = () => {
       .then((user) => {
         dispatch(setUserAuth(user));
       });
-    await reset();
-    await navigate(ROUTE.HOME);
+    reset();
+    navigate(ROUTE.HOME);
   };
 
   return (

@@ -5,10 +5,10 @@ import { Button, Input, LittleSpinner } from "components";
 import { SignFormValues } from "types";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { fetchConfirmResetPassword } from "store/features";
+import { ROUTE } from "router";
+import { getUser } from "store/selectors";
 
 import { StyledResetPasswordForm } from "./styles";
-
-import { ROUTE } from "router";
 
 export interface LocationQuery {
   mode: string;
@@ -21,21 +21,20 @@ interface ResetPasswordFormProps {
 }
 
 export const ResetPasswordForm = ({ query }: ResetPasswordFormProps) => {
+  const { isLoading, errorMessage } = useAppSelector(getUser);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<SignFormValues>();
   const dispatch = UseAppDispatch();
-
   const navigate = useNavigate();
+
   const onSubmit: SubmitHandler<SignFormValues> = ({ password }): any => {
     dispatch(fetchConfirmResetPassword({ oobCode: query.oobCode, password: password })).then(() => {
       navigate(ROUTE.SIGN_IN);
     });
   };
-
-  const { isLoading, errorMessage } = useAppSelector((state) => state.user);
 
   return (
     <StyledResetPasswordForm onSubmit={handleSubmit(onSubmit)}>

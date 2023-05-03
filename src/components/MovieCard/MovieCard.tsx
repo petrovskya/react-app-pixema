@@ -5,6 +5,7 @@ import { MovieLink, Poster } from "components";
 import { ROUTE } from "router";
 import { Movie } from "types";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
+import { getUser } from "store/selectors";
 import { addToFavorites, deleteFromFavorites, setFavorites, toggleFavorite } from "store/features";
 
 import {
@@ -20,8 +21,8 @@ interface MovieCardProps {
 }
 
 export const MovieCard = memo(
-  ({ movie: { poster, title, type, year, imdbID, isFavorite }, movie }: MovieCardProps) => {
-    const { isAuth } = useAppSelector((state) => state.user);
+  ({ movie: { poster, title, year, imdbID, isFavorite }, movie }: MovieCardProps) => {
+    const { isAuth } = useAppSelector(getUser);
     const dispatch = UseAppDispatch();
     const navigate = useNavigate();
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

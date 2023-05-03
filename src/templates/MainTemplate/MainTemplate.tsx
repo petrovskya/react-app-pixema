@@ -16,6 +16,7 @@ import {
 import { LogoIcon } from "assets";
 import { ROUTE } from "router";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
+import { getMovies, getTheme, getUser } from "store/selectors";
 import {
   setSearchTitle,
   setSearchTitleTrends,
@@ -42,26 +43,45 @@ import {
 } from "./styles";
 
 export const MainTemplate = memo(() => {
-  const { theme } = useAppSelector((state) => state.theme);
-  useEffect(() => {
-    document.documentElement.setAttribute("theme", theme);
-  }, [theme]);
-  const { isAuth, name } = useAppSelector((state) => state.user);
+  const { theme } = useAppSelector(getTheme);
+  const { isAuth, name } = useAppSelector(getUser);
+  const { searchTitle, searchYear } = useAppSelector(getMovies);
   const [isOpen, toggleModal] = useToggle();
-
+  const [isFiltered, setFiltered] = useState<boolean>(false);
+  const [isMenuOpen, toggleMenu] = useToggle();
+  const [user, loading] = useAuthState(auth);
   const dispatch = UseAppDispatch();
   const searchValue = useInput();
   const debouncedValue = useDebounce(searchValue.value, 1000);
-  const { searchTitle, searchYear } = useAppSelector((state) => state.movies);
 
-  const [isFiltered, setFiltered] = useState<boolean>(false);
-
-  const [isMenuOpen, toggleMenu] = useToggle();
   const { width = 0 } = useWindowSize();
   const isMobile = width < 768;
   const isDesktop = width > 1280;
   const isLaptop = width <= 1280;
   const isTablet = width >= 768;
+
+  const handleClick = () => {
+    auth.signOut();
+    dispatch(unsetUserAuth());
+  };
+
+  const resetTitleFilter = () => {
+    dispatch(unsetTitleFilter());
+    dispatch(unsetYearFilter());
+    dispatch(unsetYearFilterTrends());
+    dispatch(unsetTitleFilterTrends());
+    dispatch(setSearchTitle(""));
+  };
+
+  const resetYearFilter = () => {
+    dispatch(unsetYearFilter());
+    dispatch(unsetYearFilterTrends());
+    dispatch(setSearchTitle(""));
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute("theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     searchTitle || searchYear ? setFiltered(true) : setFiltered(false);
@@ -84,27 +104,6 @@ export const MainTemplate = memo(() => {
       }
     });
   }, [dispatch]);
-
-  const handleClick = () => {
-    auth.signOut();
-    dispatch(unsetUserAuth());
-  };
-
-  const resetTitleFilter = () => {
-    dispatch(unsetTitleFilter());
-    dispatch(unsetYearFilter());
-    dispatch(unsetYearFilterTrends());
-    dispatch(unsetTitleFilterTrends());
-    dispatch(setSearchTitle(""));
-  };
-
-  const resetYearFilter = () => {
-    dispatch(unsetYearFilter());
-    dispatch(unsetYearFilterTrends());
-    dispatch(setSearchTitle(""));
-  };
-
-  const [user, loading] = useAuthState(auth);
 
   return (
     <StyledMainTemplate>

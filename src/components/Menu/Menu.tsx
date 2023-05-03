@@ -3,6 +3,7 @@ import { CustomLink, UserInfo } from "components";
 import { BookmarkIcon, FireIcon, HomeIcon, SubtractIcon } from "assets";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { unsetUserAuth } from "store/features";
+import { getUser } from "store/selectors";
 
 import { auth } from "../../firebase";
 import { StyledMenu } from "./styled";
@@ -21,7 +22,7 @@ const menuVariants = {
 
 export const Menu = ({ isOpen, handleClose, isLaptop }: MenuProps) => {
   const currentVariant = isLaptop ? (isOpen ? "open" : "closed") : "idle";
-  const { isAuth, name } = useAppSelector((state) => state.user);
+  const { isAuth, name } = useAppSelector(getUser);
   const dispatch = UseAppDispatch();
 
   const handleClick = () => {

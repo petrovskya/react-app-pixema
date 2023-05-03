@@ -1,6 +1,7 @@
 import { useLayoutEffect } from "react";
 
-import { UseAppDispatch, useAppSelector } from "store/hooks/hooks";
+import { UseAppDispatch, useAppSelector } from "store/hooks";
+import { getFavorites, getTrends } from "store/selectors";
 import {
   fetchNextTrendsPage,
   fetchSearchNextTrendsPage,
@@ -12,8 +13,8 @@ import { StyledOutlet } from "ui";
 
 export const TrendsPage = () => {
   const { isLoading, isLoadingMore, trends, error, theme, page, searchTitle, searchYear } =
-    useAppSelector((state) => state.trends);
-  const { favorites } = useAppSelector((state) => state.favorites);
+    useAppSelector(getTrends);
+  const { favorites } = useAppSelector(getFavorites);
 
   const dispatch = UseAppDispatch();
 

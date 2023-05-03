@@ -3,10 +3,11 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTE } from "router";
 import { useAppSelector } from "store/hooks";
+import { getUser } from "store/selectors";
 import { Color, FormText, FormTitle, FormWrapper } from "ui";
 
 export const SignInPage = () => {
-  const { isAuth } = useAppSelector((state) => state.user);
+  const { isAuth } = useAppSelector(getUser);
   const navigate = useNavigate();
 
   useEffect(() => {

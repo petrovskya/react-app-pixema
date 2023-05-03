@@ -1,19 +1,19 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 
 import { UseAppDispatch, useAppSelector } from "store/hooks";
+import { getMovies } from "store/selectors";
 import {
   fetchAllMovies,
   fetchSearchMovies,
   fetchSearchNextPage,
   fetchNextMoviesPage,
 } from "store/features";
-
 import { LittleSpinner, MoviesList, ShowMoreButton, Spinner, ErrorMessage } from "components";
 import { StyledOutlet } from "ui";
 
 export const HomePage = () => {
   const { isLoading, isLoadingMore, movies, error, theme, page, searchTitle, searchYear } =
-    useAppSelector((state) => state.movies);
+    useAppSelector(getMovies);
 
   const dispatch = UseAppDispatch();
 

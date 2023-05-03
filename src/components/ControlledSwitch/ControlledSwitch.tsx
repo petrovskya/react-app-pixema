@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 
 import { setTheme } from "store/features";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
+import { getTheme } from "store/selectors";
 
 import { StyledSwitch } from "./styles";
 
 export const ControlledSwitch = () => {
+  const { theme } = useAppSelector(getTheme);
   const [checked, setChecked] = useState(true);
-  const { theme } = useAppSelector((state) => state.theme);
   const dispatch = UseAppDispatch();
 
   useEffect(() => {

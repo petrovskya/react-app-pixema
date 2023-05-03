@@ -5,11 +5,13 @@ import { Button, Input, LittleSpinner } from "components";
 import { SignUpFormValues } from "types";
 import { fetchSignUpUser, setUserAuth } from "store/features";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
+import { getUser } from "store/selectors";
 import { ROUTE } from "router";
 
 import { StyledSignUpForm } from "./styles";
 
 export const SignUpForm = () => {
+  const { isLoading, errorMessage } = useAppSelector(getUser);
   const {
     register,
     handleSubmit,
@@ -18,15 +20,15 @@ export const SignUpForm = () => {
   } = useForm<SignUpFormValues>();
   const dispatch = UseAppDispatch();
   const navigate = useNavigate();
-  const { isLoading, errorMessage } = useAppSelector((state) => state.user);
+
   const onSubmit: SubmitHandler<SignUpFormValues> = async (signUpFormValues) => {
     await dispatch(fetchSignUpUser(signUpFormValues))
       .unwrap()
       .then((user) => {
         dispatch(setUserAuth(user));
       });
-    await reset();
-    await navigate(ROUTE.HOME);
+    reset();
+    navigate(ROUTE.HOME);
   };
 
   return (

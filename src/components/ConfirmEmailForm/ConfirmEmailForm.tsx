@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import { Button, LittleSpinner } from "components";
 import { SignFormValues } from "types";
-
+import { getUser } from "store/selectors";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { fetchSentResetPasswordEmail } from "store/features";
 
@@ -10,7 +10,7 @@ import { StyledConfirmEmailForm } from "./styles";
 import { ConfirmEmailInput } from "./ConfirmEmailInput";
 
 export const ConfirmEmailForm = () => {
-  const { isLoading, errorMessage } = useAppSelector((state) => state.user);
+  const { isLoading, errorMessage } = useAppSelector(getUser);
 
   const {
     register,

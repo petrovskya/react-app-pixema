@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { AddFavoriteButton, MovieInfo, Poster, Spinner, ErrorMessage } from "components";
 import { addToFavorites, deleteFromFavorites, fetchFullMovie } from "store/features";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
+import { getFavorites, getMovie } from "store/selectors";
 import { useToggle, useWindowSize } from "hooks";
 import { IMDBIcon, FavoritesIcon, ArrowLeftIcon } from "assets";
 import {
@@ -23,9 +24,11 @@ import { findInFavorites } from "mappers";
 
 export const MoviePage = () => {
   const { width } = useWindowSize();
-  const { isLoading, movie, error } = useAppSelector((state) => state.movie);
-  const { favorites } = useAppSelector((state) => state.favorites);
+  const { isLoading, movie, error } = useAppSelector(getMovie);
+  const { favorites } = useAppSelector(getFavorites);
   const { imdbID } = useParams();
+  const [isFavorite, setFavorite] = useToggle(findInFavorites(imdbID as string, favorites));
+
   const dispatch = UseAppDispatch();
   const navigate = useNavigate();
   const {
@@ -45,8 +48,6 @@ export const MoviePage = () => {
     writer,
     type,
   } = movie;
-
-  const [isFavorite, setFavorite] = useToggle(findInFavorites(imdbID as string, favorites));
 
   const handleClick = () => {
     const addedMovie = {
