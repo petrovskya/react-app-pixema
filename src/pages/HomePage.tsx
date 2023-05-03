@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { getMovies } from "store/selectors";
@@ -25,7 +25,7 @@ export const HomePage = () => {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!movies.length && !searchTitle && !searchYear) {
       dispatch(fetchAllMovies({ theme }));
     }
@@ -35,7 +35,7 @@ export const HomePage = () => {
     if (searchTitle === "") {
       dispatch(fetchAllMovies({ theme }));
     }
-  }, [dispatch, movies.length, searchTitle, searchYear, theme]);
+  }, [dispatch, searchTitle, searchYear, theme]);
 
   return isLoading ? (
     <Spinner />
