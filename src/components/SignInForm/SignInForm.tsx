@@ -7,9 +7,10 @@ import { fetchSignInUser, setUserAuth } from "store/features";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { SignFormValues, SignInFormValues } from "types";
 import { getUser } from "store/selectors";
+import { validateEmail, validatePassword } from "services";
+import { FormError, StyledLink } from "ui";
 
 import { StyledSignInForm } from "./styles";
-import { StyledLink } from "ui";
 
 export const SignInForm = () => {
   const { isLoading, errorMessage } = useAppSelector(getUser);
@@ -42,8 +43,9 @@ export const SignInForm = () => {
         register={register}
         required={true}
         title={"Email"}
+        error={errors.email?.message}
+        validateFunction={validateEmail}
       />
-      {errors.email && "This field is required."}
       <Input
         name="password"
         type="password"
@@ -51,11 +53,12 @@ export const SignInForm = () => {
         register={register}
         required={true}
         title={"Password"}
+        error={errors.password?.message}
+        validateFunction={validatePassword}
       />
-      {errors.password && "This field is required."}
       <StyledLink to={ROUTE.RESET_PASSWORD}>Forgot the password?</StyledLink>
       <Button type="submit">{isLoading ? <LittleSpinner /> : <>Sign in</>}</Button>
-      {errorMessage && <span>{errorMessage}</span>}
+      {errorMessage && <FormError>{errorMessage}</FormError>}
     </StyledSignInForm>
   );
 };

@@ -13,7 +13,8 @@ import {
   PortalTarget,
   LittleSpinner,
 } from "components";
-import { Color, FormTitle } from "ui";
+import { validatePassword } from "services";
+import { Color, FormError, FormTitle } from "ui";
 import { CancelIcon } from "assets";
 
 import { Form, FormHeader, StyledModal } from "./styles";
@@ -78,9 +79,10 @@ export const ConfirmModal = ({ isOpen, newEmail }: ConfirmModalProps) => {
               name="password"
               register={register}
               required={true}
+              error={errors.password?.message}
+              validateFunction={validatePassword}
             />
-            {errors.password && "This field is required."}
-            {errorMessage && <>{errorMessage}</>}
+            {errorMessage && <FormError>{errorMessage}</FormError>}
             <ButtonGroup position="center">
               <CancelButton type="reset">Clear</CancelButton>
               <SubmitButton type="submit">Confirm{isLoading && <LittleSpinner />}</SubmitButton>

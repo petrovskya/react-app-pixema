@@ -5,6 +5,8 @@ import { SignFormValues } from "types";
 import { getUser } from "store/selectors";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { fetchSentResetPasswordEmail } from "store/features";
+import { validateEmail } from "services";
+import { FormError } from "ui";
 
 import { StyledConfirmEmailForm } from "./styles";
 import { ConfirmEmailInput } from "./ConfirmEmailInput";
@@ -35,9 +37,10 @@ export const ConfirmEmailForm = () => {
         register={register}
         required={true}
         title={"Email"}
+        error={errors.email?.message}
+        validateFunction={validateEmail}
       />
-      {errors.email && "This field is required."}
-      {errorMessage && <>{errorMessage}</>}
+      {errorMessage && <FormError>{errorMessage}</FormError>}
       <Button type="submit">Reset {isLoading && <LittleSpinner />}</Button>
     </StyledConfirmEmailForm>
   );

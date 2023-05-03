@@ -24,6 +24,7 @@ import {
   PortalTarget,
 } from "components";
 import { FilterFormValues } from "types";
+import { validateTitle, validateYear } from "services";
 import { Color, FormTitle } from "ui";
 import { CancelIcon } from "assets";
 
@@ -90,8 +91,9 @@ export const FilterModal = ({ isOpen, toggleModal }: FilterModalProps) => {
                 name="title"
                 register={register}
                 required={true}
+                error={errors.title?.message}
+                validateFunction={validateTitle}
               />
-              {errors.title && "This field is required."}
               <FilterInput
                 title="Year"
                 placeholder="Enter year"
@@ -99,6 +101,8 @@ export const FilterModal = ({ isOpen, toggleModal }: FilterModalProps) => {
                 name="year"
                 register={register}
                 required={false}
+                error={errors.year?.message}
+                validateFunction={validateYear}
               />
               <ButtonGroup position="center">
                 <CancelButton type="reset">Clear filters</CancelButton>
@@ -120,7 +124,9 @@ export const FilterModal = ({ isOpen, toggleModal }: FilterModalProps) => {
                 type="text"
                 name="year"
                 register={register}
-                required={false}
+                required={true}
+                error={errors.year?.message}
+                validateFunction={validateYear}
               />
               <ButtonGroup position="center">
                 <CancelButton type="reset">Clear filters</CancelButton>

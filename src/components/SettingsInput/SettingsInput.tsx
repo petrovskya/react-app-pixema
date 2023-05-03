@@ -1,7 +1,8 @@
 import { HTMLInputTypeAttribute } from "react";
-import { UseFormRegister } from "react-hook-form";
+import { RegisterOptions, UseFormRegister } from "react-hook-form";
 
 import { SettingsFormValues } from "types";
+import { FormError } from "ui";
 
 import { InputWrapper, StyledSettingsInput } from "./styles";
 
@@ -13,28 +14,32 @@ export interface InputProps {
   required: boolean;
   title: string;
   defaultValue?: string | number | readonly string[] | undefined;
+  error: string | undefined;
+  validateFunction: () => RegisterOptions;
 }
 
 export const SettingsInput = ({
   register,
-  required,
   type,
   name,
   placeholder,
   title,
   defaultValue,
+  error,
+  validateFunction,
 }: InputProps) => {
+  const isValid = error ? false : true;
   return (
     <InputWrapper>
       <h3>{title}</h3>
       <StyledSettingsInput
         placeholder={placeholder}
         type={type}
-        {...register(name, {
-          required: required,
-        })}
+        {...register(name, validateFunction())}
         defaultValue={defaultValue}
+        $isValid={isValid}
       />
+      {error && <FormError>{error}</FormError>}
     </InputWrapper>
   );
 };

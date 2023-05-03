@@ -9,6 +9,6 @@ interface FilterButtonProps {
 
 export const FilterButton = ({ onClick }: FilterButtonProps) => (
   <StyledFilterButton onClick={onClick}>
-    <FilterIcon fill={Color.WHITE} />
+    <FilterIcon stroke={Color.WHITE} />
   </StyledFilterButton>
 );

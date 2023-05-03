@@ -20,7 +20,7 @@ const SettingsFieldWrapper = styled("div")`
   flex-direction: row-reverse;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 20px;
   padding: 40px;
   border-radius: 10px;

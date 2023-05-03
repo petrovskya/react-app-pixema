@@ -7,6 +7,8 @@ import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { fetchConfirmResetPassword } from "store/features";
 import { ROUTE } from "router";
 import { getUser } from "store/selectors";
+import { validateNewPassword } from "services";
+import { FormError } from "ui";
 
 import { StyledResetPasswordForm } from "./styles";
 
@@ -38,7 +40,7 @@ export const ResetPasswordForm = ({ query }: ResetPasswordFormProps) => {
 
   return (
     <StyledResetPasswordForm onSubmit={handleSubmit(onSubmit)}>
-      {errorMessage && <>{errorMessage}</>}
+      {errorMessage && <FormError>{errorMessage}</FormError>}
       <Input
         name="password"
         type="password"
@@ -46,8 +48,9 @@ export const ResetPasswordForm = ({ query }: ResetPasswordFormProps) => {
         register={register}
         required={true}
         title={"Password"}
+        error={errors.password?.message}
+        validateFunction={validateNewPassword}
       />
-      {errors.email && "This field is required."}
       <Input
         name="confirmPassword"
         type="password"
@@ -55,8 +58,9 @@ export const ResetPasswordForm = ({ query }: ResetPasswordFormProps) => {
         register={register}
         required={true}
         title={"Confirm password"}
+        error={errors.confirmPassword?.message}
+        validateFunction={validateNewPassword}
       />
-      {errors.password && "This field is required."}
       <Button type="submit">Set password {isLoading && <LittleSpinner />}</Button>
     </StyledResetPasswordForm>
   );

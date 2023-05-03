@@ -69,6 +69,14 @@ const FormText = styled.div`
   color: ${Color.WHITE};
 `;
 
+const FormError = styled.p`
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: ${Color.ERROR};
+`;
+
 const StyledLink = styled(Link)`
   color: ${Color.SECONDARY};
   &:visited {
@@ -76,4 +84,4 @@ const StyledLink = styled(Link)`
   }
 `;
 
-export { FormText, FormTitle, FormWrapper, CopyrightText, StyledLink };
+export { FormText, FormTitle, FormWrapper, CopyrightText, StyledLink, FormError };

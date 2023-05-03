@@ -8,6 +8,7 @@ export {
   FormWrapper,
   FormText,
   StyledLink,
+  FormError,
 } from "./GlobalStyles";
 export { StyledOutlet } from "./outletStyles";
 export { H1, H2, H3, S1, S2, S3, B1 } from "./typography";

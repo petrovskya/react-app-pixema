@@ -2,21 +2,24 @@ import styled from "styled-components";
 
 import { Color, Media } from "ui";
 
-const StyledSettingsInput = styled.input`
-  width: 100%;
-  padding: 16px 20px;
-  border-radius: 10px;
-  border: none;
-  font-family: inherit;
-  font-size: 16px;
-  font-weight: 500;
-  background-color: ${Color.GRAPHITE};
-  color: ${Color.WHITE};
-  &:focus {
-    outline-color: ${Color.PRIMARY};
-    border: 2px solid ${Color.PRIMARY};
-  }
-`;
+const StyledSettingsInput = styled.input<{ $isValid: boolean }>(({ $isValid }) => ({
+  width: "100%",
+  padding: "16px 20px",
+  borderRadius: "10px",
+  border: $isValid ? "none" : `2px solid ${Color.ERROR}`,
+  fontFamily: "inherit",
+  fontSize: " 16px",
+  fontWeight: 500,
+  backgroundColor: Color.GRAPHITE,
+
+  color: Color.WHITE,
+  outlineColor: $isValid ? "none" : Color.ERROR,
+
+  "&:focus": {
+    outlineColor: $isValid ? Color.PRIMARY : Color.ERROR,
+    border: $isValid ? `2px solid ${Color.PRIMARY}` : `2px solid ${Color.ERROR}`,
+  },
+}));
 
 const InputWrapper = styled.div`
   display: grid;

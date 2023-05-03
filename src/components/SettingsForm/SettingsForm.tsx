@@ -15,7 +15,8 @@ import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { getUser } from "store/selectors";
 import { fetchChangeUserName, fetchChangePassword, handleConfirmModal } from "store/features";
 import { SettingsFormValues } from "types";
-import { FormTitle } from "ui";
+import { FormTitle, FormError } from "ui";
+import { validateEmail, validateName, validateNewPassword, validatePassword } from "services";
 
 import {
   FormText,
@@ -31,7 +32,12 @@ export const SettingsForm = () => {
   const { name, email, errorMessage, isOpenModal, isPasswordChanged, isLoading } =
     useAppSelector(getUser);
   const [newEmail, setNewEmail] = useState<string>(email);
-  const { register, handleSubmit, reset } = useForm<SettingsFormValues>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<SettingsFormValues>();
 
   const dispatch = UseAppDispatch();
 
@@ -68,12 +74,14 @@ export const SettingsForm = () => {
         <SettingsFieldWrapper>
           <SettingsInput
             name="email"
-            type="email"
+            type="text"
             placeholder="Your email"
             defaultValue={email}
             register={register}
             required={true}
             title={"Email"}
+            error={errors.email?.message}
+            validateFunction={validateEmail}
           />
           <SettingsInput
             name="name"
@@ -83,8 +91,10 @@ export const SettingsForm = () => {
             register={register}
             required={true}
             title={"Name"}
+            error={errors.name?.message}
+            validateFunction={validateName}
           />
-          {errorMessage && <>{errorMessage}</>}
+          {errorMessage && <FormError>{errorMessage}</FormError>}
         </SettingsFieldWrapper>
       </SettingsFormField>
       <SettingsFormField>
@@ -93,7 +103,7 @@ export const SettingsForm = () => {
         </FormTitle>
         {isChangePasswordMode && (
           <SettingsColumnFieldWrapper>
-            {isPasswordChanged && <p>Password changed successfully!</p>}
+            {isPasswordChanged && <FormText>Password changed successfully!</FormText>}
             <SettingsInput
               name="password"
               type="password"
@@ -101,6 +111,8 @@ export const SettingsForm = () => {
               register={register}
               required={true}
               title={"Password"}
+              error={errors.password?.message}
+              validateFunction={validatePassword}
             />
             <SettingsInput
               name="newPassword"
@@ -109,6 +121,8 @@ export const SettingsForm = () => {
               register={register}
               required={true}
               title={"New password"}
+              error={errors.newPassword?.message}
+              validateFunction={validateNewPassword}
             />
             <SettingsInput
               name="confirmPassword"
@@ -117,8 +131,10 @@ export const SettingsForm = () => {
               register={register}
               required={true}
               title={"Confirm password"}
+              error={errors.newPassword?.message}
+              validateFunction={validateNewPassword}
             />
-            {errorMessage && <span>{errorMessage}</span>}
+            {errorMessage && <FormError>{errorMessage}</FormError>}
           </SettingsColumnFieldWrapper>
         )}
       </SettingsFormField>

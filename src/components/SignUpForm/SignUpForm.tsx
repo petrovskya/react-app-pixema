@@ -6,7 +6,9 @@ import { SignUpFormValues } from "types";
 import { fetchSignUpUser, setUserAuth } from "store/features";
 import { UseAppDispatch, useAppSelector } from "store/hooks";
 import { getUser } from "store/selectors";
+import { validateEmail, validateName, validateNewPassword } from "services";
 import { ROUTE } from "router";
+import { FormError } from "ui";
 
 import { StyledSignUpForm } from "./styles";
 
@@ -40,8 +42,9 @@ export const SignUpForm = () => {
         register={register}
         required={true}
         title={"Name"}
+        error={errors.name?.message}
+        validateFunction={validateName}
       />
-      {errors.name && "This field is required."}
       <Input
         name="email"
         type="text"
@@ -49,8 +52,9 @@ export const SignUpForm = () => {
         register={register}
         required={true}
         title={"Email"}
+        error={errors.email?.message}
+        validateFunction={validateEmail}
       />
-      {errors.email && "This field is required."}
       <Input
         name="password"
         type="password"
@@ -58,8 +62,9 @@ export const SignUpForm = () => {
         register={register}
         required={true}
         title={"Password"}
+        error={errors.password?.message}
+        validateFunction={validateNewPassword}
       />
-      {errors.password && "This field is required."}
       <Input
         name="confirmPassword"
         type="password"
@@ -67,10 +72,11 @@ export const SignUpForm = () => {
         register={register}
         required={true}
         title={"Confirm password"}
+        error={errors.confirmPassword?.message}
+        validateFunction={validateNewPassword}
       />
-      {errors.confirmPassword && "This field is required."}
       <Button type="submit"> {isLoading ? <LittleSpinner /> : <>Sign up</>}</Button>
-      {errorMessage && <span>{errorMessage}</span>}
+      {errorMessage && <FormError>{errorMessage}</FormError>}
     </StyledSignUpForm>
   );
 };
