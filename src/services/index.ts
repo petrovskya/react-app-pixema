@@ -5,4 +5,5 @@ export {
   validateYear,
   validateTitle,
   validateNewPassword,
+  comparePasswords,
 } from "./validateForm";

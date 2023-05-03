@@ -14,6 +14,7 @@ import {
 } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 
+import { comparePasswords } from "services";
 import { SignInFormValues, SignUpFormValues } from "types";
 import { getFirebaseErrorMessage } from "utils";
 import { auth } from "../../firebase";
@@ -39,6 +40,10 @@ export const fetchSignUpUser = createAsyncThunk<
   "user/fetchSignUpUser",
   async ({ name, email, password, confirmPassword }, { dispatch, rejectWithValue }) => {
     try {
+      const isPasswordsMatch = comparePasswords(password, confirmPassword);
+      if (!isPasswordsMatch) {
+        throw new Error("Passwords don't match");
+      }
       const { user } = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(auth.currentUser as User, { displayName: name });
       await sendEmailVerification(user, { url: "http://localhost:3000/react-pixema-app/sign-in" });
@@ -50,6 +55,10 @@ export const fetchSignUpUser = createAsyncThunk<
         verificationStatus: user.emailVerified,
       };
     } catch (error) {
+      if (error instanceof Error) {
+        const { message } = error as Error;
+        return rejectWithValue(message);
+      }
       const firebaseError = error as FirebaseError;
       return rejectWithValue(getFirebaseErrorMessage(firebaseError.code));
     }
@@ -119,27 +128,38 @@ export const fetchChangeUserName = createAsyncThunk<
 
 export const fetchChangePassword = createAsyncThunk<
   void,
-  { password: string; newPassword: string },
+  { password: string; newPassword: string; confirmPassword: string },
   { rejectValue: string }
->("user/fetchChangePassword", async ({ password, newPassword }, { dispatch, rejectWithValue }) => {
-  try {
-    const user = auth.currentUser as User;
-    if (user) {
-      const credential = EmailAuthProvider.credential(user.email as string, password);
-      await reauthenticateWithCredential(user, credential);
-      await updatePassword(user, newPassword);
+>(
+  "user/fetchChangePassword",
+  async ({ password, newPassword, confirmPassword }, { rejectWithValue }) => {
+    try {
+      const isPasswordsMatch = comparePasswords(password, confirmPassword);
+      if (!isPasswordsMatch) {
+        throw new Error("Passwords don't match");
+      }
+      const user = auth.currentUser as User;
+      if (user) {
+        const credential = EmailAuthProvider.credential(user.email as string, password);
+        await reauthenticateWithCredential(user, credential);
+        await updatePassword(user, newPassword);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        const { message } = error as Error;
+        return rejectWithValue(message);
+      }
+      const firebaseError = error as FirebaseError;
+      return rejectWithValue(getFirebaseErrorMessage(firebaseError.code));
     }
-  } catch (error) {
-    const firebaseError = error as FirebaseError;
-    return rejectWithValue(getFirebaseErrorMessage(firebaseError.code));
-  }
-});
+  },
+);
 
 export const fetchSentResetPasswordEmail = createAsyncThunk<
   boolean,
   { email: string },
   { rejectValue: string }
->("user/fetchSentResetPasswordEmail", async ({ email }, { dispatch, rejectWithValue }) => {
+>("user/fetchSentResetPasswordEmail", async ({ email }, { rejectWithValue }) => {
   try {
     sendPasswordResetEmail(auth, email);
     return true;

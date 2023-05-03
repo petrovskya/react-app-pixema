@@ -111,6 +111,10 @@ const validateYear = () => {
   };
 };
 
+const comparePasswords = (password: string, newPassword: string): boolean => {
+  return password === newPassword ? true : false;
+};
+
 export {
   validateEmail,
   validateName,
@@ -118,4 +122,5 @@ export {
   validateYear,
   validateTitle,
   validateNewPassword,
+  comparePasswords,
 };

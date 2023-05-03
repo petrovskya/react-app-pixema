@@ -49,9 +49,7 @@ export const SettingsForm = () => {
 
   const onSubmitData: SubmitHandler<SettingsFormValues> = (formValues): any => {
     if (formValues.password) {
-      dispatch(
-        fetchChangePassword({ password: formValues.password, newPassword: formValues.newPassword }),
-      );
+      dispatch(fetchChangePassword(formValues));
       reset();
     } else {
     }
@@ -94,7 +92,6 @@ export const SettingsForm = () => {
             error={errors.name?.message}
             validateFunction={validateName}
           />
-          {errorMessage && <FormError>{errorMessage}</FormError>}
         </SettingsFieldWrapper>
       </SettingsFormField>
       <SettingsFormField>

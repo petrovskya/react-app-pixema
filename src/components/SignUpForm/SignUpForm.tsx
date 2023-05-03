@@ -75,8 +75,8 @@ export const SignUpForm = () => {
         error={errors.confirmPassword?.message}
         validateFunction={validateNewPassword}
       />
-      <Button type="submit"> {isLoading ? <LittleSpinner /> : <>Sign up</>}</Button>
       {errorMessage && <FormError>{errorMessage}</FormError>}
+      <Button type="submit"> {isLoading ? <LittleSpinner /> : <>Sign up</>}</Button>
     </StyledSignUpForm>
   );
 };
