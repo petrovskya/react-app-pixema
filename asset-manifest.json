@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/react-app-pixema/static/js/main.ebf81ace.js",
+    "main.js": "/react-app-pixema/static/js/main.cae1e620.js",
     "static/media/background-image.png": "/react-app-pixema/static/media/background-image.d83d809a6f02b33a8ba8.png",
     "static/media/not-found-image.jpg": "/react-app-pixema/static/media/not-found-image.fdcb66510c82fab146e5.jpg",
     "static/media/pixema-logo-icon.svg": "/react-app-pixema/static/media/pixema-logo-icon.912b7644753efe30be3c1dccbfa17001.svg",
@@ -12,9 +12,9 @@
     "static/media/sign-out-icon.svg": "/react-app-pixema/static/media/sign-out-icon.26370c83db533a9f91060576793e2147.svg",
     "static/media/fire-icon.svg": "/react-app-pixema/static/media/fire-icon.6070463593d92b7582b93b7bbe720a2f.svg",
     "static/media/home-icon.svg": "/react-app-pixema/static/media/home-icon.4400ea99ea41c30bc3716164d6e0e667.svg",
+    "static/media/favorites-icon.svg": "/react-app-pixema/static/media/favorites-icon.2b2cf6806f339bfed4968f09a7414622.svg",
     "static/media/sign-up-icon.svg": "/react-app-pixema/static/media/sign-up-icon.f7ae885178f89503b6f5c60b19884b26.svg",
     "static/media/bookmark-icon.svg": "/react-app-pixema/static/media/bookmark-icon.420bc19b016a485b2f8d95e2c4d613cb.svg",
-    "static/media/favorites-icon.svg": "/react-app-pixema/static/media/favorites-icon.bd3d812bdb0ad876b6f5a12668459f7e.svg",
     "static/media/share-icon.svg": "/react-app-pixema/static/media/share-icon.8ddc0991262c7f9c22ef05c4715e45f4.svg",
     "static/media/arrow-right-icon.svg": "/react-app-pixema/static/media/arrow-right-icon.f58780250c373f06521d450484861c1a.svg",
     "static/media/arrow-left-icon.svg": "/react-app-pixema/static/media/arrow-left-icon.3c564afb63fdd9fca155e71bd34c58c5.svg",
@@ -22,9 +22,9 @@
     "static/media/filter-icon.svg": "/react-app-pixema/static/media/filter-icon.a628ca3e3aa3b2601aba441b840aed98.svg",
     "static/media/burger-icon.svg": "/react-app-pixema/static/media/burger-icon.31c808eae2a074639a3076cebc3b91f9.svg",
     "static/media/arrow-down-icon.svg": "/react-app-pixema/static/media/arrow-down-icon.6904455cac3b74428bbf45a0e219f1d2.svg",
-    "main.ebf81ace.js.map": "/react-app-pixema/static/js/main.ebf81ace.js.map"
+    "main.cae1e620.js.map": "/react-app-pixema/static/js/main.cae1e620.js.map"
   },
   "entrypoints": [
-    "static/js/main.ebf81ace.js"
+    "static/js/main.cae1e620.js"
   ]
 }
